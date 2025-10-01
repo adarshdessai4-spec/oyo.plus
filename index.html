@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OYO Inspired Stays | Find Your Perfect Room</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="utility-bar">
+      <div class="utility-left">
+        <span>Become a member</span>
+        <span>OYO.plus for Business</span>
+        <a href="corporate.html">List your property</a>
+      </div>
+      <div class="utility-right">
+        <a href="tel:+919090123456">+91 9090-123-456</a>
+        <button class="pill ghost small" type="button">English ▾</button>
+        <button class="pill ghost small" type="button">Login / Signup</button>
+      </div>
+    </div>
+    <div class="top-bar">
+      <div class="logo">OYO.<span>Plus</span></div>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </button>
+      <nav class="main-nav" id="primary-nav">
+        <a href="index.html#collections" data-nav="home">Collections</a>
+        <a href="listings.html" data-nav="listings">Find stays</a>
+        <a href="corporate.html" data-nav="corporate">Corporate travel</a>
+        <a href="about.html" data-nav="about">About</a>
+        <a href="support.html" data-nav="support">Support</a>
+      </nav>
+      <div class="cta-group">
+        <button class="btn ghost">Download app</button>
+        <button class="btn primary">Book now</button>
+      </div>
+    </div>
+    <nav class="city-bar" aria-label="Popular cities">
+      <button class="city-pill" type="button" data-city="Bengaluru">Bengaluru ▾</button>
+      <button class="city-pill" type="button" data-city="Chennai">Chennai ▾</button>
+      <button class="city-pill" type="button" data-city="Delhi">Delhi ▾</button>
+      <button class="city-pill" type="button" data-city="Gurgaon">Gurgaon ▾</button>
+      <button class="city-pill" type="button" data-city="Hyderabad">Hyderabad ▾</button>
+      <button class="city-pill" type="button" data-city="Kolkata">Kolkata ▾</button>
+      <button class="city-pill" type="button" data-city="Mumbai">Mumbai ▾</button>
+      <button class="city-pill" type="button" data-city="All Cities">More cities ▾</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero contrast">
+      <div class="hero-content boxed">
+        <p class="eyebrow">Over 170,000+ hotels &amp; homes across 35+ countries</p>
+        <h1>Where should we take you next?</h1>
+        <p class="subtitle">Plan stays for business, getaways, or remote work with exclusive OYO.plus perks.</p>
+        <form class="search-card flat" action="#" method="get" novalidate>
+          <div class="field">
+            <label for="search-city">City</label>
+            <input id="search-city" name="city" type="text" placeholder="e.g. Mumbai, Delhi" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="check-in">Check-in</label>
+            <input id="check-in" name="check_in" type="date">
+          </div>
+          <div class="field">
+            <label for="check-out">Check-out</label>
+            <input id="check-out" name="check_out" type="date">
+          </div>
+          <div class="field">
+            <label for="guests">Guests</label>
+            <select id="guests" name="guests">
+              <option value="1">1 guest</option>
+              <option value="2" selected>2 guests</option>
+              <option value="3">3 guests</option>
+              <option value="4">4 guests</option>
+              <option value="5">5 guests</option>
+            </select>
+          </div>
+          <button class="btn primary full" type="submit">Search stays</button>
+        </form>
+        <div class="hero-tags">
+          <button class="tag" type="button" data-quick-search='{"city":"", "near":true}'>Near me</button>
+          <button class="tag" type="button" data-quick-search='{"type":"apartment"}'>Weekly rentals</button>
+          <button class="tag" type="button" data-quick-search='{"workspace":true}'>Work pods</button>
+          <button class="tag" type="button" data-quick-search='{"wellness":true}'>Wellness add-ons</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo-subscribe">
+      <div class="promo-icon">🔥</div>
+      <div class="promo-copy">
+        <h2>Get access to exclusive deals</h2>
+        <p>Only the best offers and flash sales land in your inbox.</p>
+      </div>
+      <form class="promo-form" action="#" method="post" data-form="promo">
+        <label class="sr-only" for="promo-email">Email</label>
+        <input id="promo-email" type="email" placeholder="your@email.com">
+        <button class="btn primary" type="submit">Notify me</button>
+      </form>
+    </section>
+
+    <section class="metrics" aria-labelledby="global-presence">
+      <div class="metrics-visual">
+        <div class="world-map"></div>
+      </div>
+      <div class="metrics-copy">
+        <h2 id="global-presence">There's a OYO.plus around. Always.</h2>
+        <p>More destinations. More ease. More affordable stays built for every journey.</p>
+        <div class="metric-stats">
+          <div>
+            <strong>35+</strong>
+            <span>Countries</span>
+          </div>
+          <div>
+            <strong>174,000+</strong>
+            <span>Hotels &amp; homes</span>
+          </div>
+        </div>
+        <ul class="metric-list">
+          <li><button class="metric-link" type="button" data-city="Indonesia"><span class="dot dot-green"></span>Indonesia</button></li>
+          <li><button class="metric-link" type="button" data-city="Malaysia"><span class="dot dot-red"></span>Malaysia</button></li>
+          <li><button class="metric-link" type="button" data-city="Denmark"><span class="dot dot-yellow"></span>Denmark</button></li>
+          <li><button class="metric-link" type="button" data-city="United States"><span class="dot dot-blue"></span>United States</button></li>
+          <li><button class="metric-link" type="button" data-city="United Kingdom"><span class="dot dot-purple"></span>United Kingdom</button></li>
+          <li><button class="metric-link" type="button" data-city="Netherlands"><span class="dot dot-pink"></span>Netherlands</button></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="search-results" id="search-results" aria-live="polite" hidden>
+      <div class="section-head">
+        <h2>Matched stays for you</h2>
+        <div class="controls">
+          <a class="pill" id="view-all-results" href="listings.html">View all</a>
+          <button class="pill" type="button" id="clear-results">Clear</button>
+        </div>
+      </div>
+      <div class="property-grid condensed" data-slot="search-results"></div>
+      <p class="muted" id="search-message"></p>
+    </section>
+
+    <section class="quick-picks" id="collections">
+      <div class="section-head">
+        <h2>Curated stays for every journey</h2>
+        <a class="link" href="#">See all collections</a>
+      </div>
+      <div class="card-row" data-slot="collections"></div>
+    </section>
+
+    <section class="destinations" id="destinations">
+      <div class="section-head">
+        <h2>Trending destinations</h2>
+        <a class="link" href="#">View all cities</a>
+      </div>
+      <div class="destination-grid" data-slot="destinations"></div>
+    </section>
+
+    <section class="offers" id="offers">
+      <div class="section-head">
+        <h2>Exclusive app-only offers</h2>
+        <div class="controls">
+          <button class="pill" data-direction="prev" aria-label="Previous offers">&#8592;</button>
+          <button class="pill" data-direction="next" aria-label="Next offers">&#8594;</button>
+        </div>
+      </div>
+      <div class="offer-track" data-slot="offers"></div>
+    </section>
+
+    <section class="trust">
+      <div class="trust-text" data-slot="trust-copy"></div>
+      <div class="trust-cards" data-slot="trust-cards"></div>
+    </section>
+
+    <section class="differentiators" id="exclusives">
+      <div class="section-head">
+        <h2 data-slot="differentiators-title">OYO.plus exclusives you won’t find on OYO</h2>
+        <a class="link" href="support.html#contact">Talk to a concierge</a>
+      </div>
+      <p class="muted" data-slot="differentiators-description"></p>
+      <div class="differentiator-grid" data-slot="differentiators"></div>
+    </section>
+
+    <section class="testimonials">
+      <div class="section-head">
+        <h2>Loved by travellers across 35+ countries</h2>
+      </div>
+      <div class="testimonial-row" data-slot="testimonials"></div>
+    </section>
+
+    <section class="download" id="download">
+      <div class="download-content" data-slot="download-copy"></div>
+      <div class="download-art" data-slot="download-art"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="support">
+    <div class="footer-columns">
+      <div>
+        <h4>OYO.plus</h4>
+        <p>Leading travel technology platform that makes staying easy, affordable, and dependable.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Investors</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help center</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">Responsible disclosure</a></li>
+          <li><a href="#">Cancellation policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="#">Stays with kitchens</a></li>
+          <li><a href="#">Long-term rentals</a></li>
+          <li><a href="#">Pet-friendly stays</a></li>
+          <li><a href="#">Self check-in homes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 OYO.plus Technologies Pvt. Ltd.</span>
+      <div class="policy-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OYO.plus Listings | Discover Verified Hotels & Homestays</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="listings">
+  <header class="top-bar">
+    <div class="logo">OYO.<span>Plus</span></div>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <span class="sr-only">Toggle navigation</span>
+      <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    </button>
+    <nav class="main-nav" id="primary-nav">
+      <a href="index.html#collections" data-nav="home">Collections</a>
+      <a href="listings.html" data-nav="listings">Find stays</a>
+      <a href="corporate.html" data-nav="corporate">Corporate travel</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="support.html" data-nav="support">Support</a>
+    </nav>
+    <div class="cta-group">
+      <button class="btn ghost">List your property</button>
+      <button class="btn primary">Login / Signup</button>
+    </div>
+  </header>
+
+  <main class="page listings">
+    <section class="page-hero">
+      <p class="eyebrow accent">Verified stays in 300+ cities</p>
+      <h1>Find a stay that fits every plan</h1>
+      <p>Browse curated hotels, homestays, and serviced apartments. Filter by price, amenities, and ratings to lock the perfect match.</p>
+    </section>
+
+    <section class="filter-card">
+      <form class="filter-grid" id="listing-filter" novalidate>
+        <div class="field">
+          <label for="filter-city">City</label>
+          <input id="filter-city" type="text" name="city" placeholder="Eg. Pune">
+        </div>
+        <div class="field">
+          <label for="filter-check-in">Check-in</label>
+          <input id="filter-check-in" type="date" name="check_in">
+        </div>
+        <div class="field">
+          <label for="filter-nights">Nights</label>
+          <select id="filter-nights" name="nights">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5+">5+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-guests">Guests</label>
+          <select id="filter-guests" name="guests">
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5+">5+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-type">Room type</label>
+          <select id="filter-type" name="type">
+            <option value="any" selected>Any</option>
+            <option value="premium">Premium</option>
+            <option value="budget">Budget</option>
+            <option value="villa">Villa</option>
+            <option value="apartment">Serviced apartment</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-price">Budget/night</label>
+          <select id="filter-price" name="budget">
+            <option value="any" selected>Any</option>
+            <option value="1500">Under ₹1,500</option>
+            <option value="3000">₹1,500 - ₹3,000</option>
+            <option value="5000">₹3,000 - ₹5,000</option>
+            <option value="5000+">₹5,000+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-rating">Minimum rating</label>
+          <select id="filter-rating" name="rating">
+            <option value="any" selected>Any</option>
+            <option value="4.0">4.0+</option>
+            <option value="4.5">4.5+</option>
+          </select>
+        </div>
+        <div class="field checkbox-group">
+          <label class="checkbox"><input type="checkbox" name="workspace"> Remote-ready workspaces</label>
+          <label class="checkbox"><input type="checkbox" name="wellness"> Wellness perks</label>
+          <label class="checkbox"><input type="checkbox" name="near"> Near me (top-rated)</label>
+        </div>
+        <button class="btn primary" type="submit">Update results</button>
+        <button class="btn ghost" type="button" id="reset-filters">Reset</button>
+      </form>
+    </section>
+
+    <section class="property-grid" aria-live="polite" id="listing-results" data-slot="listings"></section>
+    <p class="muted" id="listing-message" role="status"></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-columns">
+      <div>
+        <h4>OYO.plus</h4>
+        <p>Leading travel technology platform that makes staying easy, affordable, and dependable.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="about.html#careers">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Investors</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="support.html">Help center</a></li>
+          <li><a href="support.html#contact">Contact us</a></li>
+          <li><a href="support.html#faq">FAQs</a></li>
+          <li><a href="#">Cancellation policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="listings.html">Stays with kitchens</a></li>
+          <li><a href="listings.html">Long-term rentals</a></li>
+          <li><a href="listings.html">Pet-friendly stays</a></li>
+          <li><a href="corporate.html">Corporate programs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 OYO.plus Technologies Pvt. Ltd.</span>
+      <div class="policy-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

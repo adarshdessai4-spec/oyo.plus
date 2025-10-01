@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa Azure Beach Villa | OYO.plus</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="detail" data-property-id="casa-azure">
+  <header class="top-bar">
+    <div class="logo">OYO.<span>Plus</span></div>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <span class="sr-only">Toggle navigation</span>
+      <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    </button>
+    <nav class="main-nav" id="primary-nav">
+      <a href="index.html#collections" data-nav="home">Collections</a>
+      <a href="listings.html" data-nav="listings">Find stays</a>
+      <a href="corporate.html" data-nav="corporate">Corporate travel</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="support.html" data-nav="support">Support</a>
+    </nav>
+    <div class="cta-group">
+      <button class="btn ghost">List your property</button>
+      <button class="btn primary">Login / Signup</button>
+    </div>
+  </header>
+
+  <main class="page detail">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a id="breadcrumb-city" href="listings.html">All stays</a>
+      <span>/</span>
+      <span id="breadcrumb-name">Loading stay…</span>
+    </nav>
+
+    <div class="page-hero">
+      <p class="eyebrow accent" data-bind="badge">Fetching stay details…</p>
+      <h1 data-bind="name">Loading stay</h1>
+      <p data-bind="summary">Hold tight while we fetch the details for this OYO.plus property.</p>
+    </div>
+
+    <div class="gallery" data-slot="gallery" aria-live="polite"></div>
+
+    <div class="detail-grid">
+      <section>
+        <h2>About this stay</h2>
+        <p data-bind="about">We are gathering the full description for this stay.</p>
+
+        <h3>Amenities</h3>
+        <div class="amenities" data-slot="amenities"></div>
+
+        <h3>Good to know</h3>
+        <ul class="benefit-list" data-slot="good-to-know"></ul>
+
+        <div class="policies" data-slot="policies"></div>
+
+        <h3>Green impact</h3>
+        <div class="sustainability" data-slot="sustainability"></div>
+      </section>
+
+      <aside class="detail-panel" aria-live="polite">
+        <div>
+          <span class="rating" data-bind="rating">4.5 ★</span>
+          <p class="price" data-bind="price">₹0</p>
+          <p data-bind="pricing-note">Per night • Taxes extra</p>
+        </div>
+        <div>
+          <h3>Instant booking benefits</h3>
+          <ul class="benefit-list" data-slot="benefits"></ul>
+        </div>
+        <button class="btn primary" id="reserve-btn">Reserve this stay</button>
+        <button class="btn ghost" id="contact-host">Call property manager</button>
+        <div class="workspace" data-slot="workspace"></div>
+        <div class="wellness" data-slot="wellness"></div>
+        <div class="map-card" data-slot="map"></div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-columns">
+      <div>
+        <h4>OYO.plus</h4>
+        <p>Leading travel technology platform that makes staying easy, affordable, and dependable.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="about.html#careers">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Investors</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="support.html">Help center</a></li>
+          <li><a href="support.html#contact">Contact us</a></li>
+          <li><a href="support.html#faq">FAQs</a></li>
+          <li><a href="#">Cancellation policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="listings.html">Stays with kitchens</a></li>
+          <li><a href="listings.html">Long-term rentals</a></li>
+          <li><a href="listings.html">Pet-friendly stays</a></li>
+          <li><a href="corporate.html">Corporate programs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 OYO.plus Technologies Pvt. Ltd.</span>
+      <div class="policy-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

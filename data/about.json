@@ -1,0 +1,44 @@
+{
+  "stats": [
+    { "figure": "12M+", "caption": "Guests hosted since 2018" },
+    { "figure": "35+", "caption": "Countries with OYO.plus inventory" },
+    { "figure": "96%", "caption": "Average guest satisfaction score" },
+    { "figure": "1.4M", "caption": "Verified hotel & home listings" }
+  ],
+  "timeline": [
+    {
+      "title": "2018 • Launch",
+      "description": "Started with 120 partner hotels focused on predictable, standardised stays in metro cities."
+    },
+    {
+      "title": "2020 • Safety first",
+      "description": "Introduced StaySafe hygiene program with daily audits, UV sanitisation, and contactless check-ins."
+    },
+    {
+      "title": "2021 • Homes & villas",
+      "description": "Expanded to holiday homes and villas with curated experiences for remote work, weddings, and family reunions."
+    },
+    {
+      "title": "2023 • Global growth",
+      "description": "Entered Southeast Asia and the Middle East with local operator partnerships and on-ground support teams."
+    }
+  ],
+  "culture": [
+    {
+      "title": "Customer obsession",
+      "copy": "Every team member spends a day on support lines each quarter to stay close to our guests and partners."
+    },
+    {
+      "title": "Ownership",
+      "copy": "We trust people closest to the problem to make decisions. No heavy approvals—just measurable outcomes."
+    },
+    {
+      "title": "Inclusive teams",
+      "copy": "We champion diversity across gender, geography, and thought. 45% of leadership roles are held by women."
+    },
+    {
+      "title": "Growth mindset",
+      "copy": "Learning sprints, mentorship programs, and global mobility help you grow your skills and career."
+    }
+  ]
+}

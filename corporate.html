@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OYO.plus for Business | Corporate Travel Programs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="corporate">
+  <header class="top-bar">
+    <div class="logo">OYO.<span>Plus</span></div>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+      <span class="sr-only">Toggle navigation</span>
+      <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    </button>
+    <nav class="main-nav" id="primary-nav">
+      <a href="index.html#collections" data-nav="home">Collections</a>
+      <a href="listings.html" data-nav="listings">Find stays</a>
+      <a href="corporate.html" data-nav="corporate">Corporate travel</a>
+      <a href="about.html" data-nav="about">About</a>
+      <a href="support.html" data-nav="support">Support</a>
+    </nav>
+    <div class="cta-group">
+      <button class="btn ghost">List your property</button>
+      <button class="btn primary">Login / Signup</button>
+    </div>
+  </header>
+
+  <main class="page corporate">
+    <section class="page-hero">
+      <p class="eyebrow accent">OYO.plus for Business</p>
+      <h1>Power your company's travel with stays employees love</h1>
+      <p>Unlock centralised billing, negotiated rates, and 24x7 support across 7,500+ verified hotels, homes, and serviced apartments.</p>
+      <div class="store-links">
+        <a class="btn primary" href="#enquire">Book a demo</a>
+        <a class="btn ghost" href="#programs">Explore programs</a>
+      </div>
+    </section>
+
+    <section id="programs">
+      <div class="section-head">
+        <h2>Built for modern travel teams</h2>
+        <a class="link" href="#enquire">Talk to an expert</a>
+      </div>
+      <div class="program-grid" data-slot="corporate-programs"></div>
+    </section>
+
+    <section>
+      <div class="stats-grid" data-slot="corporate-stats"></div>
+    </section>
+
+    <section id="enquire">
+      <div class="section-head">
+        <h2>Let's design a travel program that scales with you</h2>
+      </div>
+      <div class="filter-card">
+        <form class="filter-grid" id="corporate-form" novalidate>
+          <div class="field">
+            <label for="biz-name">Company name</label>
+            <input id="biz-name" type="text" name="company" placeholder="Acme Corp" required>
+          </div>
+          <div class="field">
+            <label for="biz-email">Work email</label>
+            <input id="biz-email" type="email" name="email" placeholder="you@company.com" required>
+          </div>
+          <div class="field">
+            <label for="biz-size">Team size travelling monthly</label>
+            <select id="biz-size" name="team_size">
+              <option value="1-20">1-20</option>
+              <option value="21-50">21-50</option>
+              <option value="51-100">51-100</option>
+              <option value="100+">100+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="biz-city">Primary travel cities</label>
+            <input id="biz-city" type="text" name="cities" placeholder="Mumbai, Delhi, Bengaluru">
+          </div>
+          <div class="field">
+            <label for="biz-notes">Key requirements</label>
+            <input id="biz-notes" type="text" name="notes" placeholder="Central billing, long stays, events">
+          </div>
+          <button class="btn primary" type="submit">Submit enquiry</button>
+        </form>
+        <p class="muted" id="corporate-response" role="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-columns">
+      <div>
+        <h4>OYO.plus</h4>
+        <p>Leading travel technology platform that makes staying easy, affordable, and dependable.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="about.html#careers">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Investors</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="support.html">Help center</a></li>
+          <li><a href="support.html#contact">Contact us</a></li>
+          <li><a href="support.html#faq">FAQs</a></li>
+          <li><a href="#">Cancellation policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="listings.html">Stays with kitchens</a></li>
+          <li><a href="listings.html">Long-term rentals</a></li>
+          <li><a href="listings.html">Pet-friendly stays</a></li>
+          <li><a href="corporate.html">Corporate programs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 OYO.plus Technologies Pvt. Ltd.</span>
+      <div class="policy-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

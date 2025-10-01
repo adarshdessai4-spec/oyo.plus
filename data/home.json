@@ -1,0 +1,150 @@
+{
+  "collections": [
+    {
+      "title": "Corporate stays",
+      "description": "Premium work-friendly hotels with reliable Wi-Fi, meeting rooms, and central locations.",
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/105630/medium/ee2c1f3c5c8cf1b0.jpg",
+      "imageAlt": "Business hotel lobby with seating",
+      "href": "listings.html?type=premium"
+    },
+    {
+      "title": "Resorts & villas",
+      "description": "Boutique villas, private pools, and curated experiences for weekend escapes.",
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/114875/large/7b38caef34a1f039.jpg",
+      "imageAlt": "Resort pool overlooking palm trees",
+      "href": "listings.html?type=villa"
+    },
+    {
+      "title": "Affordable stays",
+      "description": "Verified budget rooms with spotless linens, AC, and daily housekeeping.",
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/40486/medium/0a06d8e7dc95ff4e.jpg",
+      "imageAlt": "Compact budget hotel room",
+      "href": "listings.html?type=budget&rating=4.0"
+    },
+    {
+      "title": "Group getaways",
+      "description": "Spacious homes and hostels built for friends, families, and reunions.",
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/112962/medium/0cd8477228bf970a.jpg",
+      "imageAlt": "Friends reunite in a homestay living room",
+      "href": "listings.html?city=Manali"
+    }
+  ],
+  "destinations": [
+    { "city": "New Delhi", "count": "680+ stays", "href": "listings.html?city=Delhi" },
+    { "city": "Mumbai", "count": "540+ stays", "href": "listings.html?city=Mumbai" },
+    { "city": "Bengaluru", "count": "430+ stays", "href": "listings.html?city=Bengaluru" },
+    { "city": "Goa", "count": "320+ stays", "href": "listings.html?city=Goa" },
+    { "city": "Hyderabad", "count": "210+ stays", "href": "listings.html?city=Hyderabad" },
+    { "city": "Jaipur", "count": "190+ stays", "href": "listings.html?city=Jaipur" }
+  ],
+  "offers": [
+    {
+      "badge": "New",
+      "title": "Flat 25% off on first 3 bookings",
+      "description": "Use code OYONEW on the app. Applicable on select cities and room categories.",
+      "cta": {
+        "label": "Copy code",
+        "value": "OYONEW"
+      }
+    },
+    {
+      "badge": "Limited",
+      "title": "Extra 15% off for business travellers",
+      "description": "Verify your corporate email to unlock negotiated rates and flexible invoices."
+    },
+    {
+      "badge": "Trending",
+      "title": "Weekend getaways starting at ₹1,299",
+      "description": "Curated stays near nature escapes with complimentary breakfast on 2+ nights."
+    },
+    {
+      "badge": "Popular",
+      "title": "Earn 2x reward nights",
+      "description": "Collect stays faster when you book through the OYO.plus app or website."
+    }
+  ],
+  "trust": {
+    "headline": "Why book with OYO.plus?",
+    "description": "We inspect every property and provide on-ground support so you always check into a reliable stay.",
+    "bullets": [
+      "100% money-back guarantee if we can't honour your booking.",
+      "Priority support across chat, call, and WhatsApp.",
+      "Smart recommendations based on your travel history.",
+      "Daily hygiene and quality audits at partner properties."
+    ],
+    "cards": [
+      {
+        "title": "Verified properties",
+        "copy": "Each stay passes 120+ quality checkpoints including safety, comfort, and location."
+      },
+      {
+        "title": "Seamless check-ins",
+        "copy": "Digital KYC, instant confirmations, and 24x7 front desk assistance to smoothen arrivals."
+      },
+      {
+        "title": "Flexible bookings",
+        "copy": "Modify or cancel plans with ease through the app up to 6 hours before check-in."
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "quote": "The stay was spotless and the staff honoured an early check-in request without any hassle.",
+      "name": "Rohan Gupta",
+      "meta": "Stayed in Bengaluru • Business trip"
+    },
+    {
+      "quote": "Booked a last-minute Goa getaway. Loved the beach villa and seamless payment experience.",
+      "name": "Neha & Arjun",
+      "meta": "Stayed in Goa • Couple escape"
+    },
+    {
+      "quote": "App discounts plus late checkout made our family vacation affordable and stress free.",
+      "name": "Anita Sharma",
+      "meta": "Stayed in Jaipur • Family holiday"
+    }
+  ],
+  "download": {
+    "title": "Get the OYO.plus app",
+    "copy": "Manage bookings, unlock app-only prices, and access your digital room key anytime.",
+    "image": {
+      "src": "https://images.oyoroomscdn.com/uploads/hotel_image/109126/large/3790c1e2c3c6a97d.jpg",
+      "alt": "Traveller checking mobile for booking"
+    },
+    "stores": [
+      { "label": "Download on App Store", "href": "#" },
+      { "label": "Get it on Google Play", "href": "#" }
+    ]
+  },
+  "differentiators": {
+    "headline": "OYO.plus exclusives you won’t find on OYO",
+    "description": "We built tools for remote workers, conscious travellers, and wellness-first explorers so your stay does much more than provide a bed.",
+    "items": [
+      {
+        "title": "Carbon-neutral check-ins",
+        "copy": "Every booking funds verified carbon offset projects and shows your footprint score inside the app.",
+        "icon": "🌱"
+      },
+      {
+        "title": "AI itinerary studio",
+        "copy": "Drop in your interests and we’ll auto-build day plans, restaurant reservations, and transit timelines in seconds.",
+        "icon": "🤖"
+      },
+      {
+        "title": "Remote-ready work pods",
+        "copy": "Reserve acoustic work pods and fiber-backed cowork lounges from the app before you arrive.",
+        "icon": "💼"
+      },
+      {
+        "title": "Local community concierge",
+        "copy": "Message city hosts 24/7 for insider-only events or co-traveller meetups, translated into 12 languages instantly.",
+        "icon": "🗺️"
+      },
+      {
+        "title": "Wellness-on-call",
+        "copy": "Schedule sunrise yoga, sleep coaching, or nutrition consults inside the OYO.plus app at partner properties.",
+        "icon": "🧘"
+      }
+    ]
+  }
+}

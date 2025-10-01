@@ -1,0 +1,9 @@
+{
+  "name": "staygo-site",
+  "version": "1.0.0",
+  "description": "OYO-inspired OYO.plus marketing site served with a lightweight static server.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
