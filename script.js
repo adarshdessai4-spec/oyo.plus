@@ -7,6 +7,16 @@ const pageState = {
   properties: null
 };
 
+const STORAGE_KEYS = Object.freeze({
+  userProfile: 'oyoplus:user',
+  bookings: 'oyoplus:bookings'
+});
+
+const BOOKING_CONSTANTS = Object.freeze({
+  taxRate: 0.12,
+  serviceFee: 299
+});
+
 const numberFormatters = {
   INR: new Intl.NumberFormat('en-IN', {
     style: 'currency',
@@ -17,6 +27,7 @@ const numberFormatters = {
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let toastContainer;
+let membershipHighlightTimer;
 
 function animateIn(element) {
   if (!element) return;
@@ -75,6 +86,169 @@ function clearChildren(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
+}
+
+function calculateBookingTotals(property, nightsInput) {
+  if (!property) {
+    return {
+      nightlyRate: 0,
+      nights: 0,
+      subtotal: 0,
+      tax: 0,
+      fees: 0,
+      total: 0,
+      currency: 'INR'
+    };
+  }
+  const nights = Math.max(1, Number(nightsInput) || 1);
+  const nightlyRate = Number(property.price) || 0;
+  const subtotal = nightlyRate * nights;
+  const tax = Math.round(subtotal * BOOKING_CONSTANTS.taxRate);
+  const fees = BOOKING_CONSTANTS.serviceFee;
+  const total = subtotal + tax + fees;
+  return {
+    nightlyRate,
+    nights,
+    subtotal,
+    tax,
+    fees,
+    total,
+    currency: property.currency || 'INR'
+  };
+}
+
+function saveUserProfile(profile) {
+  if (!profile) return;
+  try {
+    const payload = JSON.stringify(profile);
+    sessionStorage.setItem(STORAGE_KEYS.userProfile, payload);
+  } catch (error) {
+    console.warn('Unable to persist user profile', error);
+  }
+}
+
+function loadUserProfile() {
+  try {
+    const stored = sessionStorage.getItem(STORAGE_KEYS.userProfile);
+    if (!stored) return null;
+    return JSON.parse(stored);
+  } catch (error) {
+    console.warn('Unable to parse user profile', error);
+    return null;
+  }
+}
+
+function clearUserProfile() {
+  try {
+    sessionStorage.removeItem(STORAGE_KEYS.userProfile);
+  } catch (error) {
+    console.warn('Unable to clear user profile', error);
+  }
+  clearStoredBookings();
+}
+
+function persistStoredBookings(bookings) {
+  try {
+    const payload = JSON.stringify(bookings);
+    sessionStorage.setItem(STORAGE_KEYS.bookings, payload);
+  } catch (error) {
+    console.warn('Unable to persist bookings', error);
+  }
+}
+
+function loadStoredBookings() {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEYS.bookings);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.warn('Unable to parse bookings', error);
+    return [];
+  }
+}
+
+function addStoredBooking(booking) {
+  if (!booking) return;
+  const current = loadStoredBookings().filter((item) => item.id !== booking.id);
+  current.push(booking);
+  current.sort((a, b) => {
+    const aDate = new Date(a.checkIn).getTime();
+    const bDate = new Date(b.checkIn).getTime();
+    return aDate - bDate;
+  });
+  persistStoredBookings(current);
+}
+
+function clearStoredBookings() {
+  try {
+    sessionStorage.removeItem(STORAGE_KEYS.bookings);
+  } catch (error) {
+    console.warn('Unable to clear bookings', error);
+  }
+}
+
+function getMembershipSection() {
+  return document.getElementById('membership');
+}
+
+function highlightMembershipSection(section) {
+  if (!section) return;
+  section.classList.add('is-highlighted');
+  if (membershipHighlightTimer) {
+    clearTimeout(membershipHighlightTimer);
+  }
+  membershipHighlightTimer = setTimeout(() => {
+    section.classList.remove('is-highlighted');
+  }, 1600);
+}
+
+function scrollToMembershipSection({ highlight = true } = {}) {
+  const section = getMembershipSection();
+  if (!section) {
+    window.location.href = 'index.html#membership';
+    return;
+  }
+  section.scrollIntoView({
+    behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+    block: 'center'
+  });
+  if (highlight) {
+    highlightMembershipSection(section);
+  }
+}
+
+function setupMembershipLinks() {
+  const triggers = document.querySelectorAll('[data-action="open-membership"], [data-action="membership-learn"]');
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const action = trigger.dataset.action;
+      const section = getMembershipSection();
+      if (!section) {
+        window.location.href = 'index.html#membership';
+        return;
+      }
+      if (action === 'open-membership') {
+        scrollToMembershipSection();
+      } else if (action === 'membership-learn') {
+        section.scrollIntoView({
+          behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+          block: 'center'
+        });
+        highlightMembershipSection(section);
+      }
+    });
+  });
+}
+
+function handleMembershipDeepLink() {
+  if (window.location.hash.replace('#', '') !== 'membership') return;
+  const section = getMembershipSection();
+  if (!section) return;
+  setTimeout(() => {
+    scrollToMembershipSection();
+  }, 200);
 }
 
 function renderSkeletons(container, count, type = 'card') {
@@ -766,10 +940,9 @@ async function initDetailPage() {
     }
   }
 
-  if (reserveBtn) {
-    reserveBtn.addEventListener('click', () => {
-      showToast(`Hold tight! We'll start a booking flow for ${property.name}.`, 'success');
-    });
+  const openReservationModal = setupReserveModal(property);
+  if (reserveBtn && typeof openReservationModal === 'function') {
+    reserveBtn.addEventListener('click', openReservationModal);
   }
 
   if (contactBtn) {
@@ -782,6 +955,368 @@ async function initDetailPage() {
       contactBtn.disabled = true;
     }
   }
+}
+
+function setupReserveModal(property) {
+  const modal = document.querySelector('[data-reserve-modal]');
+  const form = modal?.querySelector('[data-reserve-form]');
+  if (!modal || !form) return null;
+
+  const checkInInput = form.querySelector('input[name="check_in"]');
+  const nightsSelect = form.querySelector('select[name="nights"]');
+  const guestsSelect = form.querySelector('select[name="guests"]');
+  const nameInput = form.querySelector('input[name="guest_name"]');
+  const emailInput = form.querySelector('input[name="guest_email"]');
+  const phoneInput = form.querySelector('input[name="guest_phone"]');
+  const requestsInput = form.querySelector('textarea[name="requests"]');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const priceNode = modal.querySelector('[data-reserve-nightly]');
+  const subtotalNode = modal.querySelector('[data-reserve-subtotal]');
+  const taxesNode = modal.querySelector('[data-reserve-taxes]');
+  const feesNode = modal.querySelector('[data-reserve-fees]');
+  const totalNode = modal.querySelector('[data-reserve-total]');
+  const nightsNode = modal.querySelector('[data-reserve-nights]');
+  const checkOutNode = modal.querySelector('[data-reserve-checkout]');
+  const statusNode = modal.querySelector('[data-reserve-status]');
+  const propertyNodes = modal.querySelectorAll('[data-reserve-property]');
+  const locationNode = modal.querySelector('[data-reserve-location]');
+  const coverImage = modal.querySelector('[data-reserve-cover]');
+  const overlay = modal.querySelector('[data-reserve-overlay]');
+  const profile = loadUserProfile();
+
+  let isOpen = false;
+
+  if (propertyNodes.length) {
+    propertyNodes.forEach((node) => {
+      node.textContent = property.name;
+    });
+  }
+
+  if (locationNode) {
+    const locality = property.area ? `${property.area}, ${property.city}` : property.city;
+    const locationLabel = property.country ? `${locality}, ${property.country}` : locality;
+    locationNode.textContent = locationLabel;
+  }
+
+  if (coverImage) {
+    const heroImage = property.images?.[0];
+    if (heroImage?.src) {
+      coverImage.src = heroImage.src;
+      coverImage.alt = heroImage.alt ?? property.name;
+    } else {
+      coverImage.remove();
+    }
+  }
+
+  function ensureGuestOptions() {
+    if (!guestsSelect || guestsSelect.dataset.bound === 'true') return;
+    clearChildren(guestsSelect);
+    const maxGuests = Math.max(1, Number(property.maxGuests) || 1);
+    for (let i = 1; i <= maxGuests; i += 1) {
+      const option = document.createElement('option');
+      option.value = String(i);
+      option.textContent = `${i} guest${i > 1 ? 's' : ''}`;
+      if (i === Math.min(maxGuests, 2)) {
+        option.selected = true;
+      }
+      guestsSelect.appendChild(option);
+    }
+    guestsSelect.dataset.bound = 'true';
+  }
+
+  function setDefaultDates() {
+    if (!checkInInput) return;
+    const today = new Date();
+    const minDate = today.toISOString().split('T')[0];
+    checkInInput.min = minDate;
+    if (!checkInInput.value) {
+      const defaultDate = new Date();
+      defaultDate.setDate(defaultDate.getDate() + 7);
+      checkInInput.value = defaultDate.toISOString().split('T')[0];
+    }
+  }
+
+  function updateSummary() {
+    const totals = calculateBookingTotals(property, nightsSelect?.value);
+    if (priceNode) priceNode.textContent = formatPrice(totals.nightlyRate, totals.currency);
+    if (subtotalNode) subtotalNode.textContent = formatPrice(totals.subtotal, totals.currency);
+    if (taxesNode) taxesNode.textContent = formatPrice(totals.tax, totals.currency);
+    if (feesNode) feesNode.textContent = formatPrice(totals.fees, totals.currency);
+    if (totalNode) totalNode.textContent = formatPrice(totals.total, totals.currency);
+    if (nightsNode) nightsNode.textContent = totals.nights;
+
+    const guestCount = Number(guestsSelect?.value) || 1;
+    const guestLabel = `${guestCount} guest${guestCount > 1 ? 's' : ''}`;
+
+    if (checkInInput) {
+      if (!checkInInput.value) {
+        if (checkOutNode) checkOutNode.textContent = '—';
+        if (statusNode) {
+          statusNode.textContent = `Select your dates and we’ll hold ${property.name} while you confirm.`;
+        }
+        return;
+      }
+
+      const checkInDate = new Date(checkInInput.value);
+      let checkoutLabel = '';
+      if (checkInDate && !Number.isNaN(checkInDate.getTime())) {
+        const checkOutDate = new Date(checkInDate);
+        checkOutDate.setDate(checkOutDate.getDate() + totals.nights);
+        checkoutLabel = formatDisplayDate(checkOutDate);
+        if (checkOutNode) checkOutNode.textContent = checkoutLabel;
+      } else if (checkOutNode) {
+        checkOutNode.textContent = '—';
+      }
+
+      if (statusNode) {
+        const checkInLabel = formatDisplayDate(checkInInput.value) || 'your selected date';
+        const nightsLabel = `${totals.nights} night${totals.nights > 1 ? 's' : ''}`;
+        const checkoutText = checkoutLabel || 'checkout to be decided';
+        statusNode.textContent = `We’ll hold ${property.name} for ${guestLabel}, ${nightsLabel} from ${checkInLabel} to ${checkoutText}.`;
+      }
+    }
+  }
+
+  function closeModal() {
+    if (!isOpen) return;
+    isOpen = false;
+    modal.classList.remove('is-open');
+    modal.setAttribute('hidden', 'true');
+    document.body.classList.remove('modal-open');
+    document.removeEventListener('keydown', handleKeydown);
+  }
+
+  function handleKeydown(event) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal();
+    }
+  }
+
+  function openModal() {
+    form.reset();
+    ensureGuestOptions();
+    setDefaultDates();
+    if (nightsSelect) {
+      const desired = nightsSelect.dataset.default || '2';
+      if (Array.from(nightsSelect.options).some((option) => option.value === desired)) {
+        nightsSelect.value = desired;
+      } else if (nightsSelect.options.length > 0) {
+        nightsSelect.selectedIndex = 0;
+      }
+    }
+    if (guestsSelect) {
+      const defaultGuests = Math.min(Number(property.maxGuests) || 1, 2);
+      if (Array.from(guestsSelect.options).some((option) => option.value === String(defaultGuests))) {
+        guestsSelect.value = String(defaultGuests);
+      } else if (guestsSelect.options.length > 0) {
+        guestsSelect.selectedIndex = 0;
+      }
+    }
+    if (profile) {
+      if (nameInput && profile.name) nameInput.value = profile.name;
+      if (emailInput && profile.email) emailInput.value = profile.email;
+      if (phoneInput && profile.phone) phoneInput.value = profile.phone;
+    }
+    if (requestsInput) requestsInput.value = '';
+    form.dataset.propertyId = property.id;
+    modal.removeAttribute('hidden');
+    modal.classList.add('is-open');
+    document.body.classList.add('modal-open');
+    isOpen = true;
+    document.addEventListener('keydown', handleKeydown);
+    updateSummary();
+    if (nameInput) {
+      try {
+        nameInput.focus({ preventScroll: true });
+      } catch (error) {
+        nameInput.focus();
+      }
+    }
+  }
+
+  const closeControls = modal.querySelectorAll('[data-action="close-reserve"]');
+  closeControls.forEach((control) => {
+    control.addEventListener('click', closeModal);
+  });
+
+  if (overlay) {
+    overlay.addEventListener('click', closeModal);
+  }
+
+  nightsSelect?.addEventListener('change', updateSummary);
+  checkInInput?.addEventListener('change', updateSummary);
+  guestsSelect?.addEventListener('change', updateSummary);
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (form.reportValidity && !form.reportValidity()) {
+      return;
+    }
+
+    const payload = {
+      propertyId: property.id,
+      checkIn: checkInInput?.value,
+      nights: Number(nightsSelect?.value) || 1,
+      guests: Number(guestsSelect?.value) || 1,
+      guest: {
+        name: nameInput?.value.trim() ?? '',
+        email: emailInput?.value.trim() ?? '',
+        phone: phoneInput?.value.trim() ?? ''
+      },
+      requests: requestsInput?.value.trim() ?? ''
+    };
+
+    if (!payload.checkIn) {
+      showToast('Select a check-in date to continue.', 'warning');
+      return;
+    }
+    if (!payload.guest.name || !payload.guest.email) {
+      showToast('Please add your name and email to reserve.', 'warning');
+      return;
+    }
+
+    if (payload.guests > (Number(property.maxGuests) || payload.guests)) {
+      showToast(`This stay allows up to ${property.maxGuests} guests.`, 'warning');
+      return;
+    }
+
+    const originalLabel = submitButton ? submitButton.textContent : '';
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Securing your stay…';
+    }
+
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      let responseData = null;
+      try {
+        responseData = await response.json();
+      } catch (parseError) {
+        responseData = null;
+      }
+      if (!response.ok || !responseData?.ok) {
+        const errorCode = responseData?.error || 'reserve_failed';
+        throw new Error(errorCode);
+      }
+
+      const booking = responseData.booking;
+      addStoredBooking(booking);
+
+      const updatedProfile = {
+        name: payload.guest.name || profile?.name || '',
+        email: payload.guest.email || profile?.email || '',
+        phone: payload.guest.phone || profile?.phone || ''
+      };
+      if (updatedProfile.name || updatedProfile.email || updatedProfile.phone) {
+        saveUserProfile(updatedProfile);
+      }
+
+      showToast(`Reservation confirmed! Confirmation ID ${booking.id}.`, 'success');
+      form.reset();
+      closeModal();
+      setTimeout(() => {
+        window.location.href = 'user.html';
+      }, 1200);
+    } catch (error) {
+      let message = error.message || 'reserve_failed';
+      if (message === 'guests_exceed') {
+        message = `This stay allows up to ${property.maxGuests} guests.`;
+      } else if (message === 'property_not_found') {
+        message = 'This stay is no longer available.';
+      } else if (message === 'invalid_input') {
+        message = 'Please review the reservation details and try again.';
+      } else if (message === 'reserve_failed') {
+        message = 'Unable to reserve this stay. Please try again.';
+      }
+      showToast(message, 'warning');
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalLabel || 'Confirm reservation hold';
+      }
+    }
+  });
+
+  return openModal;
+}
+
+function renderUserBookings(bookings = []) {
+  const container = document.querySelector('[data-slot="bookings"]');
+  const emptyMessage = document.querySelector('[data-bookings-empty]');
+  if (!container) return;
+
+  clearChildren(container);
+
+  if (!bookings || bookings.length === 0) {
+    if (emptyMessage) emptyMessage.removeAttribute('hidden');
+    return;
+  }
+
+  if (emptyMessage) emptyMessage.setAttribute('hidden', 'true');
+
+  const upcoming = [...bookings].sort((a, b) => {
+    const aDate = new Date(a.checkIn).getTime();
+    const bDate = new Date(b.checkIn).getTime();
+    return aDate - bDate;
+  });
+
+  upcoming.forEach((booking) => {
+    const propertyLabel = booking.propertyName || 'OYO.plus stay';
+    const cityLabel = booking.city || '';
+    const checkInLabel = formatDisplayDate(booking.checkIn);
+    const checkOutLabel = formatDisplayDate(booking.checkOut);
+    const totalValue = booking.total ?? booking.totalAmount ?? booking.amountDue ?? 0;
+    const totalLabel = formatPrice(totalValue, booking.currency || 'INR');
+    const nightsDisplay = booking.nights ?? '—';
+    const guestsDisplay = booking.guests ?? '—';
+    const imageMarkup = booking.propertyImage
+      ? `<div class="booking-cover"><img src="${booking.propertyImage}" alt="${propertyLabel}" loading="lazy"></div>`
+      : '';
+    const card = createElement(`
+      <article class="booking-card animate-in">
+        ${imageMarkup}
+        <div class="booking-header">
+          <div>
+            <h3>${propertyLabel}</h3>
+            <p class="muted">${cityLabel}</p>
+          </div>
+          <span class="booking-badge">${formatBookingStatus(booking.status)}</span>
+        </div>
+        <div class="booking-meta">
+          <div>
+            <span class="label">Check-in</span>
+            <strong>${checkInLabel || 'TBD'}</strong>
+          </div>
+          <div>
+            <span class="label">Check-out</span>
+            <strong>${checkOutLabel || 'TBD'}</strong>
+          </div>
+          <div>
+            <span class="label">Guests</span>
+            <strong>${guestsDisplay}</strong>
+          </div>
+          <div>
+            <span class="label">Nights</span>
+            <strong>${nightsDisplay}</strong>
+          </div>
+          <div>
+            <span class="label">Total</span>
+            <strong>${totalLabel}</strong>
+          </div>
+        </div>
+        <div class="booking-footer">
+          <button class="btn ghost" type="button" data-action="view-stay" data-property-id="${booking.propertyId}">View stay</button>
+          <p class="muted">Confirmation ID ${booking.id}</p>
+        </div>
+      </article>
+    `);
+    container.appendChild(card);
+  });
 }
 
 async function initCorporatePage() {
@@ -818,23 +1353,34 @@ async function initCorporatePage() {
     });
   }
 
-  if (form) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
-      const company = formData.get('company');
-      const email = formData.get('email');
-      if (!company || !email) {
-        showToast('Please add your company name and work email.', 'warning');
-        return;
-      }
-      if (response) {
-        response.textContent = `Thanks ${company}! Our corporate team will contact you at ${email} within one business day.`;
-      }
-      showToast(`Enquiry received. We'll email ${email} shortly.`, 'success');
-      form.reset();
-    });
-  }
+if (form) {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const company = formData.get('company');
+    const email = formData.get('email');
+    if (!company || !email) {
+      showToast('Please add your company name and work email.', 'warning');
+      return;
+    }
+    fetch('/api/corporate-enquiries', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(formData.entries())),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('corp_failed');
+        if (response) {
+          response.textContent = `Thanks ${company}! Our corporate team will contact you at ${email} within one business day.`;
+        }
+        showToast(`Enquiry received. We'll email ${email} shortly.`, 'success');
+        form.reset();
+      })
+      .catch(() => {
+        showToast('Unable to submit enquiry right now. Please try again.', 'warning');
+      });
+  });
+}
 }
 
 async function initAboutPage() {
@@ -1033,6 +1579,7 @@ async function initHomePage() {
   // Preload properties for faster search responses
   loadProperties();
   setupPromoForm();
+  handleMembershipDeepLink();
 }
 
 async function initPage() {
@@ -1056,6 +1603,12 @@ async function initPage() {
     case 'support':
       await initSupportPage();
       break;
+    case 'auth':
+      await initAuthPage();
+      break;
+    case 'user':
+      await initUserPage();
+      break;
     default:
       break;
   }
@@ -1063,6 +1616,7 @@ async function initPage() {
 
 function initGlobalInteractions() {
   initNavigation();
+  setupMembershipLinks();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1108,7 +1662,7 @@ function setupQuickSearches(executeSearch) {
 }
 
 function setupCityShortcuts() {
-  const buttons = document.querySelectorAll('.city-bar [data-city]');
+  const buttons = document.querySelectorAll('.city-toggle[data-city]');
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
       const city = button.dataset.city;
@@ -1141,9 +1695,186 @@ function setupPromoForm() {
       showToast('Please enter a valid email.', 'warning');
       return;
     }
-    showToast('Thanks! We will keep you posted with exclusive deals.', 'success');
-    form.reset();
+    fetch('/api/promo-subscriptions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('promo_failed');
+        showToast('Thanks! We will keep you posted with exclusive deals.', 'success');
+        form.reset();
+      })
+      .catch(() => {
+        showToast('Unable to save subscription. Please try again.', 'warning');
+      });
   });
+}
+
+function initAuthPage() {
+  const wrapper = document.querySelector('[data-auth]');
+  if (!wrapper) return;
+  const tabs = wrapper.querySelectorAll('.auth-tab');
+  const forms = wrapper.querySelectorAll('.auth-form');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.target;
+      tabs.forEach((item) => item.classList.toggle('is-active', item === tab));
+      forms.forEach((form) => form.classList.toggle('is-active', form.id === `${target}-form`));
+    });
+  });
+
+  const toggleButtons = wrapper.querySelectorAll('.toggle-password');
+  toggleButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const field = button.previousElementSibling;
+      if (!field) return;
+      const isPassword = field.type === 'password';
+      field.type = isPassword ? 'text' : 'password';
+      button.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+      button.textContent = isPassword ? '🙈' : '👁️';
+    });
+  });
+
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(loginForm);
+      const email = (data.get('email') || '').toString().trim();
+      const password = (data.get('password') || '').toString().trim();
+      if (!email || !password) {
+        showToast('Enter your email and password to continue.', 'warning');
+        return;
+      }
+
+      const existingProfile = loadUserProfile() || {};
+      const derivedName = existingProfile.name
+        || (email.includes('@') ? email.split('@')[0] : email)
+        || 'Traveller';
+      const profile = {
+        ...existingProfile,
+        name: derivedName,
+        email,
+        phone: existingProfile.phone || '',
+        createdAt: existingProfile.createdAt || new Date().toISOString(),
+      };
+      saveUserProfile(profile);
+
+      showToast(`Welcome back, ${derivedName}! Redirecting to your dashboard.`, 'success');
+      loginForm.reset();
+      setTimeout(() => {
+        window.location.href = 'user.html';
+      }, 600);
+    });
+  }
+  if (signupForm) {
+    signupForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(signupForm);
+      const name = (data.get('name') || 'traveller').toString();
+      const email = (data.get('email') || '').toString();
+      const phone = (data.get('phone') || '').toString();
+      saveUserProfile({
+        name,
+        email,
+        phone,
+        createdAt: new Date().toISOString()
+      });
+      showToast(`Hello ${name}! Your OYO.plus account is ready.`, 'success');
+      signupForm.reset();
+      setTimeout(() => {
+        window.location.href = 'user.html';
+      }, 600);
+    });
+  }
+
+  wrapper.querySelectorAll('.btn.social').forEach((button) => {
+    button.addEventListener('click', () => {
+      const provider = button.dataset.social;
+      showToast(`Connecting with ${provider}...`, 'info');
+    });
+  });
+
+  const faqContainer = document.querySelector('.auth-faq .faq-list');
+  if (faqContainer) {
+    attachFaqListeners(faqContainer);
+  }
+}
+
+function initUserPage() {
+  const profile = loadUserProfile();
+  if (!profile) {
+    window.location.replace('auth.html');
+    return;
+  }
+
+  const name = (profile.name || 'Traveller').trim() || 'Traveller';
+  const email = (profile.email || '').trim();
+  const phone = (profile.phone || '').trim();
+
+  const firstName = name.split(/\s+/)[0] || name;
+  document.title = `OYO.plus | ${name}'s account`;
+
+  document.querySelectorAll('[data-user-name]').forEach((node) => {
+    node.textContent = name;
+  });
+
+  const emailNode = document.querySelector('[data-user-email]');
+  if (emailNode) {
+    emailNode.textContent = email || 'Add your email to receive updates';
+  }
+
+  const phoneNode = document.querySelector('[data-user-phone]');
+  if (phoneNode) {
+    phoneNode.textContent = phone || 'Add your mobile number to enable OTP login';
+  }
+
+  const membershipNode = document.querySelector('[data-membership-date]');
+  if (membershipNode) {
+    membershipNode.textContent = formatMembershipDate(profile.createdAt);
+  }
+
+  const initialsNode = document.querySelector('[data-user-initials]');
+  if (initialsNode) {
+    initialsNode.textContent = getUserInitials(name);
+  }
+
+  const title = document.querySelector('[data-page-title]');
+  if (title) {
+    title.textContent = `Hey ${firstName}!`;
+  }
+
+  const logoutButtons = document.querySelectorAll('[data-action="logout"]');
+  logoutButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      clearUserProfile();
+      window.location.href = 'auth.html';
+    });
+  });
+
+  const exploreButtons = document.querySelectorAll('[data-action="find-stays"]');
+  exploreButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      window.location.href = 'listings.html';
+    });
+  });
+
+  const bookings = loadStoredBookings();
+  renderUserBookings(bookings);
+
+  const bookingsContainer = document.querySelector('[data-slot="bookings"]');
+  if (bookingsContainer) {
+    bookingsContainer.addEventListener('click', (event) => {
+      const target = event.target.closest('[data-action="view-stay"]');
+      if (!target) return;
+      const propertyId = target.dataset.propertyId;
+      if (propertyId) {
+        window.location.href = `stay-detail.html?id=${propertyId}`;
+      }
+    });
+  }
 }
 
 function showToast(message, tone = 'info') {
@@ -1163,6 +1894,47 @@ function showToast(message, tone = 'info') {
       toast.remove();
     }, 200);
   }, 3200);
+}
+
+function formatDisplayDate(value, options = { day: 'numeric', month: 'short', year: 'numeric' }) {
+  try {
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return '';
+    }
+    return date.toLocaleDateString('en-IN', options);
+  } catch (error) {
+    console.warn('Unable to format date', error);
+    return '';
+  }
+}
+
+function formatMembershipDate(value) {
+  const formatted = formatDisplayDate(value);
+  if (formatted) return formatted;
+  return formatDisplayDate(new Date()) || '';
+}
+
+function formatBookingStatus(status) {
+  if (!status) return 'Reserved';
+  const normalized = status.toLowerCase();
+  if (normalized === 'reserved') return 'Reserved';
+  if (normalized === 'pending_payment') return 'Pending payment';
+  if (normalized === 'confirmed') return 'Confirmed';
+  if (normalized === 'cancelled') return 'Cancelled';
+  return status
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function getUserInitials(name) {
+  if (!name) return 'OY';
+  const parts = name
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase());
+  if (parts.length === 0) return 'OY';
+  return parts.slice(0, 2).join('');
 }
 
 function matchWorkspace(property, flag) {

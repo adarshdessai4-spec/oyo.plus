@@ -13,18 +13,20 @@
   <header class="site-header">
     <div class="utility-bar">
       <div class="utility-left">
-        <span>Become a member</span>
-        <span>OYO.plus for Business</span>
-        <a href="corporate.html">List your property</a>
+        <button class="utility-link" type="button" data-action="open-membership">Become a member</button>
+        <a class="utility-link" href="corporate.html#programs">OYO.plus for Business</a>
+        <a class="utility-link" href="corporate.html">List your property</a>
       </div>
       <div class="utility-right">
         <a href="tel:+919090123456">+91 9090-123-456</a>
         <button class="pill ghost small" type="button">English ▾</button>
-        <button class="pill ghost small" type="button">Login / Signup</button>
+        <a class="pill ghost small" href="auth.html">Login / Signup</a>
       </div>
     </div>
     <div class="top-bar">
-      <div class="logo">OYO.<span>Plus</span></div>
+      <a class="logo" href="index.html" aria-label="OYO Plus home">
+        <img src="assets/oyo-plus-logo.png" alt="OYO Plus logo">
+      </a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
         <span class="sr-only">Toggle navigation</span>
         <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
@@ -39,19 +41,123 @@
         <a href="support.html" data-nav="support">Support</a>
       </nav>
       <div class="cta-group">
-        <button class="btn ghost">Download app</button>
-        <button class="btn primary">Book now</button>
+        <a class="btn ghost" href="index.html#download">Download app</a>
+        <a class="btn primary" href="listings.html">Book now</a>
       </div>
     </div>
     <nav class="city-bar" aria-label="Popular cities">
-      <button class="city-pill" type="button" data-city="Bengaluru">Bengaluru ▾</button>
-      <button class="city-pill" type="button" data-city="Chennai">Chennai ▾</button>
-      <button class="city-pill" type="button" data-city="Delhi">Delhi ▾</button>
-      <button class="city-pill" type="button" data-city="Gurgaon">Gurgaon ▾</button>
-      <button class="city-pill" type="button" data-city="Hyderabad">Hyderabad ▾</button>
-      <button class="city-pill" type="button" data-city="Kolkata">Kolkata ▾</button>
-      <button class="city-pill" type="button" data-city="Mumbai">Mumbai ▾</button>
-      <button class="city-pill" type="button" data-city="All Cities">More cities ▾</button>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Bengaluru">
+          <span>Bengaluru</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Indiranagar">Indiranagar</a></li>
+          <li><a href="listings.html?city=Koramangala">Koramangala</a></li>
+          <li><a href="listings.html?city=Whitefield">Whitefield</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Chennai">
+          <span>Chennai</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=T%20Nagar">T Nagar</a></li>
+          <li><a href="listings.html?city=OMR">OMR</a></li>
+          <li><a href="listings.html?city=ECR">ECR</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Delhi">
+          <span>Delhi</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Connaught%20Place">Connaught Place</a></li>
+          <li><a href="listings.html?city=Aerocity">Aerocity</a></li>
+          <li><a href="listings.html?city=Karol%20Bagh">Karol Bagh</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Gurgaon">
+          <span>Gurgaon</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Cyber%20City">Cyber City</a></li>
+          <li><a href="listings.html?city=Golf%20Course%20Road">Golf Course Road</a></li>
+          <li><a href="listings.html?city=Udyog%20Vihar">Udyog Vihar</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Hyderabad">
+          <span>Hyderabad</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Hitech%20City">Hitech City</a></li>
+          <li><a href="listings.html?city=Banjara%20Hills">Banjara Hills</a></li>
+          <li><a href="listings.html?city=Gachibowli">Gachibowli</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Kolkata">
+          <span>Kolkata</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Park%20Street">Park Street</a></li>
+          <li><a href="listings.html?city=Salt%20Lake">Salt Lake</a></li>
+          <li><a href="listings.html?city=New%20Town">New Town</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Gujarat">
+          <span>Gujarat</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Ahmedabad">Ahmedabad</a></li>
+          <li><a href="listings.html?city=Surat">Surat</a></li>
+          <li><a href="listings.html?city=Vadodara">Vadodara</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Goa">
+          <span>Goa</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Panaji">Panaji</a></li>
+          <li><a href="listings.html?city=Calangute">Calangute</a></li>
+          <li><a href="listings.html?city=Baga">Baga</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Mumbai">
+          <span>Mumbai</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Bandra">Bandra</a></li>
+          <li><a href="listings.html?city=Andheri">Andheri</a></li>
+          <li><a href="listings.html?city=Colaba">Colaba</a></li>
+        </ul>
+      </div>
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="All Cities">
+          <span>More cities</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Bengaluru">Bengaluru</a></li>
+          <li><a href="listings.html?city=Goa">Goa</a></li>
+          <li><a href="listings.html?city=Mumbai">Mumbai</a></li>
+          <li><a href="listings.html?city=Delhi">Delhi</a></li>
+          <li><a href="listings.html?city=Hyderabad">Hyderabad</a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
@@ -59,8 +165,8 @@
     <section class="hero contrast">
       <div class="hero-content boxed">
         <p class="eyebrow">Over 170,000+ hotels &amp; homes across 35+ countries</p>
-        <h1>Where should we take you next?</h1>
-        <p class="subtitle">Plan stays for business, getaways, or remote work with exclusive OYO.plus perks.</p>
+        <h1>Experience OYO.plus stays across the globe</h1>
+        <p class="subtitle">Plan stays for business, getaways, or remote work with exclusive OYO.plus membership perks.</p>
         <form class="search-card flat" action="#" method="get" novalidate>
           <div class="field">
             <label for="search-city">City</label>
@@ -133,6 +239,53 @@
           <li><button class="metric-link" type="button" data-city="United Kingdom"><span class="dot dot-purple"></span>United Kingdom</button></li>
           <li><button class="metric-link" type="button" data-city="Netherlands"><span class="dot dot-pink"></span>Netherlands</button></li>
         </ul>
+      </div>
+    </section>
+
+    <section class="membership" id="membership" aria-labelledby="membership-title">
+      <div class="membership-gradient"></div>
+      <div class="membership-content">
+        <header class="membership-header">
+          <p class="eyebrow accent">OYO.plus Membership</p>
+          <h2 id="membership-title">Unlock members-only rates, upgrades, and concierge help</h2>
+          <p>Join thousands of travellers saving up to 15% every night with carbon-neutral stays, remote-work pods, and wellness add-ons built in.</p>
+          <div class="cta-group">
+            <a class="btn primary" href="auth.html#signup">Join OYO.plus</a>
+            <button class="btn ghost" type="button" data-action="membership-learn">See benefits</button>
+          </div>
+        </header>
+        <div class="membership-grid">
+          <article class="membership-card">
+            <h3>Instant savings</h3>
+            <p>Members unlock exclusive pricing across 300+ cities and stack limited flash drops before public release.</p>
+            <ul class="membership-list">
+              <li>15% off flexible rates</li>
+              <li>Earn 2x reward nights</li>
+              <li>Late check-out priority</li>
+            </ul>
+          </article>
+          <article class="membership-card">
+            <h3>Travel smarter</h3>
+            <p>Upgrade reservations with remote-ready pods, curated wellness sessions, and eco offsets in one tap.</p>
+            <ul class="membership-list">
+              <li>Remote workstations</li>
+              <li>Wellness-on-call perks</li>
+              <li>Carbon neutral check-ins</li>
+            </ul>
+          </article>
+          <article class="membership-card highlight">
+            <h3>Concierge on demand</h3>
+            <p>Dedicated travel experts route upgrades, invoices, and group bookings around the clock.</p>
+            <ul class="membership-list">
+              <li>24x7 OYO.plus concierge</li>
+              <li>Instant support escalation</li>
+              <li>Group &amp; long-stay handling</li>
+            </ul>
+          </article>
+        </div>
+        <div class="membership-footer">
+          <p class="muted">Already a member? <a href="auth.html">Sign in</a> to manage your stays and rewards.</p>
+        </div>
       </div>
     </section>
 

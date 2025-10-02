@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OYO.plus | Login & Signup</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-page="auth">
+  <header class="site-header auth-header">
+    <div class="utility-bar">
+      <div class="utility-left">
+        <button class="utility-link" type="button" data-action="open-membership">Become a member</button>
+        <a class="utility-link" href="corporate.html#programs">OYO.plus for Business</a>
+        <a class="utility-link" href="corporate.html">List your property</a>
+      </div>
+      <div class="utility-right">
+        <a href="tel:+919090123456">+91 9090-123-456</a>
+        <button class="pill ghost small" type="button">English ▾</button>
+        <a class="pill ghost small" href="index.html#collections">Back to discover</a>
+      </div>
+    </div>
+    <div class="top-bar">
+      <a class="logo" href="index.html" aria-label="OYO Plus home">
+        <img src="assets/oyo-plus-logo.png" alt="OYO Plus logo">
+      </a>
+      <nav class="main-nav auth-nav">
+        <a href="index.html#collections">Collections</a>
+        <a href="listings.html">Find stays</a>
+        <a href="corporate.html">Corporate travel</a>
+        <a href="about.html">About</a>
+        <a href="support.html">Support</a>
+      </nav>
+      <div class="cta-group">
+        <a class="btn ghost" href="index.html#download">Download app</a>
+        <a class="btn primary" href="listings.html">Book now</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <section class="auth-hero">
+      <div class="auth-copy">
+        <h1>Welcome to OYO.plus</h1>
+        <p>Unlock members-only rates, carbon-neutral stays, remote-ready work pods, and curated wellness experiences with every booking.</p>
+        <ul class="auth-benefits">
+          <li>Instant access to 15% lower OYO.plus prices worldwide</li>
+          <li>Manage bookings, upgrades, and support in one tap</li>
+          <li>Earn OYO.plus rewards on every night you stay</li>
+        </ul>
+      </div>
+      <div class="auth-card" data-auth>
+        <div class="auth-toggle" role="tablist">
+          <button class="auth-tab is-active" role="tab" data-target="login">Login</button>
+          <button class="auth-tab" role="tab" data-target="signup">Create account</button>
+        </div>
+
+        <form class="auth-form is-active" id="login-form" data-form="login" aria-labelledby="login-tab">
+          <div class="field">
+            <label for="login-email">Email</label>
+            <input id="login-email" name="email" type="email" placeholder="you@email.com" required>
+          </div>
+          <div class="field password-field">
+            <label for="login-password">Password</label>
+            <input id="login-password" name="password" type="password" placeholder="••••••••" required>
+            <button class="toggle-password" type="button" aria-label="Show password"></button>
+          </div>
+          <div class="auth-options">
+            <label class="checkbox"><input type="checkbox" name="remember"> Keep me signed in</label>
+            <a class="auth-link" href="#">Forgot password?</a>
+          </div>
+          <button class="btn primary full" type="submit">Login to OYO.plus</button>
+          <button class="btn social full" type="button" data-social="google">Continue with Google</button>
+          <button class="btn social full" type="button" data-social="apple">Continue with Apple</button>
+        </form>
+
+        <form class="auth-form" id="signup-form" data-form="signup" aria-labelledby="signup-tab">
+          <div class="field">
+            <label for="signup-name">Full name</label>
+            <input id="signup-name" name="name" type="text" placeholder="Aditi Sharma" required>
+          </div>
+          <div class="field">
+            <label for="signup-email">Email</label>
+            <input id="signup-email" name="email" type="email" placeholder="you@email.com" required>
+          </div>
+          <div class="field">
+            <label for="signup-phone">Mobile number</label>
+            <input id="signup-phone" name="phone" type="tel" placeholder="e.g. +91 9090-123-456" required>
+          </div>
+          <div class="field password-field">
+            <label for="signup-password">Password</label>
+            <input id="signup-password" name="password" type="password" placeholder="Create a strong password" required>
+            <button class="toggle-password" type="button" aria-label="Show password"></button>
+          </div>
+          <label class="checkbox small">
+            <input type="checkbox" name="terms" required>
+            I agree to the OYO.plus <a href="#">Terms</a> & <a href="#">Privacy Policy</a>
+          </label>
+          <button class="btn primary full" type="submit">Join OYO.plus</button>
+          <button class="btn social full" type="button" data-social="google">Sign up with Google</button>
+          <button class="btn social full" type="button" data-social="apple">Sign up with Apple</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="auth-perks">
+      <div class="perk-card">
+        <span class="perk-icon">💎</span>
+        <h3>Members-first pricing</h3>
+        <p>Save up to 15% instantly on every OYO.plus stay with loyalty boosts as you travel.</p>
+      </div>
+      <div class="perk-card">
+        <span class="perk-icon">🧘</span>
+        <h3>Wellness on demand</h3>
+        <p>Schedule yoga, sleep coaching, and nutrition consults from the app before you check in.</p>
+      </div>
+      <div class="perk-card">
+        <span class="perk-icon">💼</span>
+        <h3>Remote-ready stays</h3>
+        <p>Reserve private work pods, book fiber-backed suites, and manage workspace credits.</p>
+      </div>
+    </section>
+
+    <section class="auth-faq" aria-labelledby="auth-faq-title">
+      <h2 id="auth-faq-title">Login & signup FAQs</h2>
+      <div class="faq-list" data-slot="auth-faq">
+        <article class="faq-item is-open">
+          <button class="faq-question" type="button">
+            <span>Is my OYO account valid on OYO.plus?</span>
+            <span>–</span>
+          </button>
+          <div class="faq-answer" style="max-height: 180px; padding-bottom: 20px;">
+            <p>Yes! Use your existing OYO credentials to sign in. We’ll port your nights and perks automatically.</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-question" type="button">
+            <span>Do I need a password to login?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer">
+            <p>You can log in using a secure OTP, password, or your Google/Apple account.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-columns">
+      <div>
+        <h4>OYO.plus</h4>
+        <p>Leading travel technology platform that makes staying easy, affordable, and dependable.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="about.html#careers">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Investors</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="support.html">Help center</a></li>
+          <li><a href="support.html#contact">Contact us</a></li>
+          <li><a href="support.html#faq">FAQs</a></li>
+          <li><a href="#">Cancellation policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="listings.html">Stays with kitchens</a></li>
+          <li><a href="listings.html">Long-term rentals</a></li>
+          <li><a href="listings.html">Pet-friendly stays</a></li>
+          <li><a href="corporate.html">Corporate programs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2024 OYO.plus Technologies Pvt. Ltd.</span>
+      <div class="policy-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
