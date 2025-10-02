@@ -175,6 +175,9 @@ a:focus-visible,
   font: inherit;
   border: none;
   background: rgba(255, 255, 255, 0.4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px 12px;
   border-radius: 999px;
   cursor: pointer;
@@ -2494,6 +2497,15 @@ blockquote {
   .utility-right {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .utility-left .utility-link,
+  .utility-right .utility-link,
+  .utility-right .pill,
+  .utility-right > a {
+    flex: 1 1 140px;
   }
 
   .menu-toggle {
@@ -2663,6 +2675,44 @@ blockquote {
     padding: 14px 4vw;
   }
 
+  .utility-bar {
+    font-size: 0.8rem;
+    padding: 10px 4vw;
+  }
+
+  .utility-left,
+  .utility-right {
+    gap: 8px;
+  }
+
+  .utility-left .utility-link,
+  .utility-right .utility-link,
+  .utility-right .pill,
+  .utility-right > a {
+    flex: 1 1 130px;
+    max-width: 100%;
+  }
+
+  .utility-left .utility-link,
+  .utility-right .utility-link {
+    padding: 5px 10px;
+  }
+
+  .utility-right > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    padding: 5px 10px;
+    color: rgba(15, 23, 42, 0.75);
+    font-weight: 500;
+  }
+
+  .utility-right .pill {
+    padding: 5px 11px;
+    font-size: 0.78rem;
+  }
   .auth-page {
     padding: 48px 5vw 100px;
     gap: 48px;
@@ -2822,4 +2872,3 @@ blockquote {
   margin-left: auto;
   margin-right: auto;
 }
-
