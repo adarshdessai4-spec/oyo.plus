@@ -17,6 +17,12 @@ const BOOKING_CONSTANTS = Object.freeze({
   serviceFee: 299
 });
 
+const NETWORK_DELAY_MS = 450;
+
+function delay(ms = NETWORK_DELAY_MS) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 const numberFormatters = {
   INR: new Intl.NumberFormat('en-IN', {
     style: 'currency',
@@ -114,6 +120,35 @@ function calculateBookingTotals(property, nightsInput) {
     fees,
     total,
     currency: property.currency || 'INR'
+  };
+}
+
+async function createMockBooking(property, payload) {
+  await delay();
+  const totals = calculateBookingTotals(property, payload.nights);
+  const checkInDate = payload.checkIn ? new Date(payload.checkIn) : null;
+  let checkOutIso = null;
+  if (checkInDate && !Number.isNaN(checkInDate.getTime())) {
+    const checkOutDate = new Date(checkInDate);
+    checkOutDate.setDate(checkOutDate.getDate() + totals.nights);
+    checkOutIso = checkOutDate.toISOString().split('T')[0];
+  }
+
+  return {
+    id: `BOOK-${Date.now()}`,
+    propertyId: property.id,
+    propertyName: property.name,
+    propertyImage: property.images?.[0]?.src ?? '',
+    city: property.city,
+    checkIn: payload.checkIn,
+    checkOut: checkOutIso,
+    nights: totals.nights,
+    guests: payload.guests,
+    total: totals.total,
+    totalAmount: totals.total,
+    currency: totals.currency,
+    status: 'confirmed',
+    createdAt: new Date().toISOString()
   };
 }
 
@@ -1188,23 +1223,7 @@ function setupReserveModal(property) {
     }
 
     try {
-      const response = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      let responseData = null;
-      try {
-        responseData = await response.json();
-      } catch (parseError) {
-        responseData = null;
-      }
-      if (!response.ok || !responseData?.ok) {
-        const errorCode = responseData?.error || 'reserve_failed';
-        throw new Error(errorCode);
-      }
-
-      const booking = responseData.booking;
+      const booking = await createMockBooking(property, payload);
       addStoredBooking(booking);
 
       const updatedProfile = {
@@ -1223,16 +1242,7 @@ function setupReserveModal(property) {
         window.location.href = 'user.html';
       }, 1200);
     } catch (error) {
-      let message = error.message || 'reserve_failed';
-      if (message === 'guests_exceed') {
-        message = `This stay allows up to ${property.maxGuests} guests.`;
-      } else if (message === 'property_not_found') {
-        message = 'This stay is no longer available.';
-      } else if (message === 'invalid_input') {
-        message = 'Please review the reservation details and try again.';
-      } else if (message === 'reserve_failed') {
-        message = 'Unable to reserve this stay. Please try again.';
-      }
+      const message = error?.message || 'Unable to reserve this stay. Please try again.';
       showToast(message, 'warning');
     } finally {
       if (submitButton) {
@@ -1353,8 +1363,7 @@ async function initCorporatePage() {
     });
   }
 
-if (form) {
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(form);
     const company = formData.get('company');
@@ -1363,22 +1372,18 @@ if (form) {
       showToast('Please add your company name and work email.', 'warning');
       return;
     }
-    fetch('/api/corporate-enquiries', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.fromEntries(formData.entries())),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error('corp_failed');
-        if (response) {
-          response.textContent = `Thanks ${company}! Our corporate team will contact you at ${email} within one business day.`;
-        }
-        showToast(`Enquiry received. We'll email ${email} shortly.`, 'success');
-        form.reset();
-      })
-      .catch(() => {
-        showToast('Unable to submit enquiry right now. Please try again.', 'warning');
-      });
+
+    try {
+      await delay();
+      if (response) {
+        response.textContent = `Thanks ${company}! Our corporate team will contact you at ${email} within one business day.`;
+      }
+      showToast(`Enquiry received. We'll email ${email} shortly.`, 'success');
+      form.reset();
+    } catch (error) {
+      console.warn('Corporate enquiry submission failed', error);
+      showToast('Unable to submit enquiry right now. Please try again.', 'warning');
+    }
   });
 }
 }
@@ -1688,26 +1693,22 @@ function setupMetricShortcuts() {
 function setupPromoForm() {
   const form = document.querySelector('[data-form="promo"]');
   if (!form) return;
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const email = form.querySelector('input[type="email"]')?.value;
     if (!email) {
       showToast('Please enter a valid email.', 'warning');
       return;
     }
-    fetch('/api/promo-subscriptions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error('promo_failed');
-        showToast('Thanks! We will keep you posted with exclusive deals.', 'success');
-        form.reset();
-      })
-      .catch(() => {
-        showToast('Unable to save subscription. Please try again.', 'warning');
-      });
+
+    try {
+      await delay();
+      showToast('Thanks! We will keep you posted with exclusive deals.', 'success');
+      form.reset();
+    } catch (error) {
+      console.warn('Promo subscription failed', error);
+      showToast('Unable to save subscription. Please try again.', 'warning');
+    }
   });
 }
 
