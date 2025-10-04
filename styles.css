@@ -3489,3 +3489,30 @@ blockquote {
   main, .page, .wrapper, .container { overflow: visible !important; }
 }
 @media (min-width: 641px){ .bottom-nav { display:none !important; } }
+/* bottom-nav: FINAL FORCE — 20251004stick4e */
+@media (max-width: 640px) {
+  .bottom-nav{
+    display: flex !important;                  /* <— ensures it shows */
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    z-index: 2147483647 !important;
+    background: #fff !important;
+    border-top: 1px solid rgba(0,0,0,0.08) !important;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom)) !important;
+    gap: 6px !important;
+    justify-content: space-around !important;
+    -webkit-transform: translateZ(0) !important; transform: translateZ(0) !important;
+  }
+  .bottom-nav .tab{
+    flex: 1 1 20% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    text-decoration: none !important;
+    font-size: 12px !important;
+  }
+  body{ padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
+/* never show on desktop */
+@media (min-width: 641px){ .bottom-nav{ display: none !important; } }
