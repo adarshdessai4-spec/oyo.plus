@@ -13,3 +13,6 @@ build/
 .cache/
 .vscode/
 .idea/
+
+# Local backup files
+*.bak_*

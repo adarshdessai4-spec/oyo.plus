@@ -3403,3 +3403,89 @@ blockquote {
     display: block !important;
   }
 }
+
+/* mobile bottom tabs: hard stick — 20251004-stick */
+@media (max-width: 640px) {
+  .bottom-nav {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 2147483647 !important; /* on top of everything */
+    transform: translateZ(0) !important;           /* iOS/Android jitter fix */
+    -webkit-transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    contain: layout paint !important;
+  }
+
+  /* make room so content isn't hidden behind the tabs */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+
+  /* if any page section set its own scroll, disable on phones so fixed uses viewport */
+  main, .page, .wrapper {
+    overflow: visible !important;  /* stop inner scroll containers */
+  }
+}
+
+/* mobile bottom-nav: hard stick v2 — 20251004-stick2 */
+@media (max-width: 640px) {
+  .bottom-nav{
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    z-index: 2147483647 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    background: #fff !important;
+  }
+  /* ensure viewport scrolling, not inner containers */
+  main, .page, .wrapper { overflow: visible !important; }
+  /* prevent content being hidden by the tabs */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
+
+ /* bottom-nav: unbreakable + conflict-free — 20251004-stick4 */
+@media (max-width: 640px) {
+  /* kill the old fixed CTA so it cannot overlap */
+  .mobile-footer-cta { display: none !important; }
+
+  /* ensure viewport scroll, not nested scrollers that break fixed */
+  html, body { height: auto !important; min-height: 100% !important; overflow-x: hidden !important; overflow-y: auto !important; }
+  main, .page, .wrapper, .container, .content { overflow: visible !important; }
+
+  /* neutralize transforms that create new containing blocks */
+  html, body, header, main, .site-header, .hero, .boxed, .section, .page, .wrapper, [style*="transform"] {
+    transform: none !important;
+    perspective: none !important;
+    filter: none !important;
+  }
+
+  .bottom-nav {
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    z-index: 2147483647 !important;
+    background: #fff !important;
+    border-top: 1px solid rgba(0,0,0,0.08) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+    -webkit-transform: translateZ(0) !important; transform: translateZ(0) !important;
+  }
+
+  /* make room so content isn't covered by tabs */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
+@media (min-width: 641px){ .bottom-nav { display:none !important; } }
+
+/* 20251004-stick4-confirm */
+@media (max-width: 640px) {
+  .mobile-footer-cta { display: none !important; }
+  .bottom-nav {
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    z-index: 2147483647 !important;
+    background: #fff !important;
+    border-top: 1px solid rgba(0,0,0,0.08) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+  }
+  html, body { overflow-y: auto !important; }
+  main, .page, .wrapper, .container { overflow: visible !important; }
+}
+@media (min-width: 641px){ .bottom-nav { display:none !important; } }
