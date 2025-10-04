@@ -41,6 +41,11 @@
         <a href="corporate.html" data-nav="corporate">Corporate travel</a>
         <a href="about.html" data-nav="about">About</a>
         <a href="support.html" data-nav="support">Support</a>
+        <div class="mobile-nav-utility">
+          <button class="utility-link" type="button" data-action="open-membership">Become a member</button>
+          <a class="utility-link" href="corporate.html#programs">OYO.plus for Business</a>
+          <a class="utility-link" href="corporate.html">List your property</a>
+        </div>
       </nav>
       <div class="cta-group">
         <a class="btn ghost" href="index.html#download">Download app</a>
@@ -48,6 +53,18 @@
       </div>
     </div>
     <nav class="city-bar" aria-label="Popular cities">
+      <div class="city-pill">
+        <button class="city-toggle" type="button" data-city="Gujarat">
+          <span>Gujarat</span>
+          <span class="city-arrow">▾</span>
+        </button>
+        <ul class="city-dropdown">
+          <li><a href="listings.html?city=Ahmedabad">Ahmedabad</a></li>
+          <li><a href="listings.html?city=Surat">Surat</a></li>
+          <li><a href="listings.html?city=Vadodara">Vadodara</a></li>
+          <li><a href="listings.html?city=Anand">Anand</a></li>
+        </ul>
+      </div>
       <div class="city-pill">
         <button class="city-toggle" type="button" data-city="Bengaluru">
           <span>Bengaluru</span>
@@ -115,17 +132,6 @@
         </ul>
       </div>
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Gujarat">
-          <span>Gujarat</span>
-          <span class="city-arrow">▾</span>
-        </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Ahmedabad">Ahmedabad</a></li>
-          <li><a href="listings.html?city=Surat">Surat</a></li>
-          <li><a href="listings.html?city=Vadodara">Vadodara</a></li>
-        </ul>
-      </div>
-      <div class="city-pill">
         <button class="city-toggle" type="button" data-city="Goa">
           <span>Goa</span>
           <span class="city-arrow">▾</span>
@@ -166,31 +172,43 @@
   <main>
     <section class="hero contrast">
       <div class="hero-content boxed">
+        <div class="hero-brand">
+          <img src="assets/oyo-plus-logo.png" alt="OYO.plus logo">
+          <p class="hero-tagline">Find hotels at best prices</p>
+        </div>
         <p class="eyebrow">Over 170,000+ hotels &amp; homes across 35+ countries</p>
         <h1>Experience OYO.plus stays across the globe</h1>
         <p class="subtitle">Plan stays for business, getaways, or remote work with exclusive OYO.plus membership perks.</p>
         <form class="search-card flat" action="#" method="get" novalidate>
-          <div class="field">
-            <label for="search-city">City</label>
-            <input id="search-city" name="city" type="text" placeholder="e.g. Mumbai, Delhi" autocomplete="off">
+          <div class="field field-destination">
+            <label for="search-city">Destination</label>
+            <input id="search-city" name="city" type="text" placeholder="Search for city, location or hotel" autocomplete="off">
           </div>
-          <div class="field">
-            <label for="check-in">Check-in</label>
-            <input id="check-in" name="check_in" type="date">
+          <div class="field field-dates">
+            <label for="check-in">Dates</label>
+            <div class="date-range">
+              <input id="check-in" name="check_in" type="date">
+              <input id="check-out" name="check_out" type="date">
+            </div>
           </div>
-          <div class="field">
-            <label for="check-out">Check-out</label>
-            <input id="check-out" name="check_out" type="date">
-          </div>
-          <div class="field">
-            <label for="guests">Guests</label>
-            <select id="guests" name="guests">
-              <option value="1">1 guest</option>
-              <option value="2" selected>2 guests</option>
-              <option value="3">3 guests</option>
-              <option value="4">4 guests</option>
-              <option value="5">5 guests</option>
-            </select>
+          <div class="field field-occupancy">
+            <label for="rooms">Rooms &amp; guests</label>
+            <div class="occupancy-group">
+              <select id="rooms" name="rooms">
+                <option value="1" selected>1 room</option>
+                <option value="2">2 rooms</option>
+                <option value="3">3 rooms</option>
+                <option value="4">4 rooms</option>
+                <option value="5">5 rooms</option>
+              </select>
+              <select id="guests" name="guests">
+                <option value="1">1 guest</option>
+                <option value="2" selected>2 guests</option>
+                <option value="3">3 guests</option>
+                <option value="4">4 guests</option>
+                <option value="5">5 guests</option>
+              </select>
+            </div>
           </div>
           <button class="btn primary full" type="submit">Search stays</button>
         </form>
@@ -356,6 +374,11 @@
       <div class="download-art" data-slot="download-art"></div>
     </section>
   </main>
+
+  <div class="mobile-footer-cta">
+    <a class="btn ghost" href="index.html#download">Download app</a>
+    <a class="btn primary" href="listings.html">Book now</a>
+  </div>
 
   <footer class="site-footer" id="support">
     <div class="footer-columns">

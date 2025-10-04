@@ -36,12 +36,15 @@ img, video, canvas, svg { max-width: 100%; height: auto; display: block; }
 }
 
 /* navigation: mobile menu */
-.menu-toggle { display: inline-flex; cursor: pointer; }
+.menu-toggle { cursor: pointer; }
 .main-nav { display: flex; gap: 16px; align-items: center; }
 .main-nav a { text-decoration: none; }
 @media (max-width: 900px) {
-  .main-nav { display: none; position: absolute; inset: 64px 16px auto 16px; background: #fff; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.08); padding: 12px; flex-direction: column; }
+  .menu-toggle { display: inline-flex; }
+  .main-nav { display: none; position: absolute; top: calc(100% + 12px); left: 16px; right: 16px; background: #fff; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.12); padding: 12px; flex-direction: column; z-index: 60; }
   .main-nav.is-open { display: flex; }
+  .mobile-nav-utility { display: flex; flex-direction: column; gap: 12px; padding-top: 12px; margin-top: 8px; border-top: 1px solid rgba(226, 232, 240, 0.9); }
+  .mobile-nav-utility .utility-link { width: 100%; background: rgba(247, 249, 255, 0.8); color: rgba(15, 23, 42, 0.75); }
 }
 
 /* tables on small screens */
