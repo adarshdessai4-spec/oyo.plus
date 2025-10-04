@@ -3110,3 +3110,18 @@ blockquote {
   /* Full-width Search button */
   .search-card .btn.full, .btn.primary.full { grid-column: 1 / -1 !important; width: 100% !important; }
 }
+/* mobile quick-icons (language + call) — 20251004o */
+@media (max-width: 640px) {
+  .quick-icons { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .qi-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff;
+    box-shadow: 0 2px 10px rgba(15,23,42,0.06);
+  }
+  .qi-btn svg { width: 18px; height: 18px; }
+}
+/* hide quick-icons on desktop just in case */
+@media (min-width: 641px) {
+  .quick-icons { display: none; }
+}
