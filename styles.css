@@ -3047,3 +3047,32 @@ blockquote {
   .search-card .field.field-occupancy { order: 3; }
   .search-card .btn.full { order: 4; }
 }
+
+/* mobile-inline-dates fix 20251004k */
+@media (max-width: 640px) {
+  /* Make sure the dates block can shrink */
+  .search-card .field,
+  .search-card .field.field-dates { min-width: 0 !important; }
+
+  /* Put Check-in / Check-out on one line with real shrinking columns */
+  .search-card .field.field-dates .date-range {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  /* Ensure the inputs actually shrink and fill their grid cell */
+  .search-card .field.field-dates .date-range > * {
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Comfortable tap size */
+  .search-card .field.field-dates input[type="date"] {
+    height: 44px !important;
+    line-height: 44px !important;
+    font-size: 0.95rem !important;
+  }
+}
