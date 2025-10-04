@@ -3018,3 +3018,32 @@ blockquote {
   background: var(--surface);
 }
 .subarea-chip:hover { text-decoration: none; box-shadow: var(--shadow-md); transform: translateY(-1px); }
+/* mobile-final-override 20251004i */
+@media (max-width: 640px) {
+  .search-card { padding: 14px !important; gap: 10px !important; grid-template-columns: 1fr !important; width: 100% !important; }
+  .search-card.flat input, .search-card.flat select { height: 42px !important; font-size: 0.95rem !important; }
+  .search-card label { font-size: 0.85rem !important; }
+  .search-card .btn.full, .btn.primary.full { grid-column: 1 / -1 !important; width: 100% !important; }
+}
+/* mobile-tablet-override 20251004i */
+@media (max-width: 840px) {
+  .search-card.flat input, .search-card.flat select { height: 44px !important; font-size: 1rem !important; }
+}
+/* mobile-inline-dates 20251004j */
+@media (max-width: 640px) {
+  .search-card .field.field-destination { order: 1; }
+  .search-card .field.field-dates       { order: 2; }
+  .search-card .field.field-dates .date-range {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .search-card .field.field-dates input[type="date"] {
+    height: 42px !important;
+    font-size: 0.95rem !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .search-card .field.field-occupancy { order: 3; }
+  .search-card .btn.full { order: 4; }
+}
