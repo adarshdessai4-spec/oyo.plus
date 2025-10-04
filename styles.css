@@ -3275,3 +3275,50 @@ blockquote {
 }
 /* Hide mobile bits on desktop explicitly */
 @media (min-width: 641px) { .quick-icons, .bottom-nav { display: none !important; } }
+
+/* mobile header hard-align — 20251004u */
+@media (max-width: 640px) {
+  /* one-row header that never wraps */
+  header .top-bar, .site-header .top-bar, .top-bar {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .top-bar > * { min-width: 0 !important; }
+
+  /* logo: readable on all phones */
+  .top-bar .logo, .top-bar a.logo {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 55vw !important;          /* stop logo from pushing icons off-row */
+    overflow: hidden !important;
+  }
+  .top-bar .logo img {
+    height: clamp(28px, 6.5vw, 40px) !important;  /* bigger than before, capped */
+    width: auto !important;
+    display: block !important;
+  }
+
+  /* icons: immediately to the right of logo, on the same line */
+  .top-bar .quick-icons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-left: 8px !important;
+    flex: 0 0 auto !important;
+  }
+  .quick-icons .qi-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff;
+    box-shadow: 0 2px 10px rgba(15,23,42,.06);
+  }
+  .quick-icons .qi-btn svg { width: 18px; height: 18px; }
+
+  /* (we're using bottom tabs) – hide hamburger on mobile */
+  .top-bar .menu-toggle { display: none !important; }
+}
