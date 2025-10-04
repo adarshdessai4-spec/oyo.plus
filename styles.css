@@ -3076,3 +3076,37 @@ blockquote {
     font-size: 0.95rem !important;
   }
 }
+/* === OYOPLUS MOBILE OVERRIDES — SINGLE SOURCE OF TRUTH (20251004n) === */
+@media (max-width: 640px) {
+  /* Order: Destination → Dates → Occupancy → Search */
+  .search-card .field.field-destination { order: 1; }
+  .search-card .field.field-dates       { order: 2; min-width: 0 !important; }
+  .search-card .field.field-occupancy   { order: 3; }
+  .search-card .btn.full                { order: 4; }
+
+  /* Compact professional sizing */
+  .search-card { grid-template-columns: 1fr !important; gap: 10px !important; padding: 14px !important; width: 100% !important; margin-top: 0 !important; }
+  .search-card label { font-size: 0.85rem !important; }
+  .search-card.flat input, .search-card.flat select { height: 44px !important; font-size: 0.95rem !important; }
+
+  /* Dates side-by-side (no overlap) */
+  .search-card .field.field-dates .date-range {
+    display: flex !important; flex-wrap: nowrap !important;
+    gap: 10px !important; align-items: stretch !important;
+  }
+  .search-card .field.field-dates .date-range > * {
+    flex: 1 1 0 !important; min-width: 0 !important; width: 100% !important; box-sizing: border-box !important;
+  }
+  .search-card .field.field-dates input[type="date"] {
+    height: 44px !important; font-size: 0.95rem !important; line-height: 1 !important; padding: 8px 10px !important;
+    -webkit-appearance: none !important; appearance: none !important;
+  }
+  .search-card .field.field-dates input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+  .search-card .field.field-dates input[type="date"]::-webkit-calendar-picker-indicator { margin: 0; padding: 0; }
+
+  /* Hide desktop-only sub-areas on phones */
+  .subareas { display: none !important; }
+
+  /* Full-width Search button */
+  .search-card .btn.full, .btn.primary.full { grid-column: 1 / -1 !important; width: 100% !important; }
+}
