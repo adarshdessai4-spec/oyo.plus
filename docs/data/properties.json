@@ -1,0 +1,372 @@
+{
+  "properties": [
+    {
+      "id": "casa-azure",
+      "name": "Casa Azure Beach Villa",
+      "city": "Goa",
+      "area": "Calangute",
+      "country": "India",
+      "type": "villa",
+      "categories": ["villa", "premium"],
+      "segments": ["leisure", "group"],
+      "price": 5499,
+      "maxGuests": 8,
+      "currency": "INR",
+      "rating": 4.6,
+      "reviewsCount": 328,
+      "badge": "Premium villa • Calangute, Goa",
+      "shortDescription": "Four-bedroom Portuguese-style villa with a private plunge pool and ocean-view deck.",
+      "about": "Designed for small groups and families, Casa Azure offers airy rooms, double-height ceilings, and private balconies overlooking palm groves. Dedicated concierge and chef support ensure your itinerary, transfers, and dietary preferences are handled end-to-end.",
+      "amenities": ["Private plunge pool", "Chef-on-call", "Air conditioning", "High-speed Wi-Fi", "Outdoor dining", "Airport transfers"],
+      "goodToKnow": [
+        "Beach is 3 minutes away on foot.",
+        "Dedicated caretaker assists with local experiences.",
+        "Complimentary breakfast; other meals at actuals.",
+        "Silent hours enforced post 11 PM."
+      ],
+      "policies": [
+        {
+          "title": "Check-in & Check-out",
+          "body": "Check-in after 2 PM. Check-out before 11 AM. Early check-in subject to availability."
+        },
+        {
+          "title": "Cancellation",
+          "body": "Full refund if cancelled 5 days before arrival. 50% thereafter. No-shows billed 100%."
+        },
+        {
+          "title": "House rules",
+          "body": "Valid ID proof mandatory for all guests. Smoking allowed only outdoors. Pets allowed with prior intimation."
+        }
+      ],
+      "benefits": [
+        "Dedicated trip concierge and airport pickup scheduling.",
+        "Pay 20% now and settle the rest at the property.",
+        "Free reschedule up to 48 hours before arrival."
+      ],
+      "sustainabilityScore": "A+",
+      "greenInitiatives": [
+        "Solar-powered water heating",
+        "Zero single-use plastics",
+        "Community mangrove restoration partner"
+      ],
+      "workspace": {
+        "type": "Private poolside work cabanas",
+        "bandwidth": "400 Mbps dedicated fiber"
+      },
+      "wellness": [
+        "Sunrise yoga pavilion",
+        "On-call nutritionist",
+        "Cold-press juice bar"
+      ],
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/114875/large/7b38caef34a1f039.jpg",
+      "imageAlt": "Luxury villa pool in Goa",
+      "images": [
+        {
+          "src": "https://images.oyoroomscdn.com/uploads/hotel_image/114875/large/7b38caef34a1f039.jpg",
+          "alt": "Villa pool with loungers"
+        },
+        {
+          "src": "https://images.oyoroomscdn.com/uploads/hotel_image/122036/medium/3d07b51efaaecf66.jpg",
+          "alt": "Bedroom opening to balcony"
+        },
+        {
+          "src": "https://images.oyoroomscdn.com/uploads/hotel_image/122036/large/5aca402ded28c166.jpg",
+          "alt": "Living room with natural light"
+        },
+        {
+          "src": "https://images.oyoroomscdn.com/uploads/hotel_image/114875/large/2db25b6da60e7543.jpg",
+          "alt": "Outdoor dining area"
+        },
+        {
+          "src": "https://images.oyoroomscdn.com/uploads/hotel_image/114875/large/c548a64ed311984c.jpg",
+          "alt": "Villa exterior facade"
+        },
+        {
+          "src": "https://images.oyoroomscdn.com/uploads/hotel_image/122036/large/8f05d873d61bb64b.jpg",
+          "alt": "Sunset at the villa"
+        }
+      ],
+      "map": {
+        "title": "Casa Azure on map",
+        "embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3897.2278113594643!2d73.7579974751091!3d15.555100255009253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfe9d8f48619af%3A0x135c8db05d4953ba!2sCalangute%20Beach!5e0!3m2!1sen!2sin!4v1714646400000"
+      },
+      "contact": {
+        "phone": "+91 8080-123-456",
+        "manager": "Leena Bhonsle"
+      }
+    },
+    {
+      "id": "urban-nest",
+      "name": "Urban Nest Express",
+      "city": "Delhi",
+      "area": "Karol Bagh",
+      "country": "India",
+      "type": "budget",
+      "categories": ["budget", "smart"],
+      "segments": ["business", "solo"],
+      "price": 1299,
+      "maxGuests": 3,
+      "currency": "INR",
+      "rating": 4.2,
+      "reviewsCount": 512,
+      "badge": "Smart stay • Karol Bagh, Delhi",
+      "shortDescription": "Clean, centrally located rooms with contactless check-in and metro access.",
+      "about": "Urban Nest Express delivers essential comforts for business travellers—ultra-fast Wi-Fi, ergonomic workstations, and an express breakfast bar—just minutes from Karol Bagh metro.",
+      "amenities": ["Work desk", "24/7 support", "Self check-in", "Room service", "Smart TV"],
+      "goodToKnow": [
+        "Metro station is 400 meters away.",
+        "Breakfast service from 6 AM to 10 AM.",
+        "ID proof required for all guests, local IDs accepted."
+      ],
+      "policies": [
+        {
+          "title": "Check-in & Check-out",
+          "body": "Check-in after 12 PM. Check-out before 11 AM."
+        },
+        {
+          "title": "Cancellation",
+          "body": "Free cancellation up to 24 hours before arrival."
+        }
+      ],
+      "benefits": [
+        "Flexible invoice downloads for GST claims.",
+        "Late checkout till 2 PM on availability.",
+        "Free welcome beverage for OYO.plus members."
+      ],
+      "sustainabilityScore": "B+",
+      "greenInitiatives": [
+        "Energy-efficient VRV air conditioning",
+        "Rainwater harvesting",
+        "Local employment at 90%"
+      ],
+      "workspace": {
+        "type": "Soundproof work pods",
+        "bandwidth": "200 Mbps fiber"
+      },
+      "wellness": [
+        "Express meditation room",
+        "Complimentary sleep kit"
+      ],
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/40486/medium/0a06d8e7dc95ff4e.jpg",
+      "imageAlt": "Budget hotel room in Delhi",
+      "images": [
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/40486/medium/0a06d8e7dc95ff4e.jpg", "alt": "Comfortable double bed"},
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/40486/large/ce7a8569d1b127bb.jpg", "alt": "Lobby and reception"},
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/40486/large/4003a3315aeaa4a3.jpg", "alt": "Work desk area"}
+      ],
+      "map": {
+        "title": "Urban Nest Express on map",
+        "embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.942581062043!2d77.192223275305!3d28.6029795756724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d02b702872d41%3A0xf59c779843f38e9c!2sKarol%20Bagh%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1714650000000"
+      },
+      "contact": {
+        "phone": "+91 9090-555-321",
+        "manager": "Aditi Malhotra"
+      }
+    },
+    {
+      "id": "workations-suites",
+      "name": "Workations Suites",
+      "city": "Bengaluru",
+      "area": "Indiranagar",
+      "country": "India",
+      "type": "apartment",
+      "categories": ["apartment", "longstay"],
+      "segments": ["business", "longstay"],
+      "price": 3299,
+      "maxGuests": 2,
+      "currency": "INR",
+      "rating": 4.7,
+      "reviewsCount": 287,
+      "badge": "Serviced apartment • Indiranagar, Bengaluru",
+      "shortDescription": "Spacious 1BHK serviced apartments with high-speed Wi-Fi and weekly housekeeping.",
+      "about": "Each suite comes with a fully functional kitchenette, washer-dryer, smart TV, and ergonomic workstation, making it ideal for work-from-anywhere professionals.",
+      "amenities": ["Kitchenette", "Pet friendly", "Dedicated workspace", "Smart lock", "Laundry"],
+      "goodToKnow": [
+        "Complimentary housekeeping twice a week.",
+        "Secure basement parking for one vehicle.",
+        "Pet policy allows small pets with a refundable deposit."
+      ],
+      "policies": [
+        {
+          "title": "Stay duration",
+          "body": "Minimum stay 3 nights. Special pricing for 14+ nights."
+        },
+        {
+          "title": "Cancellation",
+          "body": "Full refund if cancelled 72 hours before arrival."
+        }
+      ],
+      "benefits": [
+        "Complimentary grocery starter kit.",
+        "Dedicated community manager for local assistance.",
+        "Airport pick-up on request at discounted rates."
+      ],
+      "sustainabilityScore": "A",
+      "greenInitiatives": [
+        "Smart power monitoring",
+        "Bulk eco-friendly toiletries",
+        "Local sourcing for linens"
+      ],
+      "workspace": {
+        "type": "Dual-monitor ergonomic desks",
+        "bandwidth": "500 Mbps leased line"
+      },
+      "wellness": [
+        "In-room ergonomic assessments",
+        "Weekly breathwork class"
+      ],
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/109126/large/3790c1e2c3c6a97d.jpg",
+      "imageAlt": "Serviced apartment living room",
+      "images": [
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/109126/large/3790c1e2c3c6a97d.jpg", "alt": "Living area with sofa"},
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/109126/large/e58f089bbf908db9.jpg", "alt": "Bedroom with workspace"},
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/109126/large/0c5e0d0f3487477f.jpg", "alt": "Kitchenette amenities"}
+      ],
+      "map": {
+        "title": "Workations Suites on map",
+        "embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.934036521927!2d77.64224387511906!3d12.960607016792123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae140679f02eeb%3A0x74c1cd5df2c338b5!2sIndiranagar%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1714651200000"
+      },
+      "contact": {
+        "phone": "+91 9345-220-909",
+        "manager": "Vishal Rao"
+      }
+    },
+    {
+      "id": "whispering-pines",
+      "name": "Whispering Pines Chalet",
+      "city": "Manali",
+      "area": "Old Manali",
+      "country": "India",
+      "type": "villa",
+      "categories": ["villa", "nature"],
+      "segments": ["leisure", "group"],
+      "price": 2499,
+      "maxGuests": 6,
+      "currency": "INR",
+      "rating": 4.8,
+      "reviewsCount": 198,
+      "badge": "Mountain homestay • Old Manali",
+      "shortDescription": "Cedarwood homestay overlooking the Himalayas with bonfires and guided treks.",
+      "about": "Perched above pine forests, this homestay features heated rooms, a glasshouse lounge, and curated hikes led by local guides.",
+      "amenities": ["Mountain view", "Heated rooms", "Local breakfast", "Parking", "Bonfire zone"],
+      "goodToKnow": [
+        "Inclines on approach road; parking assistance provided.",
+        "Breakfast includes local Himachali dishes.",
+        "Shared workspace available in the glasshouse lounge."
+      ],
+      "policies": [
+        {
+          "title": "Check-in & Check-out",
+          "body": "Check-in after 1 PM. Check-out before 11 AM."
+        },
+        {
+          "title": "Cancellation",
+          "body": "Free cancellation up to 3 days before arrival."
+        }
+      ],
+      "benefits": [
+        "Complimentary evening bonfire.",
+        "Local trek guide for sunrise hikes.",
+        "Welcome basket with seasonal fruits."
+      ],
+      "sustainabilityScore": "A",
+      "greenInitiatives": [
+        "Biomass heating",
+        "Organic community farm",
+        "Local artisan sourcing"
+      ],
+      "workspace": {
+        "type": "Glasshouse cowork lounge",
+        "bandwidth": "150 Mbps satellite backhaul"
+      },
+      "wellness": [
+        "Forest bathing sessions",
+        "Ayurvedic massage partners"
+      ],
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/112962/medium/0cd8477228bf970a.jpg",
+      "imageAlt": "Homestay living room in Manali",
+      "images": [
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/112962/medium/0cd8477228bf970a.jpg", "alt": "Living room with mountain view"},
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/112962/large/87418c2e2d41185f.jpg", "alt": "Bedroom with wooden interiors"},
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/112962/large/6eb4f25ad4216e0e.jpg", "alt": "Outdoor seating with mountains"}
+      ],
+      "map": {
+        "title": "Whispering Pines Chalet on map",
+        "embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3435.812620253601!2d77.18022247535392!3d32.25473651590681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390469a1d12ae8af%3A0x54ec52ffb62a1cbb!2sOld%20Manali%2C%20Manali!5e0!3m2!1sen!2sin!4v1714651800000"
+      },
+      "contact": {
+        "phone": "+91 9871-800-404",
+        "manager": "Karma Thakur"
+      }
+    },
+    {
+      "id": "skyline-biz",
+      "name": "Skyline Biz Residency",
+      "city": "Mumbai",
+      "area": "BKC",
+      "country": "India",
+      "type": "premium",
+      "categories": ["premium", "business"],
+      "segments": ["business"],
+      "price": 4099,
+      "maxGuests": 2,
+      "currency": "INR",
+      "rating": 4.5,
+      "reviewsCount": 402,
+      "badge": "Business hotel • Bandra Kurla Complex",
+      "shortDescription": "Executive rooms with sky lounge access, 24x7 business center, and chauffeur-driven airport transfers.",
+      "about": "Minutes from BKC corporate hub, Skyline Biz Residency offers spacious rooms, dual-monitor workstations, and soundproofed meeting pods for quick stand-ups.",
+      "amenities": ["Airport transfers", "Co-working lounge", "Dual-monitor desk", "24x7 gym", "In-room dining"],
+      "goodToKnow": [
+        "Breakfast buffet starts 6:30 AM with healthy options.",
+        "Complimentary drop to BKC offices during weekday mornings.",
+        "Club floor guests receive evening sundowner access."
+      ],
+      "policies": [
+        {
+          "title": "Check-in & Check-out",
+          "body": "Check-in after 2 PM. Check-out before 12 PM. Express checkout available."
+        },
+        {
+          "title": "Cancellation",
+          "body": "Free cancellation up to 36 hours before arrival."
+        }
+      ],
+      "benefits": [
+        "Earn double OYO.plus reward nights on weekday stays.",
+        "Complimentary airport pick-up for 3+ night bookings.",
+        "Priority meeting room reservations."
+      ],
+      "sustainabilityScore": "A-",
+      "greenInitiatives": [
+        "Fully electric fleet for transfers",
+        "LEED Platinum certified building",
+        "Greywater recycling"
+      ],
+      "workspace": {
+        "type": "Sky lounge focus pods",
+        "bandwidth": "1 Gbps dedicated fiber"
+      },
+      "wellness": [
+        "In-room circadian lighting",
+        "On-demand physiotherapy",
+        "Rooftop HIIT studio"
+      ],
+      "image": "https://images.oyoroomscdn.com/uploads/hotel_image/105630/large/9a84b99f144b7d2e.jpg",
+      "imageAlt": "Executive hotel room in Mumbai",
+      "images": [
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/105630/large/9a84b99f144b7d2e.jpg", "alt": "Executive suite"},
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/105630/large/1a2f1b8125528a25.jpg", "alt": "Business lounge"},
+        {"src": "https://images.oyoroomscdn.com/uploads/hotel_image/105630/large/f64ad0620f4dd0f1.jpg", "alt": "Hotel facade at night"}
+      ],
+      "map": {
+        "title": "Skyline Biz Residency on map",
+        "embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7231129199963!2d72.85616427521452!3d19.069927052099095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ceff5a6f0f4f%3A0x8342060f4db02fe2!2sBandra%20Kurla%20Complex!5e0!3m2!1sen!2sin!4v1714652400000"
+      },
+      "contact": {
+        "phone": "+91 9987-111-234",
+        "manager": "Ritvik Shah"
+      }
+    }
+  ]
+}
