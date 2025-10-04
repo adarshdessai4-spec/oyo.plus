@@ -3148,3 +3148,41 @@ blockquote {
   /* push hamburger to far right on mobile only */
   .top-bar .menu-toggle { margin-left: auto !important; }
 }
+
+/* mobile: place quick-icons immediately right of logo — 20251004s */
+@media (max-width: 640px) {
+  .top-bar {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;   /* prevent wrap */
+    gap: 8px !important;
+  }
+
+  /* logo stays on the left, doesn't hog width */
+  .top-bar a.logo,
+  .top-bar .logo {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  /* icons sit right next to the logo */
+  .top-bar .quick-icons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-left: 8px !important;   /* directly after logo */
+    flex: 0 0 auto !important;
+  }
+
+  /* push hamburger all the way to the right */
+  .top-bar .menu-toggle {
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* keep things from overflowing on tiny widths */
+  .top-bar > * { min-width: 0 !important; }
+  .top-bar .logo img { height: 28px !important; width: auto !important; }
+}
