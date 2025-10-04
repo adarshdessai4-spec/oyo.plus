@@ -41,19 +41,7 @@ img, video, canvas, svg { max-width: 100%; height: auto; display: block; }
 .main-nav a { text-decoration: none; }
 @media (max-width: 900px) {
   .menu-toggle { display: none; }
-  .main-nav {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-  .main-nav.is-open { display: flex; }
-  .mobile-nav-utility { display: flex; flex-direction: column; gap: 12px; padding-top: 12px; margin-top: 8px; border-top: 1px solid rgba(226, 232, 240, 0.9); }
-  .mobile-nav-utility .utility-link { width: 100%; background: rgba(247, 249, 255, 0.8); color: rgba(15, 23, 42, 0.75); }
+  .main-nav { display: none; }
 }
 
 /* tables on small screens */
