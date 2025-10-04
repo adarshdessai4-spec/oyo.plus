@@ -3186,3 +3186,42 @@ blockquote {
   .top-bar > * { min-width: 0 !important; }
   .top-bar .logo img { height: 28px !important; width: auto !important; }
 }
+
+/* === OYOPLUS MOBILE: header + bottom tabs (20251004tabs) === */
+@media (max-width: 640px) {
+  /* Header row: logo | quick-icons | .... | (hide hamburger) */
+  .top-bar { display: flex !important; align-items: center !important; flex-wrap: nowrap !important; gap: 8px !important; }
+  .top-bar > * { min-width: 0 !important; }
+
+  /* Logo should not grab the whole row */
+  .top-bar .logo, .top-bar a.logo { display: flex !important; align-items: center !important; flex: 0 1 auto !important; min-width: 0 !important; }
+  .top-bar .logo img { height: 28px !important; width: auto !important; }
+
+  /* Language + Call: sit immediately to the right of logo */
+  .top-bar .quick-icons { display: flex !important; align-items: center !important; gap: 8px !important; margin-left: 8px !important; flex: 0 0 auto !important; }
+
+  /* Hide hamburger on mobile (we'll use bottom tabs) */
+  .top-bar .menu-toggle { display: none !important; }
+
+  /* ===== Sticky Bottom Tabs ===== */
+  .bottom-nav { 
+    position: fixed; left: 0; right: 0; bottom: 0;
+    height: 64px; padding-bottom: max(0px, env(safe-area-inset-bottom));
+    background: #fff; border-top: 1px solid rgba(0,0,0,0.08);
+    display: flex; justify-content: space-around; align-items: center;
+    z-index: 999;
+  }
+  .bottom-nav a {
+    flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px; text-decoration: none; color: #6b7280; font-size: 11.5px;
+    padding-top: 6px;
+  }
+  .bottom-nav a .icon { width: 22px; height: 22px; }
+  .bottom-nav a.active, .bottom-nav a[aria-current="page"] { color: #ff375f; }
+
+  /* Prevent content being hidden behind the tab bar */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
+
+/* Hide bottom tabs on desktop */
+@media (min-width: 641px) { .bottom-nav { display: none !important; } }
