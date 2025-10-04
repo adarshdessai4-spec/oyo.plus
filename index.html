@@ -1,17 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<script>if(location.protocol!=='https:'){location.replace('https:'+location.href.substring(location.protocol.length));}</script>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Force HTTPS early -->
+  <script>
+    if (location.protocol !== 'https:') {
+      location.replace('https:' + location.href.substring(location.protocol.length));
+    }
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OYO Inspired Stays | Find Your Perfect Room</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Experience OYO.plus stays across the globe. Book business trips, getaways, or remote work stays with exclusive membership perks." />
+  <meta name="theme-color" content="#ff1616" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <noscript>
+    <style>
+      [hidden]{display:none!important}
+    </style>
+  </noscript>
 </head>
+
 <body data-page="home">
-  <header class="site-header">
+  <!-- Mobile-first OP header (shown under 1024px via CSS) -->
+  <div class="op-root">
+    <header class="op-site-header" role="banner">
+      <div class="op-site-header__inner">
+        <button class="op-menu-btn" type="button" id="opMenuToggle" aria-expanded="false" aria-controls="opMobileMenu">
+          <span class="op-sr-only">Open navigation</span>
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <a class="op-brand op-site-header__brand" href="index.html" aria-label="OYO.plus home">
+          <img src="assets/oyo-plus-logo.png" alt="OYO.plus logo" loading="lazy" decoding="async" />
+        </a>
+
+        <a class="op-header-cta op-btn op-btn--primary" href="listings.html">Book now</a>
+      </div>
+    </header>
+
+    <div class="op-drawer" id="opMobileMenu" aria-hidden="true">
+      <div class="op-drawer__overlay" data-op-drawer-close></div>
+      <aside class="op-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="opDrawerHeading" tabindex="-1">
+        <div class="op-drawer__header">
+          <a class="op-brand op-drawer__brand" href="index.html" aria-label="OYO.plus home">
+            <img src="assets/oyo-plus-logo.png" alt="OYO.plus logo" loading="lazy" decoding="async" />
+          </a>
+          <button class="op-drawer__close" type="button" data-op-drawer-close>
+            <span class="op-sr-only">Close menu</span>
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path d="M6 6l12 12M18 6l-12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        <h2 class="op-drawer__title" id="opDrawerHeading">Navigate OYO.plus</h2>
+
+        <nav class="op-drawer__nav" aria-label="Primary navigation">
+          <a class="op-drawer__link" href="auth.html">Login / Signup</a>
+          <button class="op-drawer__link" type="button" data-action="open-membership">Become a member</button>
+          <a class="op-drawer__link" href="corporate.html#programs">OYO.plus for Business</a>
+          <a class="op-drawer__link" href="corporate.html">List your property</a>
+        </nav>
+
+        <div class="op-drawer__actions">
+          <a class="op-btn op-btn--secondary" href="#download">Download app</a>
+          <a class="op-btn op-btn--ghost" href="tel:+919090123456">Call +91 9090-123-456</a>
+          <button class="op-btn op-btn--ghost" type="button" aria-label="Change language">Language (English ▾)</button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="op-cta-row" role="group" aria-label="Quick actions">
+      <a class="op-btn op-btn--secondary" href="#download">Download app</a>
+      <a class="op-btn op-btn--primary" href="listings.html">Book now</a>
+    </div>
+
+    <section class="op-cities" aria-labelledby="opCitiesHeading">
+      <h2 class="op-cities__title" id="opCitiesHeading">Popular cities</h2>
+      <div class="op-cities__grid">
+        <a class="op-city-chip" href="listings.html?city=Bengaluru">Bengaluru</a>
+        <a class="op-city-chip" href="listings.html?city=Chennai">Chennai</a>
+        <a class="op-city-chip" href="listings.html?city=Delhi">Delhi</a>
+        <a class="op-city-chip" href="listings.html?city=Gurgaon">Gurgaon</a>
+        <a class="op-city-chip" href="listings.html?city=Hyderabad">Hyderabad</a>
+        <a class="op-city-chip" href="listings.html?city=Kolkata">Kolkata</a>
+        <a class="op-city-chip" href="listings.html?city=Goa">Goa</a>
+        <a class="op-city-chip" href="listings.html?city=Mumbai">Mumbai</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Desktop / large-screen header -->
+  <header class="site-header" role="banner">
     <div class="utility-bar">
       <div class="utility-left">
         <button class="utility-link" type="button" data-action="open-membership">Become a member</button>
@@ -20,166 +108,174 @@
       </div>
       <div class="utility-right">
         <a href="tel:+919090123456">+91 9090-123-456</a>
-        <button class="pill ghost small" type="button">English ▾</button>
+        <button class="pill ghost small" type="button" aria-label="Change language">English ▾</button>
         <a class="pill ghost small" href="auth.html">Login / Signup</a>
       </div>
     </div>
+
     <div class="top-bar">
-      <a class="logo" href="index.html" aria-label="OYO Plus home">
-        <img src="assets/oyo-plus-logo.png" alt="OYO Plus logo">
+      <a class="logo" href="index.html" aria-label="OYO.plus home">
+        <img src="assets/oyo-plus-logo.png" alt="OYO.plus logo" loading="lazy" decoding="async" />
       </a>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav">
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span class="sr-only">Toggle navigation</span>
         <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
           <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
         </svg>
       </button>
-      <nav class="main-nav" id="primary-nav">
-        <a href="index.html#collections" data-nav="home">Collections</a>
+
+      <nav class="main-nav" id="primary-nav" aria-label="Primary">
+        <a href="#collections" data-nav="home">Collections</a>
         <a href="listings.html" data-nav="listings">Find stays</a>
         <a href="corporate.html" data-nav="corporate">Corporate travel</a>
         <a href="about.html" data-nav="about">About</a>
         <a href="support.html" data-nav="support">Support</a>
       </nav>
-      <div class="cta-group">
-        <a class="btn ghost" href="index.html#download">Download app</a>
+
+      <div class="cta-group" role="group" aria-label="Header actions">
+        <a class="btn ghost" href="#download">Download app</a>
         <a class="btn primary" href="listings.html">Book now</a>
       </div>
     </div>
+
+    <!-- Popular cities rail -->
     <nav class="city-bar" aria-label="Popular cities">
+      <!-- Each pill can open on hover/focus or on click (script toggles .is-open) -->
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Bengaluru">
-          <span>Bengaluru</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-bengaluru" data-city="Bengaluru">
+          <span>Bengaluru</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Indiranagar">Indiranagar</a></li>
-          <li><a href="listings.html?city=Koramangala">Koramangala</a></li>
-          <li><a href="listings.html?city=Whitefield">Whitefield</a></li>
+        <ul class="city-dropdown" id="city-dd-bengaluru" role="menu">
+          <li><a href="listings.html?city=Indiranagar" role="menuitem">Indiranagar</a></li>
+          <li><a href="listings.html?city=Koramangala" role="menuitem">Koramangala</a></li>
+          <li><a href="listings.html?city=Whitefield" role="menuitem">Whitefield</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Chennai">
-          <span>Chennai</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-chennai" data-city="Chennai">
+          <span>Chennai</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=T%20Nagar">T Nagar</a></li>
-          <li><a href="listings.html?city=OMR">OMR</a></li>
-          <li><a href="listings.html?city=ECR">ECR</a></li>
+        <ul class="city-dropdown" id="city-dd-chennai" role="menu">
+          <li><a href="listings.html?city=T%20Nagar" role="menuitem">T Nagar</a></li>
+          <li><a href="listings.html?city=OMR" role="menuitem">OMR</a></li>
+          <li><a href="listings.html?city=ECR" role="menuitem">ECR</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Delhi">
-          <span>Delhi</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-delhi" data-city="Delhi">
+          <span>Delhi</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Connaught%20Place">Connaught Place</a></li>
-          <li><a href="listings.html?city=Aerocity">Aerocity</a></li>
-          <li><a href="listings.html?city=Karol%20Bagh">Karol Bagh</a></li>
+        <ul class="city-dropdown" id="city-dd-delhi" role="menu">
+          <li><a href="listings.html?city=Connaught%20Place" role="menuitem">Connaught Place</a></li>
+          <li><a href="listings.html?city=Aerocity" role="menuitem">Aerocity</a></li>
+          <li><a href="listings.html?city=Karol%20Bagh" role="menuitem">Karol Bagh</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Gurgaon">
-          <span>Gurgaon</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-gurgaon" data-city="Gurgaon">
+          <span>Gurgaon</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Cyber%20City">Cyber City</a></li>
-          <li><a href="listings.html?city=Golf%20Course%20Road">Golf Course Road</a></li>
-          <li><a href="listings.html?city=Udyog%20Vihar">Udyog Vihar</a></li>
+        <ul class="city-dropdown" id="city-dd-gurgaon" role="menu">
+          <li><a href="listings.html?city=Cyber%20City" role="menuitem">Cyber City</a></li>
+          <li><a href="listings.html?city=Golf%20Course%20Road" role="menuitem">Golf Course Road</a></li>
+          <li><a href="listings.html?city=Udyog%20Vihar" role="menuitem">Udyog Vihar</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Hyderabad">
-          <span>Hyderabad</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-hyd" data-city="Hyderabad">
+          <span>Hyderabad</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Hitech%20City">Hitech City</a></li>
-          <li><a href="listings.html?city=Banjara%20Hills">Banjara Hills</a></li>
-          <li><a href="listings.html?city=Gachibowli">Gachibowli</a></li>
+        <ul class="city-dropdown" id="city-dd-hyd" role="menu">
+          <li><a href="listings.html?city=Hitech%20City" role="menuitem">Hitech City</a></li>
+          <li><a href="listings.html?city=Banjara%20Hills" role="menuitem">Banjara Hills</a></li>
+          <li><a href="listings.html?city=Gachibowli" role="menuitem">Gachibowli</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Kolkata">
-          <span>Kolkata</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-kolkata" data-city="Kolkata">
+          <span>Kolkata</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Park%20Street">Park Street</a></li>
-          <li><a href="listings.html?city=Salt%20Lake">Salt Lake</a></li>
-          <li><a href="listings.html?city=New%20Town">New Town</a></li>
+        <ul class="city-dropdown" id="city-dd-kolkata" role="menu">
+          <li><a href="listings.html?city=Park%20Street" role="menuitem">Park Street</a></li>
+          <li><a href="listings.html?city=Salt%20Lake" role="menuitem">Salt Lake</a></li>
+          <li><a href="listings.html?city=New%20Town" role="menuitem">New Town</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Gujarat">
-          <span>Gujarat</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-gujarat" data-city="Gujarat">
+          <span>Gujarat</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Ahmedabad">Ahmedabad</a></li>
-          <li><a href="listings.html?city=Surat">Surat</a></li>
-          <li><a href="listings.html?city=Vadodara">Vadodara</a></li>
+        <ul class="city-dropdown" id="city-dd-gujarat" role="menu">
+          <li><a href="listings.html?city=Ahmedabad" role="menuitem">Ahmedabad</a></li>
+          <li><a href="listings.html?city=Surat" role="menuitem">Surat</a></li>
+          <li><a href="listings.html?city=Vadodara" role="menuitem">Vadodara</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Goa">
-          <span>Goa</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-goa" data-city="Goa">
+          <span>Goa</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Panaji">Panaji</a></li>
-          <li><a href="listings.html?city=Calangute">Calangute</a></li>
-          <li><a href="listings.html?city=Baga">Baga</a></li>
+        <ul class="city-dropdown" id="city-dd-goa" role="menu">
+          <li><a href="listings.html?city=Panaji" role="menuitem">Panaji</a></li>
+          <li><a href="listings.html?city=Calangute" role="menuitem">Calangute</a></li>
+          <li><a href="listings.html?city=Baga" role="menuitem">Baga</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="Mumbai">
-          <span>Mumbai</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-mumbai" data-city="Mumbai">
+          <span>Mumbai</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Bandra">Bandra</a></li>
-          <li><a href="listings.html?city=Andheri">Andheri</a></li>
-          <li><a href="listings.html?city=Colaba">Colaba</a></li>
+        <ul class="city-dropdown" id="city-dd-mumbai" role="menu">
+          <li><a href="listings.html?city=Bandra" role="menuitem">Bandra</a></li>
+          <li><a href="listings.html?city=Andheri" role="menuitem">Andheri</a></li>
+          <li><a href="listings.html?city=Colaba" role="menuitem">Colaba</a></li>
         </ul>
       </div>
+
       <div class="city-pill">
-        <button class="city-toggle" type="button" data-city="All Cities">
-          <span>More cities</span>
-          <span class="city-arrow">▾</span>
+        <button class="city-toggle" type="button" aria-expanded="false" aria-controls="city-dd-more" data-city="All Cities">
+          <span>More cities</span><span class="city-arrow">▾</span>
         </button>
-        <ul class="city-dropdown">
-          <li><a href="listings.html?city=Bengaluru">Bengaluru</a></li>
-          <li><a href="listings.html?city=Goa">Goa</a></li>
-          <li><a href="listings.html?city=Mumbai">Mumbai</a></li>
-          <li><a href="listings.html?city=Delhi">Delhi</a></li>
-          <li><a href="listings.html?city=Hyderabad">Hyderabad</a></li>
+        <ul class="city-dropdown" id="city-dd-more" role="menu">
+          <li><a href="listings.html?city=Bengaluru" role="menuitem">Bengaluru</a></li>
+          <li><a href="listings.html?city=Goa" role="menuitem">Goa</a></li>
+          <li><a href="listings.html?city=Mumbai" role="menuitem">Mumbai</a></li>
+          <li><a href="listings.html?city=Delhi" role="menuitem">Delhi</a></li>
+          <li><a href="listings.html?city=Hyderabad" role="menuitem">Hyderabad</a></li>
         </ul>
       </div>
     </nav>
   </header>
 
-  <main>
-    <section class="hero contrast">
+  <main id="main-content">
+    <!-- HERO -->
+    <section class="hero contrast" aria-labelledby="hero-title">
       <div class="hero-content boxed">
         <p class="eyebrow">Over 170,000+ hotels &amp; homes across 35+ countries</p>
-        <h1>Experience OYO.plus stays across the globe</h1>
+        <h1 id="hero-title">Experience OYO.plus stays across the globe</h1>
         <p class="subtitle">Plan stays for business, getaways, or remote work with exclusive OYO.plus membership perks.</p>
-        <form class="search-card flat" action="#" method="get" novalidate>
+
+        <form class="search-card flat" action="listings.html" method="get" novalidate>
           <div class="field">
             <label for="search-city">City</label>
-            <input id="search-city" name="city" type="text" placeholder="e.g. Mumbai, Delhi" autocomplete="off">
+            <input id="search-city" name="city" type="text" placeholder="e.g. Mumbai, Delhi" autocomplete="off" inputmode="search" />
           </div>
           <div class="field">
             <label for="check-in">Check-in</label>
-            <input id="check-in" name="check_in" type="date">
+            <input id="check-in" name="check_in" type="date" />
           </div>
           <div class="field">
             <label for="check-out">Check-out</label>
-            <input id="check-out" name="check_out" type="date">
+            <input id="check-out" name="check_out" type="date" />
           </div>
           <div class="field">
             <label for="guests">Guests</label>
@@ -193,8 +289,9 @@
           </div>
           <button class="btn primary full" type="submit">Search stays</button>
         </form>
-        <div class="hero-tags">
-          <button class="tag" type="button" data-quick-search='{"city":"", "near":true}'>Near me</button>
+
+        <div class="hero-tags" role="group" aria-label="Quick search tags">
+          <button class="tag" type="button" data-quick-search='{"city":"","near":true}'>Near me</button>
           <button class="tag" type="button" data-quick-search='{"type":"apartment"}'>Weekly rentals</button>
           <button class="tag" type="button" data-quick-search='{"workspace":true}'>Work pods</button>
           <button class="tag" type="button" data-quick-search='{"wellness":true}'>Wellness add-ons</button>
@@ -202,27 +299,29 @@
       </div>
     </section>
 
-    <section class="promo-subscribe">
-      <div class="promo-icon">🔥</div>
+    <!-- PROMO SUBSCRIBE -->
+    <section class="promo-subscribe" aria-labelledby="promo-title">
+      <div class="promo-icon" aria-hidden="true">🔥</div>
       <div class="promo-copy">
-        <h2>Get access to exclusive deals</h2>
+        <h2 id="promo-title">Get access to exclusive deals</h2>
         <p>Only the best offers and flash sales land in your inbox.</p>
       </div>
-      <form class="promo-form" action="#" method="post" data-form="promo">
+      <form class="promo-form" action="#" method="post" data-form="promo" novalidate>
         <label class="sr-only" for="promo-email">Email</label>
-        <input id="promo-email" type="email" placeholder="your@email.com">
+        <input id="promo-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" />
         <button class="btn primary" type="submit">Notify me</button>
       </form>
     </section>
 
+    <!-- METRICS -->
     <section class="metrics" aria-labelledby="global-presence">
       <div class="metrics-visual">
-        <div class="world-map"></div>
+        <div class="world-map" role="img" aria-label="World map visualization"></div>
       </div>
       <div class="metrics-copy">
-        <h2 id="global-presence">There's a OYO.plus around. Always.</h2>
+        <h2 id="global-presence">There’s an OYO.plus around. Always.</h2>
         <p>More destinations. More ease. More affordable stays built for every journey.</p>
-        <div class="metric-stats">
+        <div class="metric-stats" role="group" aria-label="Key stats">
           <div>
             <strong>35+</strong>
             <span>Countries</span>
@@ -233,28 +332,30 @@
           </div>
         </div>
         <ul class="metric-list">
-          <li><button class="metric-link" type="button" data-city="Indonesia"><span class="dot dot-green"></span>Indonesia</button></li>
-          <li><button class="metric-link" type="button" data-city="Malaysia"><span class="dot dot-red"></span>Malaysia</button></li>
-          <li><button class="metric-link" type="button" data-city="Denmark"><span class="dot dot-yellow"></span>Denmark</button></li>
-          <li><button class="metric-link" type="button" data-city="United States"><span class="dot dot-blue"></span>United States</button></li>
-          <li><button class="metric-link" type="button" data-city="United Kingdom"><span class="dot dot-purple"></span>United Kingdom</button></li>
-          <li><button class="metric-link" type="button" data-city="Netherlands"><span class="dot dot-pink"></span>Netherlands</button></li>
+          <li><button class="metric-link" type="button" data-city="Indonesia"><span class="dot dot-green" aria-hidden="true"></span>Indonesia</button></li>
+          <li><button class="metric-link" type="button" data-city="Malaysia"><span class="dot dot-red" aria-hidden="true"></span>Malaysia</button></li>
+          <li><button class="metric-link" type="button" data-city="Denmark"><span class="dot dot-yellow" aria-hidden="true"></span>Denmark</button></li>
+          <li><button class="metric-link" type="button" data-city="United States"><span class="dot dot-blue" aria-hidden="true"></span>United States</button></li>
+          <li><button class="metric-link" type="button" data-city="United Kingdom"><span class="dot dot-purple" aria-hidden="true"></span>United Kingdom</button></li>
+          <li><button class="metric-link" type="button" data-city="Netherlands"><span class="dot dot-pink" aria-hidden="true"></span>Netherlands</button></li>
         </ul>
       </div>
     </section>
 
+    <!-- MEMBERSHIP -->
     <section class="membership" id="membership" aria-labelledby="membership-title">
-      <div class="membership-gradient"></div>
+      <div class="membership-gradient" aria-hidden="true"></div>
       <div class="membership-content">
         <header class="membership-header">
           <p class="eyebrow accent">OYO.plus Membership</p>
           <h2 id="membership-title">Unlock members-only rates, upgrades, and concierge help</h2>
           <p>Join thousands of travellers saving up to 15% every night with carbon-neutral stays, remote-work pods, and wellness add-ons built in.</p>
-          <div class="cta-group">
+          <div class="cta-group" role="group" aria-label="Membership actions">
             <a class="btn primary" href="auth.html#signup">Join OYO.plus</a>
             <button class="btn ghost" type="button" data-action="membership-learn">See benefits</button>
           </div>
         </header>
+
         <div class="membership-grid">
           <article class="membership-card">
             <h3>Instant savings</h3>
@@ -265,6 +366,7 @@
               <li>Late check-out priority</li>
             </ul>
           </article>
+
           <article class="membership-card">
             <h3>Travel smarter</h3>
             <p>Upgrade reservations with remote-ready pods, curated wellness sessions, and eco offsets in one tap.</p>
@@ -274,6 +376,7 @@
               <li>Carbon neutral check-ins</li>
             </ul>
           </article>
+
           <article class="membership-card highlight">
             <h3>Concierge on demand</h3>
             <p>Dedicated travel experts route upgrades, invoices, and group bookings around the clock.</p>
@@ -284,12 +387,14 @@
             </ul>
           </article>
         </div>
+
         <div class="membership-footer">
           <p class="muted">Already a member? <a href="auth.html">Sign in</a> to manage your stays and rewards.</p>
         </div>
       </div>
     </section>
 
+    <!-- DYNAMIC SEARCH RESULTS -->
     <section class="search-results" id="search-results" aria-live="polite" hidden>
       <div class="section-head">
         <h2>Matched stays for you</h2>
@@ -299,9 +404,10 @@
         </div>
       </div>
       <div class="property-grid condensed" data-slot="search-results"></div>
-      <p class="muted" id="search-message"></p>
+      <p class="muted" id="search-message" role="status"></p>
     </section>
 
+    <!-- COLLECTIONS -->
     <section class="quick-picks" id="collections">
       <div class="section-head">
         <h2>Curated stays for every journey</h2>
@@ -310,6 +416,7 @@
       <div class="card-row" data-slot="collections"></div>
     </section>
 
+    <!-- DESTINATIONS -->
     <section class="destinations" id="destinations">
       <div class="section-head">
         <h2>Trending destinations</h2>
@@ -318,22 +425,25 @@
       <div class="destination-grid" data-slot="destinations"></div>
     </section>
 
+    <!-- OFFERS -->
     <section class="offers" id="offers">
       <div class="section-head">
         <h2>Exclusive app-only offers</h2>
         <div class="controls">
-          <button class="pill" data-direction="prev" aria-label="Previous offers">&#8592;</button>
-          <button class="pill" data-direction="next" aria-label="Next offers">&#8594;</button>
+          <button class="pill" data-direction="prev" type="button" aria-label="Previous offers">&#8592;</button>
+          <button class="pill" data-direction="next" type="button" aria-label="Next offers">&#8594;</button>
         </div>
       </div>
       <div class="offer-track" data-slot="offers"></div>
     </section>
 
+    <!-- TRUST -->
     <section class="trust">
       <div class="trust-text" data-slot="trust-copy"></div>
       <div class="trust-cards" data-slot="trust-cards"></div>
     </section>
 
+    <!-- DIFFERENTIATORS -->
     <section class="differentiators" id="exclusives">
       <div class="section-head">
         <h2 data-slot="differentiators-title">OYO.plus exclusives you won’t find on OYO</h2>
@@ -343,6 +453,7 @@
       <div class="differentiator-grid" data-slot="differentiators"></div>
     </section>
 
+    <!-- TESTIMONIALS -->
     <section class="testimonials">
       <div class="section-head">
         <h2>Loved by travellers across 35+ countries</h2>
@@ -350,12 +461,18 @@
       <div class="testimonial-row" data-slot="testimonials"></div>
     </section>
 
-    <section class="download" id="download">
-      <div class="download-content" data-slot="download-copy"></div>
-      <div class="download-art" data-slot="download-art"></div>
+    <!-- DOWNLOAD -->
+    <section class="download" id="download" aria-labelledby="download-title">
+      <div class="download-content" data-slot="download-copy">
+        <!-- script.js will hydrate -->
+      </div>
+      <div class="download-art" data-slot="download-art">
+        <!-- script.js will hydrate -->
+      </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer" id="support">
     <div class="footer-columns">
       <div>
@@ -390,6 +507,7 @@
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
       <span>&copy; 2025 OYO.plus</span>
       <div class="policy-links">
@@ -400,6 +518,11 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- JS (deferred to avoid blocking) -->
+  <script src="script.js" defer></script>
+
+  <noscript>
+    <p class="muted" style="padding:1rem 8vw">JavaScript is disabled. Some interactive features like search suggestions and offer sliders may not work.</p>
+  </noscript>
 </body>
 </html>
