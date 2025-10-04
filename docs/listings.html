@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover.0">
   <title>OYO.plus Listings | Discover Verified Hotels & Homestays</title>
-  <link rel="stylesheet" href="styles.css?v=20251004stick5">
+  <link rel="stylesheet" href="styles.css?v=20251004stick6">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -299,4 +299,45 @@
 
   <script src="script.js?v=20251004stick4"></script>
   <script src="assets/js/mobile-nav.js"></script></body>
+<nav class="bottom-nav" role="navigation" aria-label="Primary (mobile)">
+  <a href="index.html"       class="tab home">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 10v10h14V10"/></svg>
+    <span>Home</span>
+  </a>
+  <a href="listings.html"    class="tab search">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <span>Search</span>
+  </a>
+  <a href="user.html#bookings" class="tab bookings">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 3v4M8 3v4"/></svg>
+    <span>Bookings</span>
+  </a>
+  <a href="offers.html"      class="tab offers">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7h7v7"/><path d="M3 12l5-5 6 6 7-7"/></svg>
+    <span>Offers</span>
+  </a>
+  <a href="user.html"        class="tab account">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+    <span>Account</span>
+  </a>
+</nav>
+<script>
+(function(){
+  try{
+    if(window.matchMedia('(min-width: 641px)').matches) return; // mobile only
+    var p=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    var active='home';
+    if(p.includes('listings')) active='search';
+    else if(p.includes('offers')) active='offers';
+    else if(p.includes('user')) active='account';
+    if(location.hash.toLowerCase().includes('bookings')) active='bookings';
+
+    var nav=document.querySelector('.bottom-nav');
+    if(!nav) return;
+    nav.querySelectorAll('.tab[aria-current]').forEach(function(a){a.removeAttribute('aria-current')});
+    var el=nav.querySelector('.tab.'+active);
+    if(el) el.setAttribute('aria-current','page');
+  }catch(e){}
+})();
+</script>
 </html>
