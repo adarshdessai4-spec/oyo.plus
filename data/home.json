@@ -30,12 +30,84 @@
     }
   ],
   "destinations": [
-    { "city": "New Delhi", "count": "680+ stays", "href": "listings.html?city=Delhi" },
-    { "city": "Mumbai", "count": "540+ stays", "href": "listings.html?city=Mumbai" },
-    { "city": "Bengaluru", "count": "430+ stays", "href": "listings.html?city=Bengaluru" },
-    { "city": "Goa", "count": "320+ stays", "href": "listings.html?city=Goa" },
-    { "city": "Hyderabad", "count": "210+ stays", "href": "listings.html?city=Hyderabad" },
-    { "city": "Jaipur", "count": "190+ stays", "href": "listings.html?city=Jaipur" }
+    {
+      "city": "New Delhi",
+      "count": "680+ stays",
+      "href": "listings.html?city=Delhi",
+      "areas": [
+        "Connaught Place",
+        "Karol Bagh",
+        "Aerocity",
+        "Saket",
+        "Paharganj",
+        "Dwarka"
+      ]
+    },
+    {
+      "city": "Mumbai",
+      "count": "540+ stays",
+      "href": "listings.html?city=Mumbai",
+      "areas": [
+        "Andheri",
+        "Bandra",
+        "Colaba",
+        "Powai",
+        "Navi Mumbai",
+        "Fort"
+      ]
+    },
+    {
+      "city": "Bengaluru",
+      "count": "430+ stays",
+      "href": "listings.html?city=Bengaluru",
+      "areas": [
+        "Koramangala",
+        "Indiranagar",
+        "Whitefield",
+        "MG Road",
+        "Electronic City",
+        "Hebbal"
+      ]
+    },
+    {
+      "city": "Goa",
+      "count": "320+ stays",
+      "href": "listings.html?city=Goa",
+      "areas": [
+        "Calangute",
+        "Candolim",
+        "Baga",
+        "Anjuna",
+        "Panaji",
+        "Colva"
+      ]
+    },
+    {
+      "city": "Hyderabad",
+      "count": "210+ stays",
+      "href": "listings.html?city=Hyderabad",
+      "areas": [
+        "Banjara Hills",
+        "Hitech City",
+        "Gachibowli",
+        "Secunderabad",
+        "Begumpet",
+        "Kukatpally"
+      ]
+    },
+    {
+      "city": "Jaipur",
+      "count": "190+ stays",
+      "href": "listings.html?city=Jaipur",
+      "areas": [
+        "MI Road",
+        "Vaishali Nagar",
+        "Raja Park",
+        "Amer Road",
+        "Mansarovar",
+        "Bapu Bazaar"
+      ]
+    }
   ],
   "offers": [
     {
@@ -112,8 +184,14 @@
       "alt": "Traveller checking mobile for booking"
     },
     "stores": [
-      { "label": "Download on App Store", "href": "#" },
-      { "label": "Get it on Google Play", "href": "#" }
+      {
+        "label": "Download on App Store",
+        "href": "#"
+      },
+      {
+        "label": "Get it on Google Play",
+        "href": "#"
+      }
     ]
   },
   "differentiators": {

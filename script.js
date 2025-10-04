@@ -278,10 +278,17 @@ function buildCollectionCard(collection) {
 }
 
 function buildDestinationCard(destination) {
+  const areas = Array.isArray(destination.areas) ? destination.areas : null;
+  const sub = areas && areas.length
+    ? `<div class="subareas" aria-label="Popular areas in ${destination.city}">`
+        + areas.slice(0, 6).map(a => `<a class="subarea-chip" href="listings.html?city=${encodeURIComponent(destination.city)}&area=${encodeURIComponent(a)}">${a}</a>`).join('')
+        + `</div>`
+    : '';
   return createElement(`
-    <a class="destination-card animate-in" href="${destination.href}">
+    <a class="destination-card animate-in" href="${destination.href}" data-city="${destination.city}">
       <span class="city">${destination.city}</span>
       <span class="count">${destination.count}</span>
+      ${sub}
     </a>
   `);
 }
