@@ -3426,3 +3426,19 @@ blockquote {
     overflow: visible !important;  /* stop inner scroll containers */
   }
 }
+
+/* mobile bottom-nav: hard stick v2 — 20251004-stick2 */
+@media (max-width: 640px) {
+  .bottom-nav{
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    z-index: 2147483647 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    background: #fff !important;
+  }
+  /* ensure viewport scrolling, not inner containers */
+  main, .page, .wrapper { overflow: visible !important; }
+  /* prevent content being hidden by the tabs */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
