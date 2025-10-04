@@ -3376,14 +3376,28 @@ blockquote {
 
 /* Desktop stays untouched; mobile-only block above controls phones */
 
-/* mobile logo size — 20251004w */
+/* mobile logo size — DOUBLED (20251004w2) */
 @media (max-width: 640px) {
-  /* give the header a bit more height so a taller logo fits nicely */
-  .top-bar { min-height: 60px !important; }
+  /* give enough header height for the larger logo */
+  .top-bar { min-height: 120px !important; }
 
-  /* make the logo comfortably larger on all phones */
+  /* prevent the logo from pushing icons to a new line */
+  .top-bar .logo { max-width: 60vw !important; }
+
+  /* ~2x larger than before: 44–56px -> 88–112px */
   .top-bar .logo img {
-    height: clamp(88px, 8.5vw, 112px) !important;  /* was ~32–44px */
+    height: clamp(88px, 17vw, 112px) !important;
+    max-height: 112px !important;
+    width: auto !important;
+    display: block !important;
+  }
+}
+/* mobile logo size — DOUBLED (20251004w2) */
+@media (max-width: 640px) {
+  .top-bar { min-height: 120px !important; }          /* room for taller logo */
+  .top-bar .logo { max-width: 60vw !important; }      /* keep icons on same row */
+  .top-bar .logo img {
+    height: clamp(88px, 17vw, 112px) !important;      /* ~2x the previous size */
     max-height: 112px !important;
     width: auto !important;
     display: block !important;
