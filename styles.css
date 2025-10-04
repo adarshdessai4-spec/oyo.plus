@@ -2749,16 +2749,19 @@ blockquote {
     display: none;
   }
 
+  .logo {
+    justify-content: center;
+  }
+
   .logo img {
-    width: 88px;
+    width: 92px;
   }
 
   .top-bar .cta-group {
     display: none;
   }
 
-  .top-bar .logo,
-  .top-bar .menu-toggle {
+  .menu-toggle {
     display: none;
   }
 
@@ -2779,10 +2782,10 @@ blockquote {
   }
 
   .top-bar {
-    padding: 0;
+    padding: 12px 0 0;
     flex-direction: column;
-    align-items: stretch;
-    gap: 0;
+    align-items: center;
+    gap: 12px;
     background: transparent;
     border-bottom: none;
     box-shadow: none;
@@ -2795,7 +2798,7 @@ blockquote {
   }
 
   .hero {
-    padding: 28px 5vw 48px;
+    padding: 24px 5vw 48px;
   }
 
   .search-card {
@@ -2810,19 +2813,7 @@ blockquote {
   }
 
   .main-nav {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    padding: 0;
-    box-shadow: none;
-    background: transparent;
-    width: 100%;
-  }
-
-  .main-nav.is-open {
-    display: flex;
+    display: none;
   }
 
   .city-bar {
