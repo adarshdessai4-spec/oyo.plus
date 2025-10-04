@@ -3505,3 +3505,19 @@ blockquote {
   body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
 }
 @media (min-width: 641px){ .bottom-nav { display:none !important; } }
+
+/* 20251004-stick4-confirm */
+@media (max-width: 640px) {
+  .mobile-footer-cta { display: none !important; }
+  .bottom-nav {
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    z-index: 2147483647 !important;
+    background: #fff !important;
+    border-top: 1px solid rgba(0,0,0,0.08) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+  }
+  html, body { overflow-y: auto !important; }
+  main, .page, .wrapper, .container { overflow: visible !important; }
+}
+@media (min-width: 641px){ .bottom-nav { display:none !important; } }
