@@ -1,0 +1,37 @@
+{
+  "programs": [
+    {
+      "title": "Smart stay pass",
+      "description": "Pre-purchased credits for frequent travellers with access to premium hotels in business districts.",
+      "benefits": [
+        "Negotiated nightly rates and complimentary upgrades.",
+        "Central billing with GST-compliant invoices.",
+        "Dedicated success manager for travel ops."
+      ]
+    },
+    {
+      "title": "Long-stay bundles",
+      "description": "Serviced apartments and homestays optimised for relocations, training cohorts, and 30+ night residencies.",
+      "benefits": [
+        "Fully furnished apartments with stocked kitchens.",
+        "Flexible move-in/out dates aligned to project needs.",
+        "Utility, housekeeping, and Wi-Fi handled by OYO.plus."
+      ]
+    },
+    {
+      "title": "Events & offsites",
+      "description": "Curated resorts, villas, and experience packages for team outings, workshops, and leadership retreats.",
+      "benefits": [
+        "Venue sourcing and rate negotiation handled end-to-end.",
+        "On-ground event coordinators and activity planners.",
+        "Group travel desk for flights and transfers."
+      ]
+    }
+  ],
+  "stats": [
+    { "figure": "7,500+", "caption": "Partner properties across India & SEA" },
+    { "figure": "150+", "caption": "Large enterprise clients onboarded" },
+    { "figure": "98%", "caption": "Traveller satisfaction and repeat rate" },
+    { "figure": "24x7", "caption": "Dedicated support teams" }
+  ]
+}
