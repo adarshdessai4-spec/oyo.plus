@@ -3029,3 +3029,21 @@ blockquote {
 @media (max-width: 840px) {
   .search-card.flat input, .search-card.flat select { height: 44px !important; font-size: 1rem !important; }
 }
+/* mobile-inline-dates 20251004j */
+@media (max-width: 640px) {
+  .search-card .field.field-destination { order: 1; }
+  .search-card .field.field-dates       { order: 2; }
+  .search-card .field.field-dates .date-range {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .search-card .field.field-dates input[type="date"] {
+    height: 42px !important;
+    font-size: 0.95rem !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .search-card .field.field-occupancy { order: 3; }
+  .search-card .btn.full { order: 4; }
+}
