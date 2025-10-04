@@ -1962,3 +1962,26 @@ function toBoolean(value) {
   }
   return Boolean(value);
 }
+
+/* stick-bottom-nav safety pin (mobile only) */
+(function () {
+  try {
+    if (!window.matchMedia('(max-width: 640px)').matches) return;
+    var nav = document.querySelector('.bottom-nav');
+    if (!nav) return;
+    // keep as last direct child of <body>
+    if (nav.parentElement !== document.body) document.body.appendChild(nav);
+    // enforce fixed on scroll/resize in case CSS is overridden elsewhere
+    var ensure = function () {
+      var cs = getComputedStyle(nav);
+      if (cs.position !== 'fixed' || cs.bottom !== '0px') {
+        nav.style.position = 'fixed';
+        nav.style.left = '0'; nav.style.right = '0'; nav.style.bottom = '0';
+        nav.style.zIndex = '2147483647';
+      }
+    };
+    ensure();
+    window.addEventListener('resize', ensure, { passive: true });
+    window.addEventListener('scroll', ensure, { passive: true });
+  } catch (e) {}
+})();

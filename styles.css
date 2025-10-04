@@ -3442,3 +3442,36 @@ blockquote {
   /* prevent content being hidden by the tabs */
   body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
 }
+
+/* bottom-nav: unbreakable on mobile — 20251004-stick3 */
+@media (max-width: 640px) {
+  /* ensure viewport scroll, not nested scrollers */
+  html, body { height: auto !important; min-height: 100% !important; overflow-x: hidden !important; overflow-y: auto !important; }
+  main, .page, .wrapper, .app, .container, .content { overflow: visible !important; }
+
+  /* neutralize transform/perspective/filter that break fixed positioning */
+  html, body, header, main, .site-header, .hero, .boxed, .section, .page, .wrapper, .app, [style*="transform"] {
+    transform: none !important;
+    perspective: none !important;
+    filter: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+
+  /* the tabs themselves */
+  .bottom-nav {
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    z-index: 2147483647 !important;
+    background: #fff !important;
+    border-top: 1px solid rgba(0,0,0,0.08) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+    -webkit-transform: translateZ(0) !important; transform: translateZ(0) !important;
+  }
+
+  /* make room so content isn't covered */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
+
+/* ensure desktop never shows mobile tabs */
+@media (min-width: 641px) { .bottom-nav { display: none !important; } }
