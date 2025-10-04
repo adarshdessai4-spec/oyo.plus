@@ -3125,3 +3125,26 @@ blockquote {
 @media (min-width: 641px) {
   .quick-icons { display: none; }
 }
+/* mobile quick-icons (mobile-only enforce) — 20251004r */
+/* Hide by default (covers all desktop widths) */
+.quick-icons { display: none !important; }
+
+@media (max-width: 640px) {
+  /* Show on mobile and align just right of the logo */
+  .top-bar { display: flex !important; align-items: center !important; }
+  .top-bar .quick-icons {
+    display: flex !important;
+    align-items: center; gap: 8px;
+    margin-left: 8px !important;     /* sits next to logo */
+    margin-right: 0 !important;
+  }
+  .qi-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff;
+    box-shadow: 0 2px 10px rgba(15,23,42,0.06);
+  }
+  .qi-btn svg { width: 18px; height: 18px; }
+  /* push hamburger to far right on mobile only */
+  .top-bar .menu-toggle { margin-left: auto !important; }
+}
