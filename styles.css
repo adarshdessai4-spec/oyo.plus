@@ -3375,3 +3375,17 @@ blockquote {
 }
 
 /* Desktop stays untouched; mobile-only block above controls phones */
+
+/* mobile logo size — 20251004w */
+@media (max-width: 640px) {
+  /* give the header a bit more height so a taller logo fits nicely */
+  .top-bar { min-height: 60px !important; }
+
+  /* make the logo comfortably larger on all phones */
+  .top-bar .logo img {
+    height: clamp(44px, 8.5vw, 56px) !important;  /* was ~32–44px */
+    max-height: 56px !important;
+    width: auto !important;
+    display: block !important;
+  }
+}
