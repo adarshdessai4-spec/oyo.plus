@@ -17,6 +17,37 @@ const BOOKING_CONSTANTS = Object.freeze({
   serviceFee: 299
 });
 
+const STATE_LIST = Object.freeze([
+  'Andhra Pradesh',
+  'Arunachal Pradesh',
+  'Assam',
+  'Bihar',
+  'Chhattisgarh',
+  'Goa',
+  'Gujarat',
+  'Haryana',
+  'Himachal Pradesh',
+  'Jharkhand',
+  'Karnataka',
+  'Kerala',
+  'Madhya Pradesh',
+  'Maharashtra',
+  'Manipur',
+  'Meghalaya',
+  'Mizoram',
+  'Nagaland',
+  'Odisha',
+  'Punjab',
+  'Rajasthan',
+  'Sikkim',
+  'Tamil Nadu',
+  'Telangana',
+  'Tripura',
+  'Uttar Pradesh',
+  'Uttarakhand',
+  'West Bengal'
+]);
+
 const numberFormatters = {
   INR: new Intl.NumberFormat('en-IN', {
     style: 'currency',
@@ -1633,16 +1664,18 @@ function initBottomNav() {
 
   const mapPageToNav = () => {
     const page = document.body?.dataset.page || 'home';
-    const navKeyByPage = {
-      home: 'home',
-      listings: 'search',
-      detail: 'search',
-      offers: 'offers',
-      account: 'account',
-      user: 'account',
-      auth: 'account',
-      payments: 'account'
-    };
+  const navKeyByPage = {
+    home: 'home',
+    listings: 'search',
+    detail: 'search',
+    offers: 'offers',
+    search: 'search',
+    bookings: 'bookings',
+    account: 'account',
+    user: 'account',
+    auth: 'account',
+    payments: 'account'
+  };
     if (page === 'user' || page === 'auth') {
       return window.location.hash.toLowerCase().includes('bookings') ? 'bookings' : 'account';
     }
@@ -1744,6 +1777,12 @@ async function initPage() {
       break;
     case 'auth':
       await initAuthPage();
+      break;
+    case 'search':
+      initSearchPage();
+      break;
+    case 'bookings':
+      initBookingsPage();
       break;
     case 'account':
       initAccountHub();
@@ -2106,4 +2145,25 @@ function initAccountHub() {
       showToast('Language preferences are coming soon. Stay tuned!', 'info');
     });
   }
+}
+
+function initSearchPage() {
+  ensureStateSheet();
+  const grid = document.querySelector('[data-slot="state-grid"]');
+  if (grid) {
+    grid.innerHTML = '';
+    STATE_LIST.forEach((state) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a class="state-chip" href="listings.html?state=${encodeURIComponent(state)}">${state}</a>`;
+      grid.appendChild(li);
+    });
+  }
+  const pageSearchForm = document.querySelector('.search-page .search-card');
+  if (pageSearchForm) {
+    setupSearchForm();
+  }
+}
+
+function initBookingsPage() {
+  ensureStateSheet();
 }

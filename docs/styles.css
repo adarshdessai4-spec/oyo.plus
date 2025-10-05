@@ -2707,6 +2707,10 @@ blockquote {
 
 @media (max-width: 640px) {
 
+  .site-header {
+    display: none !important;
+  }
+
 /* -- Mobile tightening for professional look -- */
 .search-card { padding: 16px; gap: 10px; }
 .search-card.flat input, .search-card.flat select { height: 42px; font-size: 0.95rem; }
@@ -3218,6 +3222,37 @@ blockquote {
   height: 18px;
 }
 
+.mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  background: #fff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 120;
+}
+
+.mobile-header__logo img {
+  display: block;
+  width: clamp(110px, 32vw, 140px);
+  height: auto;
+}
+
+.mobile-header__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-header__actions .qi-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
+}
+
 .bottom-nav {
   position: fixed;
   left: 0;
@@ -3241,21 +3276,25 @@ blockquote {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
   text-decoration: none;
   color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   line-height: 1;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .bottom-nav .tab .icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
+  stroke-width: 2.1;
 }
 
 .bottom-nav .tab[aria-current="page"] {
   color: var(--brand);
+  transform: translateY(-3px);
 }
 
 @media (max-width: 640px) {
@@ -3311,6 +3350,10 @@ blockquote {
   .account-mobile-hero {
     padding: 20px;
   }
+
+  .mobile-header {
+    display: none !important;
+  }
 }
 
 @media (min-width: 641px) {
@@ -3321,8 +3364,18 @@ blockquote {
 
 /* Account app layout */
 .account-app-header {
-  padding: 14px 18px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px 12px;
   background: #fff;
+}
+
+.account-app-header-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .account-app-header h1 {
@@ -3332,12 +3385,26 @@ blockquote {
   color: var(--ink);
 }
 
+.account-app-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
+}
+
+.account-app-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .account-app {
   padding: 0 18px 96px;
   max-width: 520px;
   margin: 0 auto;
   display: grid;
-  gap: 28px;
+  gap: 24px;
 }
 
 .account-app-card {
@@ -3347,9 +3414,10 @@ blockquote {
   background: #0c0c0c;
   border-radius: 18px;
   border: 1px solid #d5a362;
-  padding: 18px;
+  padding: 20px;
   overflow: hidden;
   color: #fff;
+  margin-top: 8px;
 }
 
 .account-card-body {
@@ -3416,6 +3484,8 @@ blockquote {
   border-radius: 18px;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
   overflow: hidden;
+  display: grid;
+  gap: 0;
 }
 
 .account-menu li + li {
@@ -3427,7 +3497,7 @@ blockquote {
   align-items: center;
   gap: 16px;
   width: 100%;
-  padding: 16px 18px;
+  padding: 14px 18px;
   font-size: 0.96rem;
   color: var(--ink);
   text-decoration: none;
@@ -3460,6 +3530,98 @@ blockquote {
   flex: 1;
 }
 
+/* Search & bookings pages */
+.search-page,
+.bookings-page {
+  padding: 28px 18px 96px;
+  max-width: 520px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.search-page__header,
+.bookings-page header {
+  display: grid;
+  gap: 8px;
+}
+
+.search-page__header h1,
+.bookings-page h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.search-page__header p,
+.bookings-page header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.state-list .section-head {
+  justify-content: flex-start;
+}
+
+.state-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.state-grid li {
+  list-style: none;
+}
+
+.state-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.state-chip:hover,
+.state-chip:focus-visible {
+  background: #fff;
+  border-color: rgba(59, 130, 246, 0.4);
+  outline: none;
+}
+
+.bookings-empty {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 28px 18px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+}
+
+.bookings-empty__icon {
+  font-size: 2.4rem;
+}
+
+.bookings-benefits {
+  display: grid;
+  gap: 10px;
+}
+
+.bookings-benefits ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
 @media (max-width: 480px) {
   .account-app {
     padding: 0 14px 96px;
@@ -3481,4 +3643,89 @@ blockquote {
     padding: 22px;
     grid-template-columns: minmax(0, 1fr) 88px;
   }
+}
+.state-sheet {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px;
+  z-index: 1600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.state-sheet.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.state-sheet__panel {
+  width: min(520px, 100%);
+  max-height: 70vh;
+  background: #fff;
+  border-radius: 26px 26px 0 0;
+  padding: 20px 20px 24px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 16px;
+  box-shadow: 0 -24px 40px rgba(15, 23, 42, 0.22);
+}
+
+.state-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.state-sheet__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.state-sheet__close {
+  border: none;
+  background: rgba(148, 163, 184, 0.16);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.state-sheet__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  display: grid;
+  gap: 6px;
+}
+
+.state-sheet__button {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: #f8fafc;
+  text-align: left;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.state-sheet__button:hover,
+.state-sheet__button:focus-visible {
+  background: #fff;
+  border-color: rgba(59, 130, 246, 0.4);
+  outline: none;
 }
