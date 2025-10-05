@@ -3085,400 +3085,441 @@ blockquote {
   .search-card .btn.full                { order: 4; }
 
   /* Compact professional sizing */
-  .search-card {
-    grid-template-columns: 1fr !important;
-    gap: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    margin-top: 16px !important;
-    border-radius: 18px !important;
-  }
-
-  .search-card.flat {
-    border: 1px solid #e5e7eb !important;
-    box-shadow: none !important;
-    background: #fff !important;
-  }
-
-  .search-card.flat .field {
-    padding: 14px 18px !important;
-    gap: 6px !important;
-    color: #111827 !important;
-  }
-
-  .search-card.flat .field + .field {
-    border-top: 1px solid #f1f5f9 !important;
-  }
-
-  .search-card label {
-    font-size: 0.78rem !important;
-    font-weight: 600 !important;
-    text-transform: none !important;
-    letter-spacing: 0 !important;
-    color: #6b7280 !important;
-    margin-bottom: 2px !important;
-  }
-
-  .search-card.flat input,
-  .search-card.flat select {
-    height: 42px !important;
-    font-size: 1rem !important;
-    border: none !important;
-    background: transparent !important;
-    padding: 0 !important;
-    color: #111827 !important;
-  }
-
-  .search-card.flat input::placeholder {
-    color: #9ca3af !important;
-  }
+  .search-card { grid-template-columns: 1fr !important; gap: 10px !important; padding: 14px !important; width: 100% !important; margin-top: 0 !important; }
+  .search-card label { font-size: 0.85rem !important; }
+  .search-card.flat input, .search-card.flat select { height: 44px !important; font-size: 0.95rem !important; }
 
   /* Dates side-by-side (no overlap) */
   .search-card .field.field-dates .date-range {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    gap: 0 !important;
-    align-items: stretch !important;
+    display: flex !important; flex-wrap: nowrap !important;
+    gap: 10px !important; align-items: stretch !important;
   }
   .search-card .field.field-dates .date-range > * {
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding-right: 12px !important;
-  }
-  .search-card .field.field-dates .date-range > * + * {
-    border-left: 1px solid #e5e7eb !important;
-    padding-left: 12px !important;
-  }
-  .search-card .field.field-dates .date-range > *:last-child {
-    padding-right: 0 !important;
+    flex: 1 1 0 !important; min-width: 0 !important; width: 100% !important; box-sizing: border-box !important;
   }
   .search-card .field.field-dates input[type="date"] {
-    height: 42px !important;
-    font-size: 1rem !important;
-    line-height: 1 !important;
-    padding: 0 !important;
-    -webkit-appearance: none !important;
-    appearance: none !important;
+    height: 44px !important; font-size: 0.95rem !important; line-height: 1 !important; padding: 8px 10px !important;
+    -webkit-appearance: none !important; appearance: none !important;
   }
   .search-card .field.field-dates input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   .search-card .field.field-dates input[type="date"]::-webkit-calendar-picker-indicator { margin: 0; padding: 0; }
-
-  .search-card .field.field-occupancy .occupancy-group {
-    display: flex !important;
-    gap: 0 !important;
-  }
-  .search-card .field.field-occupancy .occupancy-group select:first-child {
-    margin-right: 12px !important;
-    padding-right: 12px !important;
-    border-right: 1px solid #e5e7eb !important;
-  }
-  .search-card .field.field-occupancy .occupancy-group select:last-child {
-    padding-left: 12px !important;
-  }
 
   /* Hide desktop-only sub-areas on phones */
   .subareas { display: none !important; }
 
   /* Full-width Search button */
-  .search-card .btn.full,
-  .btn.primary.full {
-    grid-column: 1 / -1 !important;
-    width: calc(100% - 32px) !important;
-    margin: 12px 16px 16px !important;
-    border-radius: 14px !important;
-    font-size: 1rem !important;
-    font-weight: 600 !important;
-    text-transform: none !important;
+  .search-card .btn.full, .btn.primary.full { grid-column: 1 / -1 !important; width: 100% !important; }
+}
+/* mobile quick-icons (language + call) — 20251004o */
+@media (max-width: 640px) {
+  .quick-icons { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .qi-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff;
+    box-shadow: 0 2px 10px rgba(15,23,42,0.06);
   }
+  .qi-btn svg { width: 18px; height: 18px; }
 }
-
-/* Mobile header + quick actions + bottom nav */
-.quick-icons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* hide quick-icons on desktop just in case */
+@media (min-width: 641px) {
+  .quick-icons { display: none; }
 }
-
-.qi-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
-}
-
-.qi-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.bottom-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.98);
-  border-top: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 -10px 24px rgba(15, 23, 42, 0.12);
-  backdrop-filter: blur(12px);
-  z-index: 1200;
-}
-
-.bottom-nav .tab {
-  flex: 1 1 auto;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  text-decoration: none;
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.bottom-nav .tab .icon {
-  width: 22px;
-  height: 22px;
-}
-
-.bottom-nav .tab[aria-current="page"] {
-  color: var(--brand);
-}
+/* mobile quick-icons (mobile-only enforce) — 20251004r */
+/* Hide by default (covers all desktop widths) */
+.quick-icons { display: none !important; }
 
 @media (max-width: 640px) {
-  .site-header .top-bar,
-  .top-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: nowrap;
-  }
-
-  .top-bar > * {
-    min-width: 0;
-  }
-
-  .top-bar .logo {
-    display: inline-flex;
-    align-items: center;
-    flex: 0 1 auto;
-  }
-
-  .top-bar .logo img {
-    width: clamp(120px, 32vw, 148px);
-  }
-
+  /* Show on mobile and align just right of the logo */
+  .top-bar { display: flex !important; align-items: center !important; }
   .top-bar .quick-icons {
-    margin-left: auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    display: flex !important;
+    align-items: center; gap: 8px;
+    margin-left: 8px !important;     /* sits next to logo */
+    margin-right: 0 !important;
+  }
+  .qi-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff;
+    box-shadow: 0 2px 10px rgba(15,23,42,0.06);
+  }
+  .qi-btn svg { width: 18px; height: 18px; }
+  /* push hamburger to far right on mobile only */
+  .top-bar .menu-toggle { margin-left: auto !important; }
+}
+
+/* mobile: place quick-icons immediately right of logo — 20251004s */
+@media (max-width: 640px) {
+  .top-bar {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;   /* prevent wrap */
+    gap: 8px !important;
   }
 
+  /* logo stays on the left, doesn't hog width */
+  .top-bar a.logo,
+  .top-bar .logo {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  /* icons sit right next to the logo */
+  .top-bar .quick-icons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-left: 8px !important;   /* directly after logo */
+    flex: 0 0 auto !important;
+  }
+
+  /* push hamburger all the way to the right */
   .top-bar .menu-toggle {
-    display: none;
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* keep things from overflowing on tiny widths */
+  .top-bar > * { min-width: 0 !important; }
+  .top-bar .logo img { height: 28px !important; width: auto !important; }
+}
+
+/* === OYOPLUS MOBILE: header + bottom tabs (20251004tabs) === */
+@media (max-width: 640px) {
+  /* Header row: logo | quick-icons | .... | (hide hamburger) */
+  .top-bar { display: flex !important; align-items: center !important; flex-wrap: nowrap !important; gap: 8px !important; }
+  .top-bar > * { min-width: 0 !important; }
+
+  /* Logo should not grab the whole row */
+  .top-bar .logo, .top-bar a.logo { display: flex !important; align-items: center !important; flex: 0 1 auto !important; min-width: 0 !important; }
+  .top-bar .logo img { height: 28px !important; width: auto !important; }
+
+  /* Language + Call: sit immediately to the right of logo */
+  .top-bar .quick-icons { display: flex !important; align-items: center !important; gap: 8px !important; margin-left: 8px !important; flex: 0 0 auto !important; }
+
+  /* Hide hamburger on mobile (we'll use bottom tabs) */
+  .top-bar .menu-toggle { display: none !important; }
+
+  /* ===== Sticky Bottom Tabs ===== */
+  .bottom-nav { 
+    position: fixed; left: 0; right: 0; bottom: 0;
+    height: 64px; padding-bottom: max(0px, env(safe-area-inset-bottom));
+    background: #fff; border-top: 1px solid rgba(0,0,0,0.08);
+    display: flex; justify-content: space-around; align-items: center;
+    z-index: 999;
+  }
+  .bottom-nav a {
+    flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px; text-decoration: none; color: #6b7280; font-size: 11.5px;
+    padding-top: 6px;
+  }
+  .bottom-nav a .icon { width: 22px; height: 22px; }
+  .bottom-nav a.active, .bottom-nav a[aria-current="page"] { color: #ff375f; }
+
+  /* Prevent content being hidden behind the tab bar */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
+
+/* Hide bottom tabs on desktop */
+@media (min-width: 641px) { .bottom-nav { display: none !important; } }
+/* === OYOPLUS MOBILE FINAL (header + tabs) — 20251004final === */
+@media (max-width: 640px) {
+  /* --- Header row: keep everything on one line --- */
+  header .top-bar, .top-bar {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+  }
+  .top-bar > * { min-width: 0 !important; }
+
+  /* Logo: natural size but capped so it doesn't force a wrap */
+  .top-bar .logo, .top-bar a.logo { display:flex !important; align-items:center !important; flex:0 1 auto !important; min-width:0 !important; }
+  .top-bar .logo img { height: auto !important; max-height: 36px !important; width: auto !important; } /* <-- fixes 'very small logo' */
+
+  /* Language + Call: immediately to the right of the logo */
+  .top-bar .quick-icons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-left: 8px !important;   /* sits beside logo */
+    flex: 0 0 auto !important;
+  }
+  .qi-btn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:999px; border:1px solid var(--border); background:#fff; box-shadow:0 2px 10px rgba(15,23,42,.06); }
+  .qi-btn svg { width:18px; height:18px; }
+
+  /* Hide hamburger on mobile (we're using bottom tabs) */
+  .top-bar .menu-toggle { display: none !important; }
+
+  /* --- Sticky bottom tabs --- */
+  .bottom-nav {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    height: 64px; padding-bottom: max(0px, env(safe-area-inset-bottom));
+    background: #fff; border-top: 1px solid rgba(0,0,0,0.08);
+    display: flex; justify-content: space-around; align-items: center;
+    z-index: 9999;
+  }
+  .bottom-nav a {
+    flex: 1 1 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px; text-decoration: none; color: #6b7280; font-size: 11.5px; padding-top: 6px;
+  }
+  .bottom-nav a .icon { width: 22px; height: 22px; }
+  .bottom-nav a.active, .bottom-nav a[aria-current="page"] { color: #ff375f; }
+
+  /* Prevent content being hidden behind tabs */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
+/* Hide mobile bits on desktop explicitly */
+@media (min-width: 641px) { .quick-icons, .bottom-nav { display: none !important; } }
+
+/* mobile header hard-align — 20251004u */
+@media (max-width: 640px) {
+  /* one-row header that never wraps */
+  header .top-bar, .site-header .top-bar, .top-bar {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .top-bar > * { min-width: 0 !important; }
+
+  /* logo: readable on all phones */
+  .top-bar .logo, .top-bar a.logo {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 55vw !important;          /* stop logo from pushing icons off-row */
+    overflow: hidden !important;
+  }
+  .top-bar .logo img {
+    height: clamp(28px, 6.5vw, 40px) !important;  /* bigger than before, capped */
+    width: auto !important;
+    display: block !important;
+  }
+
+  /* icons: immediately to the right of logo, on the same line */
+  .top-bar .quick-icons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-left: 8px !important;
+    flex: 0 0 auto !important;
+  }
+  .quick-icons .qi-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff;
+    box-shadow: 0 2px 10px rgba(15,23,42,.06);
+  }
+  .quick-icons .qi-btn svg { width: 18px; height: 18px; }
+
+  /* (we're using bottom tabs) – hide hamburger on mobile */
+  .top-bar .menu-toggle { display: none !important; }
+}
+/* === MOBILE HEADER — FINAL (20251004v) === */
+@media (max-width: 640px) {
+  /* Header container: simple row and positioned context */
+  header .top-bar, .site-header .top-bar, .top-bar {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+    min-height: 56px !important;
+  }
+  .top-bar > * { min-width: 0 !important; }
+
+  /* Logo: readable across phones */
+  .top-bar .logo, .top-bar a.logo {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 60vw !important;      /* avoid pushing icons off-row */
+    overflow: hidden !important;
+  }
+  .top-bar .logo img {
+    height: clamp(32px, 7vw, 44px) !important;  /* larger and responsive */
+    max-height: 44px !important;
+    width: auto !important;
+    display: block !important;
+  }
+
+  /* Language + Call: ALWAYS to the right of the logo (no wrapping) */
+  .top-bar .quick-icons {
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  .quick-icons .qi-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 999px;
+    border: 1px solid var(--border); background: #fff;
+    box-shadow: 0 2px 10px rgba(15,23,42,.06);
+  }
+  .quick-icons .qi-btn svg { width: 18px; height: 18px; }
+
+  /* Hide hamburger on mobile since we have bottom tabs */
+  .top-bar .menu-toggle { display: none !important; }
+}
+
+/* Desktop stays untouched; mobile-only block above controls phones */
+
+/* mobile logo size — DOUBLED (20251004w2) */
+@media (max-width: 640px) {
+  /* give enough header height for the larger logo */
+  .top-bar { min-height: 120px !important; }
+
+  /* prevent the logo from pushing icons to a new line */
+  .top-bar .logo { max-width: 60vw !important; }
+
+  /* ~2x larger than before: 44–56px -> 88–112px */
+  .top-bar .logo img {
+    height: clamp(88px, 17vw, 112px) !important;
+    max-height: 112px !important;
+    width: auto !important;
+    display: block !important;
+  }
+}
+/* mobile logo size — DOUBLED (20251004w2) */
+@media (max-width: 640px) {
+  .top-bar { min-height: 120px !important; }          /* room for taller logo */
+  .top-bar .logo { max-width: 60vw !important; }      /* keep icons on same row */
+  .top-bar .logo img {
+    height: clamp(88px, 17vw, 112px) !important;      /* ~2x the previous size */
+    max-height: 112px !important;
+    width: auto !important;
+    display: block !important;
+  }
+}
+
+/* mobile bottom tabs: hard stick — 20251004-stick */
+@media (max-width: 640px) {
+  .bottom-nav {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 2147483647 !important; /* on top of everything */
+    transform: translateZ(0) !important;           /* iOS/Android jitter fix */
+    -webkit-transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    contain: layout paint !important;
+  }
+
+  /* make room so content isn't hidden behind the tabs */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+
+  /* if any page section set its own scroll, disable on phones so fixed uses viewport */
+  main, .page, .wrapper {
+    overflow: visible !important;  /* stop inner scroll containers */
+  }
+}
+
+/* mobile bottom-nav: hard stick v2 — 20251004-stick2 */
+@media (max-width: 640px) {
+  .bottom-nav{
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    z-index: 2147483647 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    background: #fff !important;
+  }
+  /* ensure viewport scrolling, not inner containers */
+  main, .page, .wrapper { overflow: visible !important; }
+  /* prevent content being hidden by the tabs */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
+}
+
+ /* bottom-nav: unbreakable + conflict-free — 20251004-stick4 */
+@media (max-width: 640px) {
+  /* kill the old fixed CTA so it cannot overlap */
+  .mobile-footer-cta { display: none !important; }
+
+  /* ensure viewport scroll, not nested scrollers that break fixed */
+  html, body { height: auto !important; min-height: 100% !important; overflow-x: hidden !important; overflow-y: auto !important; }
+  main, .page, .wrapper, .container, .content { overflow: visible !important; }
+
+  /* neutralize transforms that create new containing blocks */
+  html, body, header, main, .site-header, .hero, .boxed, .section, .page, .wrapper, [style*="transform"] {
+    transform: none !important;
+    perspective: none !important;
+    filter: none !important;
   }
 
   .bottom-nav {
-    display: flex;
-    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    z-index: 2147483647 !important;
+    background: #fff !important;
+    border-top: 1px solid rgba(0,0,0,0.08) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+    -webkit-transform: translateZ(0) !important; transform: translateZ(0) !important;
   }
 
-  body {
-    padding-bottom: calc(68px + env(safe-area-inset-bottom));
-  }
+  /* make room so content isn't covered by tabs */
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)) !important; }
 }
+@media (min-width: 641px){ .bottom-nav { display:none !important; } }
 
-@media (min-width: 641px) {
-  .account-mobile-page {
-    padding: 28px 24px 96px;
-    max-width: 520px;
-  }
-
-  .account-mobile-hero {
-    padding: 20px;
-  }
-}
-
-@media (min-width: 641px) {
+/* 20251004-stick4-confirm */
+@media (max-width: 640px) {
+  .mobile-footer-cta { display: none !important; }
   .bottom-nav {
-    display: none;
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    z-index: 2147483647 !important;
+    background: #fff !important;
+    border-top: 1px solid rgba(0,0,0,0.08) !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+  }
+  html, body { overflow-y: auto !important; }
+  main, .page, .wrapper, .container { overflow: visible !important; }
+}
+@media (min-width: 641px){ .bottom-nav { display:none !important; } }
+/* bottom-nav: FINAL FIX — 20251004stick5 */
+@media (max-width: 640px) {
+  /* ensure it shows and sticks */
+  .bottom-nav{
+    display:flex !important;
+    position:fixed !important;
+    left:0 !important; right:0 !important; bottom:0 !important;
+    z-index:2147483647 !important;
+    background:#fff !important;
+    border-top:1px solid rgba(0,0,0,0.08) !important;
+    padding:8px 8px calc(8px + env(safe-area-inset-bottom)) !important;
+    gap:6px !important; justify-content:space-around !important;
+    visibility:visible !important; opacity:1 !important;
+    -webkit-transform: translateZ(0) !important; transform: translateZ(0) !important;
+  }
+  .bottom-nav .tab{
+    flex:1 1 20% !important;
+    display:flex !important; flex-direction:column !important; align-items:center !important;
+    gap:4px !important; font-size:12px !important; text-decoration:none !important;
+  }
+  .bottom-nav .icon{ width:22px !important; height:22px !important; }
+
+  /* keep content from being hidden behind tabs */
+  body{ padding-bottom:calc(64px + env(safe-area-inset-bottom)) !important; }
+
+  /* remove conflicts */
+  .mobile-footer-cta{ display:none !important; }  /* old bar off on phones */
+  html, body, main, .page, .wrapper, .container, .content { overflow:visible !important; }
+  html, body, header, main, .site-header, .hero, .boxed, [style*="transform"] {
+    transform:none !important; perspective:none !important; filter:none !important;
   }
 }
-
-/* Account app layout */
-.account-app-header {
-  padding: 14px 18px 6px;
-  background: #fff;
-}
-
-.account-app-header h1 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.account-app {
-  padding: 0 18px 96px;
-  max-width: 520px;
-  margin: 0 auto;
-  display: grid;
-  gap: 28px;
-}
-
-.account-app-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  background: #0c0c0c;
-  border-radius: 18px;
-  border: 1px solid #d5a362;
-  padding: 18px;
-  overflow: hidden;
-  color: #fff;
-}
-
-.account-card-body {
-  display: grid;
-  gap: 16px;
-  min-width: 0;
-}
-
-.account-card-kicker {
-  font-size: 0.92rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-.account-card-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: none;
-  border-radius: 999px;
-  padding: 10px 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: #d59d52;
-  color: #111;
-  cursor: pointer;
-}
-
-.account-card-button:hover,
-.account-card-button:focus-visible {
-  filter: brightness(1.05);
-  outline: none;
-}
-
-.account-card-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 6px;
-  background: rgba(17, 17, 17, 0.82);
-  color: #d59d52;
-  font-weight: 700;
-  font-size: 0.8rem;
-}
-
-.account-card-art {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(213, 157, 82, 0.65), transparent 60%),
-    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.12), transparent 55%);
-}
-
-.account-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-  overflow: hidden;
-}
-
-.account-menu li + li {
-  border-top: 1px solid rgba(226, 232, 240, 0.9);
-}
-
-.account-menu-link {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  padding: 16px 18px;
-  font-size: 0.96rem;
-  color: var(--ink);
-  text-decoration: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.account-menu-link:hover,
-.account-menu-link:focus-visible {
-  background: rgba(249, 250, 252, 0.8);
-  outline: none;
-}
-
-.account-menu-icon {
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(17, 24, 39, 0.65);
-}
-
-.account-menu-icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.account-menu-label {
-  flex: 1;
-}
-
-@media (max-width: 480px) {
-  .account-app {
-    padding: 0 14px 96px;
-    gap: 22px;
-  }
-
-  .account-menu-link {
-    padding: 14px 16px;
-    font-size: 0.94rem;
-  }
-}
-
-@media (min-width: 641px) {
-  .account-app {
-    padding: 0 24px 120px;
-  }
-
-  .account-app-card {
-    padding: 22px;
-    grid-template-columns: minmax(0, 1fr) 88px;
-  }
-}
+/* never show on desktop */
+@media (min-width: 641px){ .bottom-nav{ display:none !important; } }

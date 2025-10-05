@@ -1,110 +1,97 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-<head><meta charset="UTF-8" /><title>Offers · OYO.plus</title>
-  <meta charset="UTF-8" /><title>Offers · OYO.plus</title>
-  <link rel="stylesheet" href="styles.css?v=20251005final" />
-  </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Offers · OYO.plus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css?v=20251004stick7" />
+  <link rel="stylesheet" href="assets/css/responsive.css?v=20241006" />
 </head>
-<body>
-<body>
-  <header class="site-header">
+<body data-page="offers">
   <header class="site-header">
     <div class="top-bar">
-    <div class="top-bar">
-      <a class="logo" href="index.html" aria-label="OYO Plus home">
       <a class="logo" href="index.html" aria-label="OYO Plus home">
         <img src="assets/oyo-plus-logo.png" alt="OYO Plus logo" />
-        <img src="assets/oyo-plus-logo.png" alt="OYO Plus logo" />
-      </a>
       </a>
       <div class="quick-icons" aria-label="Quick actions">
-      <div class="quick-icons" aria-label="Quick actions">
-        <button class="qi-btn lang" type="button" aria-label="Language" title="Language">
         <button class="qi-btn lang" type="button" aria-label="Language" title="Language">
           <svg class="lang-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-          <svg class="lang-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="8"/><path d="M3 11h16"/><path d="M11 3a16 16 0 0 1 0 16"/><path d="M11 3a16 16 0 0 0 0 16"/>
-            <circle cx="11" cy="11" r="8"/><path d="M3 11h16"/><path d="M11 3a16 16 0 0 1 0 16"/><path d="M11 3a16 16 0 0 0 0 16"/>
-            <circle cx="18.2" cy="18.2" r="4.2" fill="currentColor"/>
             <circle cx="18.2" cy="18.2" r="4.2" fill="currentColor"/>
             <text x="18.2" y="19.7" text-anchor="middle" font-size="5.5" font-weight="700"
-            <text x="18.2" y="19.7" text-anchor="middle" font-size="5.5" font-weight="700"
-              font-family="Noto Sans Devanagari, Mangal, Arial Unicode MS, sans-serif" fill="#fff">&#x0905;</text>
               font-family="Noto Sans Devanagari, Mangal, Arial Unicode MS, sans-serif" fill="#fff">&#x0905;</text>
           </svg>
-          </svg>
-        </button>
         </button>
         <a class="qi-btn call" href="tel:+919012345678" aria-label="Call support" title="Call">
-        <a class="qi-btn call" href="tel:+919012345678" aria-label="Call support" title="Call">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3.11 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.86.34 1.7.65 2.49a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.86 6.86l1.27-1.27a2 2 0 0 1 2.11-.45c.79.31 1.63.53 2.49.65A2 2 0 0 1 22 16.92Z"/>
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3.11 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.86.34 1.7.65 2.49a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.86 6.86l1.27-1.27a2 2 0 0 1 2.11-.45c.79.31 1.63.53 2.49.65A2 2 0 0 1 22 16.92Z"/>
           </svg>
-          </svg>
-        </a>
         </a>
       </div>
-      </div>
-    </div>
     </div>
   </header>
-  </header>
-
 
   <main class="boxed">
-  <main class="boxed">
-    <section class="offers" id="offers">
     <section class="offers" id="offers">
       <div class="section-head">
-      <div class="section-head">
-        <h1>Latest offers</h1>
         <h1>Latest offers</h1>
       </div>
-      </div>
-      <div class="offer-track" data-slot="offers">
       <div class="offer-track" data-slot="offers">
         <!-- (Optional) You can render the same offers as home via script.js -->
-        <!-- (Optional) You can render the same offers as home via script.js -->
-      </div>
       </div>
     </section>
-    </section>
-  </main>
   </main>
 
+      <!-- JS (deferred + cache-busted) -->
+    <script src="script.js?v=20251004stick4" defer></script>
 
-  <!-- Sticky mobile tabs (Offers active) --><nav class="bottom-nav" role="navigation" aria-label="Primary (mobile)">
-  <a href="index.html" class="tab home">
-    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 10v10h14V10"/></svg>
-    <span>Home</span>
-  </a>
-  <a href="listings.html" class="tab search">
-    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-    <span>Search</span>
-  </a>
-  <a href="user.html#bookings" class="tab bookings">
-    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 3v4M8 3v4"/></svg>
-    <span>Bookings</span>
-  </a>
-  <a href="offers.html" class="tab offers">
-    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l5-5 6 6 7-7"/><path d="M14 7h7v7"/></svg>
-    <span>Offers</span>
-  </a>
-  <a href="user.html" class="tab account">
-    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-    <span>Account</span>
-  </a>
-</nav>
-  <script src="script.js?v=20251005js5" defer></script>
-</body><script><script><script>(function(){try{if(window.matchMedia("(min-width: 641px)").matches) return;var p=(location.pathname.split("/").pop()||"index.html").toLowerCase();var a="home";if(p.includes("listings"))a="search";else if(p.includes("offers"))a="offers";else if(p.includes("user"))a="account";if(location.hash.toLowerCase().includes("bookings"))a="bookings";var n=document.querySelector(".bottom-nav");if(!n)return;n.querySelectorAll(".tab[aria-current]").forEach(function(x){x.removeAttribute("aria-current")});var el=n.querySelector(".tab."+a);if(el) el.setAttribute("aria-current","page");}catch(e){}})();</script>
+    <nav class="bottom-nav" role="navigation" aria-label="Primary (mobile)">
+      <a href="index.html" class="tab" data-nav="home">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10.5 12 3l9 7.5" />
+          <path d="M5 10v10h14V10" />
+        </svg>
+        <span>Home</span>
+      </a>
+      <a href="listings.html" class="tab" data-nav="search">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+        <span>Search</span>
+      </a>
+      <a href="user.html#bookings" class="tab" data-nav="bookings">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="7" width="18" height="13" rx="2" />
+          <path d="M16 3v4" />
+          <path d="M8 3v4" />
+        </svg>
+        <span>Bookings</span>
+      </a>
+      <a href="offers.html" class="tab" data-nav="offers">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12l5-5 6 6 7-7" />
+          <path d="M14 7h7v7" />
+        </svg>
+        <span>Offers</span>
+      </a>
+      <a href="account.html" class="tab" data-nav="account">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21a8 8 0 0 1 16 0" />
+        </svg>
+        <span>Account</span>
+      </a>
+    </nav>
+    <!-- JS (deferred + cache-busted) -->
+    <script src="script.js?v=20251004stick4" defer></script>
+  </body>
+</html>

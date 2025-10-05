@@ -667,6 +667,47 @@ function setupSearchForm() {
   const clearButton = document.getElementById('clear-results');
   if (!searchForm) return;
 
+  const checkInInput = searchForm.querySelector('#check-in');
+  const checkOutInput = searchForm.querySelector('#check-out');
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  if (checkInInput) {
+    const today = new Date();
+    const checkInDate = checkInInput.value ? new Date(checkInInput.value) : today;
+    const normalizedCheckIn = Number.isNaN(checkInDate.getTime()) ? today : checkInDate;
+    checkInInput.value = formatDate(normalizedCheckIn);
+    checkInInput.min = formatDate(today);
+
+    if (checkOutInput) {
+      const defaultCheckout = new Date(normalizedCheckIn);
+      defaultCheckout.setDate(defaultCheckout.getDate() + 1);
+
+      const checkoutCandidate = checkOutInput.value ? new Date(checkOutInput.value) : defaultCheckout;
+      const normalizedCheckout = Number.isNaN(checkoutCandidate.getTime()) || checkoutCandidate <= normalizedCheckIn
+        ? defaultCheckout
+        : checkoutCandidate;
+      checkOutInput.value = formatDate(normalizedCheckout);
+      checkOutInput.min = formatDate(defaultCheckout);
+
+      checkInInput.addEventListener('change', () => {
+        const newCheckIn = new Date(checkInInput.value);
+        if (Number.isNaN(newCheckIn.getTime())) return;
+        const nextNight = new Date(newCheckIn);
+        nextNight.setDate(nextNight.getDate() + 1);
+        checkOutInput.min = formatDate(nextNight);
+        if (!checkOutInput.value || new Date(checkOutInput.value) <= newCheckIn) {
+          checkOutInput.value = formatDate(nextNight);
+        }
+      });
+    }
+  }
+
   const executeSearch = async (filters, options = {}) => {
     const properties = await loadProperties();
     let matches = filterProperties(properties, filters);
@@ -1001,7 +1042,8 @@ function setupReserveModal(property) {
 
   if (locationNode) {
     const locality = property.area ? `${property.area}, ${property.city}` : property.city;
-    const locationLabel = property.country ? `${locality}, ${property.country}` : locality;
+    const region = property.state || property.country;
+    const locationLabel = region ? `${locality}, ${region}` : locality;
     locationNode.textContent = locationLabel;
   }
 
@@ -1570,6 +1612,77 @@ function initNavigation() {
   }
 }
 
+function initBottomNav() {
+  const bottomNav = document.querySelector('.bottom-nav');
+  if (!bottomNav) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 640px)');
+
+  const mapPageToNav = () => {
+    const page = document.body?.dataset.page || 'home';
+    const navKeyByPage = {
+      home: 'home',
+      listings: 'search',
+      detail: 'search',
+      offers: 'offers',
+      account: 'account',
+      user: 'account',
+      auth: 'account',
+      payments: 'account'
+    };
+    if (page === 'user' || page === 'auth') {
+      return window.location.hash.toLowerCase().includes('bookings') ? 'bookings' : 'account';
+    }
+    return navKeyByPage[page] || 'home';
+  };
+
+  const setActiveLink = () => {
+    const target = mapPageToNav();
+    bottomNav.querySelectorAll('.tab[aria-current]').forEach((link) => {
+      link.removeAttribute('aria-current');
+    });
+    const activeLink = bottomNav.querySelector(`.tab[data-nav="${target}"]`);
+    if (activeLink) {
+      activeLink.setAttribute('aria-current', 'page');
+    }
+  };
+
+  const updateVisibility = () => {
+    if (mobileQuery.matches) {
+      bottomNav.removeAttribute('aria-hidden');
+    } else {
+      bottomNav.setAttribute('aria-hidden', 'true');
+    }
+  };
+
+  bottomNav.addEventListener('click', (event) => {
+    const link = event.target.closest('.tab');
+    if (!link) return;
+    bottomNav.querySelectorAll('.tab[aria-current]').forEach((node) => {
+      node.removeAttribute('aria-current');
+    });
+    link.setAttribute('aria-current', 'page');
+  });
+
+  updateVisibility();
+  setActiveLink();
+
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', () => {
+      updateVisibility();
+      setActiveLink();
+    });
+  } else if (typeof mobileQuery.addListener === 'function') {
+    mobileQuery.addListener(() => {
+      updateVisibility();
+      setActiveLink();
+    });
+  }
+
+  window.addEventListener('hashchange', setActiveLink);
+  window.addEventListener('popstate', setActiveLink);
+}
+
 async function initHomePage() {
   renderSkeletons(document.querySelector('[data-slot="collections"]'), 4, 'card');
   renderSkeletons(document.querySelector('[data-slot="destinations"]'), 6, 'chip');
@@ -1613,6 +1726,9 @@ async function initPage() {
     case 'auth':
       await initAuthPage();
       break;
+    case 'account':
+      initAccountHub();
+      break;
     case 'user':
       await initUserPage();
       break;
@@ -1624,6 +1740,7 @@ async function initPage() {
 function initGlobalInteractions() {
   initNavigation();
   setupMembershipLinks();
+  initBottomNav();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1963,78 +2080,11 @@ function toBoolean(value) {
   return Boolean(value);
 }
 
-/* stick-bottom-nav safety pin (mobile only) */
-(function () {
-  try {
-    if (!window.matchMedia('(max-width: 640px)').matches) return;
-    var nav = document.querySelector('.bottom-nav');
-    if (!nav) return;
-    // keep as last direct child of <body>
-    if (nav.parentElement !== document.body) document.body.appendChild(nav);
-    // enforce fixed on scroll/resize in case CSS is overridden elsewhere
-    var ensure = function () {
-      var cs = getComputedStyle(nav);
-      if (cs.position !== 'fixed' || cs.bottom !== '0px') {
-        nav.style.position = 'fixed';
-        nav.style.left = '0'; nav.style.right = '0'; nav.style.bottom = '0';
-        nav.style.zIndex = '2147483647';
-      }
-    };
-    ensure();
-    window.addEventListener('resize', ensure, { passive: true });
-    window.addEventListener('scroll', ensure, { passive: true });
-  } catch (e) {}
-})();
-/* stick-bottom-nav safety pin (mobile only) — 20251004-stick4 */
-(function(){try{if(!window.matchMedia("(max-width: 640px)").matches)return;
-var nav=document.querySelector(".bottom-nav"); if(!nav)return;
-if(nav.parentElement!==document.body){document.body.appendChild(nav)}
-var ensure=function(){var cs=getComputedStyle(nav); if(cs.position!=="fixed"||cs.bottom!="0px"){nav.style.position="fixed";nav.style.left="0";nav.style.right="0";nav.style.bottom="0";nav.style.zIndex="2147483647";}};
-ensure(); window.addEventListener("resize",ensure,{passive:true}); window.addEventListener("scroll",ensure,{passive:true});
-}catch(e){}})();
-
-// singular-ui guard — 20251005js2 (docs)
-(function(){
-  try {
-    const keepFirst = (sel) => {
-      const nodes = document.querySelectorAll(sel);
-      for (let i = 1; i < nodes.length; i++) nodes[i].remove();
-    };
-    keepFirst('a.logo');
-    keepFirst('.quick-icons');
-    keepFirst('nav.bottom-nav');
-
-    const nav = document.querySelector('nav.bottom-nav');
-    if (nav && nav.parentElement !== document.body) {
-      document.body.appendChild(nav);
-    }
-
-    const origIAH = Element.prototype.insertAdjacentHTML;
-    Element.prototype.insertAdjacentHTML = function(position, html) {
-      try {
-        if (typeof html === 'string' &&
-            /<nav[^>]*class="bottom-nav"/i.test(html) &&
-            document.querySelector('nav.bottom-nav')) {
-          return;
-        }
-      } catch(e){}
-      return origIAH.call(this, position, html);
-    };
-
-    if (nav) {
-      const path = (location.pathname || '').toLowerCase();
-      const map = [
-        { sel: '.home',     match: p => p.endsWith('/') || p.endsWith('/index.html') },
-        { sel: '.search',   match: p => p.includes('/listings') },
-        { sel: '.offers',   match: p => p.includes('/offers') },
-        { sel: '.bookings', match: p => p.includes('/user') && location.hash.includes('bookings') },
-        { sel: '.account',  match: p => p.includes('/user') && !location.hash.includes('bookings') }
-      ];
-      map.forEach(({sel, match}) => {
-        const a = nav.querySelector(sel);
-        if (a) a.removeAttribute('aria-current');
-        if (a && match(path)) a.setAttribute('aria-current','page');
-      });
-    }
-  } catch(e){}
-})();
+function initAccountHub() {
+  const switchLanguageButton = document.querySelector('[data-action="switch-language"]');
+  if (switchLanguageButton) {
+    switchLanguageButton.addEventListener('click', () => {
+      showToast('Language preferences are coming soon. Stay tuned!', 'info');
+    });
+  }
+}
