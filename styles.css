@@ -3506,3 +3506,26 @@ blockquote {
   body{ padding-bottom:64px; } /* space so content never hides behind the bar */
 }
 @media (min-width:641px){ .bottom-nav{ display:none; } } /* desktop stays clean */
+/* desktop safety reset — 20251005 */
+@media (min-width: 641px){
+  /* keep mobile-only stuff off desktop */
+  .bottom-nav { display: none !important; }
+  .mobile-footer-cta { display: none !important; }
+
+  /* restore header/hero posture */
+  .site-header, .utility-bar, .top-bar, .main-nav, .cta-group {
+    position: relative !important;
+    transform: none !important;
+  }
+
+  /* logo back to standard desktop size */
+  .top-bar .logo img {
+    height: 40px !important;
+    max-height: 44px !important;
+    width: auto !important;
+    display: block !important;
+  }
+
+  /* language + call buttons are mobile-only */
+  .quick-icons { display: none !important; }
+}
