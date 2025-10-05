@@ -3474,3 +3474,14 @@ blockquote {
 }
 /* never show on desktop */
 @media (min-width: 641px){ .bottom-nav{ display:none !important; } }
+/* mobile: viewport + overflow safety — 20251004stick7 */
+@media (max-width: 640px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden;
+               -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  *, *::before, *::after { box-sizing: border-box; }
+  img, svg, video, canvas { max-width:100%; height:auto; }
+  /* guard against any rogue full-width element */
+  .site-header, .top-bar, .main-nav, .hero, .boxed, .container, .content { overflow-x:hidden; }
+  /* long words/URLs won’t force zoom-out */
+  body { overflow-wrap:anywhere; word-break:break-word; }
+}
