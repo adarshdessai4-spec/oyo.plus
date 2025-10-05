@@ -59,8 +59,8 @@
 
     <!-- Styles -->
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=20251005fix" />
-    <link rel="stylesheet" href="styles.css?v=20251005fix" />
+    <link rel="stylesheet" href="styles.css?v=20251005fix1" />
+    <link rel="stylesheet" href="styles.css?v=20251005fix1" />
     <link rel="stylesheet" href="assets/css/responsive.css?v=20241006" />
     <link rel="stylesheet" href="assets/css/responsive.css?v=20241006" />
     
@@ -1117,8 +1117,7 @@
 
     <!-- JS (deferred + cache-busted) -->
     <!-- JS (deferred + cache-busted) -->
-    <script src="script.js?v=20251004stick4" defer></script></body></html>
-<nav class="bottom-nav" role="navigation" aria-label="Primary (mobile)">
+    <script src="script.js?v=20251004stick4" defer></script><nav class="bottom-nav" role="navigation" aria-label="Primary (mobile)">
   <a href="index.html" class="tab home">
     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 10v10h14V10"/></svg>
     <span>Home</span>
@@ -1132,7 +1131,7 @@
     <span>Bookings</span>
   </a>
   <a href="offers.html" class="tab offers">
-    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7h7v7"/><path d="M3 12l5-5 6 6 7-7"/></svg>
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l5-5 6 6 7-7"/><path d="M14 7h7v7"/></svg>
     <span>Offers</span>
   </a>
   <a href="user.html" class="tab account">
@@ -1140,19 +1139,4 @@
     <span>Account</span>
   </a>
 </nav>
-<script>
-(function(){
-  try{
-    if(window.matchMedia('(min-width: 641px)').matches) return; // mobile only
-    var p=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-    var active='home';
-    if(p.includes('listings')) active='search';
-    else if(p.includes('offers')) active='offers';
-    else if(p.includes('user')) active='account';
-    if(location.hash.toLowerCase().includes('bookings')) active='bookings';
-    var nav=document.querySelector('.bottom-nav'); if(!nav) return;
-    nav.querySelectorAll('.tab[aria-current]').forEach(function(a){a.removeAttribute('aria-current')});
-    var el=nav.querySelector('.tab.'+active); if(el) el.setAttribute('aria-current','page');
-  }catch(e){}
-})();
-</script>
+</body></html>
