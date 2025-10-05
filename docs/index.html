@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
     <!-- Force HTTPS except on localhost -->
     <script>
       (function () {
@@ -11,9 +13,7 @@
       })();
     </script>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, viewport-fit=cover">
-    <title>OYO Inspired Stays | Find Your Perfect Room</title>
+    <meta charset="UTF-8" /><title>OYO Inspired Stays | Find Your Perfect Room</title>
     <meta
       name="description"
       content="Find dependable, affordable stays across 35+ countries. Members unlock exclusive rates, upgrades, and concierge help with OYO.plus."
@@ -30,7 +30,7 @@
     />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=20251004stick6" />
+    <link rel="stylesheet" href="styles.css?v=20251004stick7" />
     <link rel="stylesheet" href="assets/css/responsive.css?v=20241006" />
   </head>
 
@@ -558,37 +558,4 @@
     </noscript>
 
     <!-- JS (deferred + cache-busted) -->
-    <script src="script.js?v=20251004stick4" defer></script></body></html><script><script>
-(function(){
-  try{
-    if(window.matchMedia('(min-width: 641px)').matches) return;
-    var p=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-    var active='home';
-    if(p.includes('listings')) active='search';
-    else if(p.includes('offers')) active='offers';
-    else if(p.includes('user')) active='account';
-    if(location.hash.toLowerCase().includes('bookings')) active='bookings';
-    var nav=document.querySelector('.bottom-nav'); if(!nav) return;
-    nav.querySelectorAll('.tab[aria-current]').forEach(function(a){a.removeAttribute('aria-current')});
-    var el=nav.querySelector('.tab.'+active); if(el) el.setAttribute('aria-current','page');
-  }catch(e){}
-})();
-</script>
-(function(){
-  try{
-    if(window.matchMedia('(min-width: 641px)').matches) return; // mobile only
-    var p=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-    var active='home';
-    if(p.includes('listings')) active='search';
-    else if(p.includes('offers')) active='offers';
-    else if(p.includes('user')) active='account';
-    if(location.hash.toLowerCase().includes('bookings')) active='bookings';
-
-    var nav=document.querySelector('.bottom-nav');
-    if(!nav) return;
-    nav.querySelectorAll('.tab[aria-current]').forEach(function(a){a.removeAttribute('aria-current')});
-    var el=nav.querySelector('.tab.'+active);
-    if(el) el.setAttribute('aria-current','page');
-  }catch(e){}
-})();
-</script>
+    <script src="script.js?v=20251004stick4" defer></script></body></html>
