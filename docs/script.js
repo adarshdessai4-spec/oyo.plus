@@ -1992,3 +1992,49 @@ if(nav.parentElement!==document.body){document.body.appendChild(nav)}
 var ensure=function(){var cs=getComputedStyle(nav); if(cs.position!=="fixed"||cs.bottom!="0px"){nav.style.position="fixed";nav.style.left="0";nav.style.right="0";nav.style.bottom="0";nav.style.zIndex="2147483647";}};
 ensure(); window.addEventListener("resize",ensure,{passive:true}); window.addEventListener("scroll",ensure,{passive:true});
 }catch(e){}})();
+
+// singular-ui guard — 20251005js2 (docs)
+(function(){
+  try {
+    const keepFirst = (sel) => {
+      const nodes = document.querySelectorAll(sel);
+      for (let i = 1; i < nodes.length; i++) nodes[i].remove();
+    };
+    keepFirst('a.logo');
+    keepFirst('.quick-icons');
+    keepFirst('nav.bottom-nav');
+
+    const nav = document.querySelector('nav.bottom-nav');
+    if (nav && nav.parentElement !== document.body) {
+      document.body.appendChild(nav);
+    }
+
+    const origIAH = Element.prototype.insertAdjacentHTML;
+    Element.prototype.insertAdjacentHTML = function(position, html) {
+      try {
+        if (typeof html === 'string' &&
+            /<nav[^>]*class="bottom-nav"/i.test(html) &&
+            document.querySelector('nav.bottom-nav')) {
+          return;
+        }
+      } catch(e){}
+      return origIAH.call(this, position, html);
+    };
+
+    if (nav) {
+      const path = (location.pathname || '').toLowerCase();
+      const map = [
+        { sel: '.home',     match: p => p.endsWith('/') || p.endsWith('/index.html') },
+        { sel: '.search',   match: p => p.includes('/listings') },
+        { sel: '.offers',   match: p => p.includes('/offers') },
+        { sel: '.bookings', match: p => p.includes('/user') && location.hash.includes('bookings') },
+        { sel: '.account',  match: p => p.includes('/user') && !location.hash.includes('bookings') }
+      ];
+      map.forEach(({sel, match}) => {
+        const a = nav.querySelector(sel);
+        if (a) a.removeAttribute('aria-current');
+        if (a && match(path)) a.setAttribute('aria-current','page');
+      });
+    }
+  } catch(e){}
+})();
