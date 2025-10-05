@@ -1616,6 +1616,19 @@ function initBottomNav() {
   const bottomNav = document.querySelector('.bottom-nav');
   if (!bottomNav) return;
 
+  if (bottomNav.parentElement !== document.body) {
+    document.body.appendChild(bottomNav);
+  }
+  const enforceFixedPosition = () => {
+    const style = getComputedStyle(bottomNav);
+    if (style.position !== 'fixed' || style.bottom !== '0px') {
+      bottomNav.style.position = 'fixed';
+      bottomNav.style.left = '0';
+      bottomNav.style.right = '0';
+      bottomNav.style.bottom = '0';
+    }
+  };
+
   const mobileQuery = window.matchMedia('(max-width: 640px)');
 
   const mapPageToNav = () => {
@@ -1662,25 +1675,31 @@ function initBottomNav() {
       node.removeAttribute('aria-current');
     });
     link.setAttribute('aria-current', 'page');
+    enforceFixedPosition();
   });
 
   updateVisibility();
   setActiveLink();
+  enforceFixedPosition();
 
   if (typeof mobileQuery.addEventListener === 'function') {
     mobileQuery.addEventListener('change', () => {
       updateVisibility();
       setActiveLink();
+      enforceFixedPosition();
     });
   } else if (typeof mobileQuery.addListener === 'function') {
     mobileQuery.addListener(() => {
       updateVisibility();
       setActiveLink();
+      enforceFixedPosition();
     });
   }
 
   window.addEventListener('hashchange', setActiveLink);
   window.addEventListener('popstate', setActiveLink);
+  window.addEventListener('resize', enforceFixedPosition, { passive: true });
+  window.addEventListener('scroll', enforceFixedPosition, { passive: true });
 }
 
 async function initHomePage() {
