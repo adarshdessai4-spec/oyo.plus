@@ -3485,6 +3485,3 @@ blockquote {
   /* long words/URLs won’t force zoom-out */
   body { overflow-wrap:anywhere; word-break:break-word; }
 }
-/* quick-icons visibility */
-@media (min-width: 641px){ .quick-icons { display: none !important; } }
-@media (max-width: 640px){ .quick-icons { display: flex !important; } }
