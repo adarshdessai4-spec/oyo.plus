@@ -1658,6 +1658,10 @@ function initBottomNav() {
       bottomNav.style.right = '0';
       bottomNav.style.bottom = '0';
     }
+    bottomNav.style.width = '100%';
+    bottomNav.style.margin = '0';
+    bottomNav.style.maxWidth = '100%';
+    bottomNav.style.zIndex = '2147483647';
   };
 
   const mobileQuery = window.matchMedia('(max-width: 640px)');
