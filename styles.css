@@ -3488,3 +3488,21 @@ blockquote {
 /* quick-icons visibility */
 @media (min-width: 641px){ .quick-icons { display: none !important; } }
 @media (max-width: 640px){ .quick-icons { display: flex !important; } }
+/* bottom-nav: clean final — 20251005final */
+@media (max-width:640px){
+  .bottom-nav{
+    position:fixed; left:0; right:0; bottom:0;
+    display:flex; justify-content:space-between;
+    background:#fff; border-top:1px solid rgba(0,0,0,.08);
+    padding:8px 10px; z-index:9999; max-width:100vw;
+  }
+  .bottom-nav .tab{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font:600 11px/1.2 system-ui,-apple-system,Segoe UI,Inter,Arial,sans-serif;
+    padding:6px 0; text-decoration:none; color:#111;
+  }
+  .bottom-nav .icon{ width:22px; height:22px; margin-bottom:3px; }
+  .bottom-nav .tab[aria-current="page"]{ color:#d00; }
+  body{ padding-bottom:64px; } /* space so content never hides behind the bar */
+}
+@media (min-width:641px){ .bottom-nav{ display:none; } } /* desktop stays clean */
