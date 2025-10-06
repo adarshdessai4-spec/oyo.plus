@@ -598,6 +598,17 @@ a:focus-visible,
   color: #111827;
 }
 
+.occupancy-input {
+  display: none;
+  width: 100%;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: #111827;
+}
+
 .search-card .btn.full {
   grid-column: 1 / -1;
 }
@@ -628,42 +639,54 @@ a:focus-visible,
   background: rgba(255, 255, 255, 0.25);
 }
 
-.promo-subscribe {
-  margin-top: -32px;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(236, 72, 153, 0.08));
+.explore-destinations {
+  margin-top: -16px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(236, 72, 153, 0.08));
+  border-radius: 24px;
+  padding: 48px 6vw;
+  box-shadow: 0 24px 60px -40px rgba(59, 130, 246, 0.35);
+}
+
+.explore-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 0 6vw 8px;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 6vw;
+  -webkit-overflow-scrolling: touch;
+}
+
+.explore-track::-webkit-scrollbar {
+  display: none;
+}
+
+.explore-card {
+  flex: 0 0 140px;
+  height: 140px;
   border-radius: 20px;
-  box-shadow: var(--shadow-lg);
-  padding: 24px 32px;
   display: grid;
-  align-items: center;
-  gap: 24px;
-  grid-template-columns: auto minmax(0, 1fr) minmax(240px, 360px);
+  place-items: center;
+  text-align: center;
+  font-weight: 600;
+  color: #0f172a;
+  background: #fff;
+  box-shadow: 0 14px 30px -22px rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  scroll-snap-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.promo-icon {
-  font-size: 2.4rem;
+.explore-card:hover,
+.explore-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px -18px rgba(15, 23, 42, 0.5);
+  outline: none;
 }
 
-.promo-copy h2 {
-  margin: 0 0 6px;
-}
-
-.promo-copy p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.promo-form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 12px;
-}
-
-.promo-form input {
-  border-radius: 999px;
-  border: 1px solid #d1d5db;
-  padding: 12px 18px;
-  font-size: 0.95rem;
+.explore-card.is-near {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(59, 130, 246, 0.2));
+  color: #0f172a;
 }
 
 .metrics {
@@ -937,11 +960,11 @@ main > section:nth-of-type(even) {
 }
 
 .quick-picks,
+.explore-destinations,
 .destinations,
 .offers,
 .trust,
 .differentiators,
-.promo-subscribe,
 .metrics {
   position: relative;
   margin: 60px auto;
@@ -952,6 +975,25 @@ main > section:nth-of-type(even) {
   border-radius: 28px;
   padding: 80px 6vw;
   box-shadow: 0 24px 60px -40px rgba(59, 130, 246, 0.45);
+}
+
+.quick-picks-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.quick-picks-track::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-picks-track > * {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
 }
 
 .destinations {
@@ -2486,7 +2528,7 @@ blockquote {
     padding: 72px 6vw;
   }
 
-  .promo-subscribe,
+  .explore-destinations,
   .quick-picks,
   .destinations,
   .offers,
@@ -2502,15 +2544,6 @@ blockquote {
   }
 
   .property-card {
-    grid-template-columns: 1fr;
-  }
-
-  .promo-subscribe {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .promo-form {
     grid-template-columns: 1fr;
   }
 
@@ -2532,8 +2565,9 @@ blockquote {
     padding: 32px;
   }
 
-  .membership {
-    padding: 70px 6vw;
+  .explore-track {
+    padding: 0 4vw 8px;
+    scroll-padding: 0 4vw;
   }
 }
 
@@ -2617,7 +2651,7 @@ blockquote {
     justify-content: center;
   }
 
-  .promo-subscribe,
+  .explore-destinations,
   .quick-picks,
   .destinations,
   .offers,
@@ -2712,7 +2746,7 @@ blockquote {
   }
 
 /* -- Mobile tightening for professional look -- */
-.search-card { padding: 16px; gap: 10px; }
+.search-card { padding: 16px 18px; gap: 10px; }
 .search-card.flat input, .search-card.flat select { height: 42px; font-size: 0.95rem; }
 .hero-content { gap: 12px; }
 .section-head h2 { font-size: 1.15rem; }
@@ -2744,6 +2778,7 @@ blockquote {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .hero-brand {
@@ -2751,7 +2786,7 @@ blockquote {
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   .hero-brand img {
@@ -2787,15 +2822,84 @@ blockquote {
   }
 
   .mobile-footer-cta {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    padding: 32px 6vw 48px;
+    display: none !important;
   }
 
-  .mobile-footer-cta .btn {
-    width: 100%;
+  .testimonials {
+    padding: 48px 0 !important;
+  }
+
+  .testimonials .section-head {
+    padding: 0 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .testimonials .testimonial-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    gap: 16px !important;
+    padding: 0 16px 8px !important;
+    margin: 0 !important;
+    scroll-padding: 0 16px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testimonials .testimonial-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonials .testimonial-row figure {
+    flex: 0 0 calc(100% - 64px) !important;
+    min-width: calc(100% - 64px) !important;
+    scroll-snap-align: center;
+  }
+
+  .testimonial-slider-controls {
+    display: none !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .testimonials.has-slider .testimonial-slider-controls {
+    display: inline-flex !important;
+  }
+
+  .testimonial-slider-controls .pill {
+    padding: 8px 12px !important;
+  }
+
+  .site-footer {
+    padding: 32px 20px 28px !important;
+  }
+
+  .footer-columns {
+    gap: 18px !important;
+    margin-bottom: 24px !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .site-footer h4 {
+    font-size: 1rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .site-footer p,
+  .site-footer a {
+    font-size: 0.95rem !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .policy-links {
+    gap: 12px !important;
+    flex-wrap: wrap !important;
   }
 
   .utility-bar {
@@ -2981,9 +3085,8 @@ blockquote {
   justify-self: center;
 }
 
-.promo-subscribe,
+.explore-destinations,
 .metrics,
-.membership,
 .quick-picks,
 .destinations,
 .offers,
@@ -3062,8 +3165,12 @@ blockquote {
   .search-card .field.field-dates .date-range {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
-    gap: 10px !important;
+    gap: 8px !important;
     align-items: center !important;
+    padding: 8px 12px !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 14px !important;
+    background: #fff !important;
   }
 
   /* Ensure the inputs actually shrink and fill their grid cell */
@@ -3078,6 +3185,8 @@ blockquote {
     height: 44px !important;
     line-height: 44px !important;
     font-size: 0.95rem !important;
+    border: none !important;
+    background: transparent !important;
   }
 }
 /* === OYOPLUS MOBILE OVERRIDES — SINGLE SOURCE OF TRUTH (20251004n) === */
@@ -3093,9 +3202,10 @@ blockquote {
     grid-template-columns: 1fr !important;
     gap: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
-    margin-top: 16px !important;
+    width: auto !important;
+    margin: 8px 16px 0 !important;
     border-radius: 18px !important;
+    align-self: stretch !important;
   }
 
   .search-card.flat {
@@ -3131,6 +3241,7 @@ blockquote {
     background: transparent !important;
     padding: 0 !important;
     color: #111827 !important;
+    -webkit-tap-highlight-color: transparent !important;
   }
 
   .search-card.flat input::placeholder {
@@ -3169,17 +3280,31 @@ blockquote {
   .search-card .field.field-dates input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   .search-card .field.field-dates input[type="date"]::-webkit-calendar-picker-indicator { margin: 0; padding: 0; }
 
+  .search-card.flat input:focus,
+  .search-card.flat input:focus-visible,
+  .search-card.flat select:focus,
+  .search-card.flat select:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .search-card .field.field-destination:focus-within {
+    box-shadow: 0 0 0 1px rgba(17, 24, 39, 0.18) !important;
+    border-radius: 16px !important;
+  }
+
   .search-card .field.field-occupancy .occupancy-group {
     display: flex !important;
-    gap: 0 !important;
+    gap: 8px !important;
+    padding: 8px 12px !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 14px !important;
+    background: #fff !important;
   }
-  .search-card .field.field-occupancy .occupancy-group select:first-child {
-    margin-right: 12px !important;
-    padding-right: 12px !important;
-    border-right: 1px solid #e5e7eb !important;
-  }
-  .search-card .field.field-occupancy .occupancy-group select:last-child {
-    padding-left: 12px !important;
+  .search-card .field.field-occupancy .occupancy-group select {
+    flex: 1 1 50%;
+    border: none !important;
+    background: transparent !important;
   }
 
   /* Hide desktop-only sub-areas on phones */
@@ -3195,6 +3320,38 @@ blockquote {
     font-size: 1rem !important;
     font-weight: 600 !important;
     text-transform: none !important;
+  }
+
+  .quick-picks {
+    padding: 40px 16px !important;
+  }
+
+  .quick-picks-track {
+    gap: 12px !important;
+    padding-bottom: 4px !important;
+  }
+
+  .quick-picks-track > * {
+    flex: 0 0 220px !important;
+  }
+
+  .explore-destinations {
+    padding: 36px 16px !important;
+    border-radius: 20px !important;
+    margin-top: 0 !important;
+  }
+
+  .explore-track {
+    gap: 12px !important;
+    padding: 0 16px 6px !important;
+    scroll-padding: 0 16px !important;
+  }
+
+  .explore-card {
+    flex: 0 0 120px !important;
+    height: 120px !important;
+    border-radius: 18px !important;
+    font-size: 0.95rem !important;
   }
 }
 
@@ -3406,7 +3563,7 @@ blockquote {
   max-width: 520px;
   margin: 0 auto;
   display: grid;
-  gap: 24px;
+  gap: 18px;
 }
 
 .account-app-card {
@@ -3419,7 +3576,7 @@ blockquote {
   padding: 20px;
   overflow: hidden;
   color: #fff;
-  margin-top: 8px;
+  margin-top: 30;
 }
 
 .account-card-body {
@@ -3627,7 +3784,7 @@ blockquote {
 @media (max-width: 480px) {
   .account-app {
     padding: 0 14px 96px;
-    gap: 22px;
+    gap: 18px;
   }
 
   .account-menu-link {
