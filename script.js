@@ -57,6 +57,7 @@ const numberFormatters = {
 };
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const MOBILE_BREAKPOINT = '(max-width: 640px)';
 let toastContainer;
 let membershipHighlightTimer;
 
@@ -116,6 +117,103 @@ function clearChildren(element) {
   if (!element) return;
   while (element.firstChild) {
     element.removeChild(element.firstChild);
+  }
+}
+
+function initMobileOccupancyExtras() {
+  const mobileQuery = window.matchMedia(MOBILE_BREAKPOINT);
+  const selectMeta = new WeakMap();
+
+  const getSelects = () => Array.from(document.querySelectorAll('.field.field-occupancy select'));
+
+  const formatLabel = (value, select) => {
+    const numericValue = Number(value) || 0;
+    if (!numericValue) return value;
+    const isRooms = /room/i.test(select.id || select.name || '');
+    const unit = isRooms ? 'room' : 'guest';
+    return `${numericValue} ${unit}${numericValue === 1 ? '' : 's'}`;
+  };
+
+  const ensureOption = (select, value) => {
+    if (!value) return null;
+    let option = select.querySelector(`option[value="${value}"]`);
+    if (!option) {
+      option = document.createElement('option');
+      option.value = String(value);
+      option.textContent = formatLabel(value, select);
+      option.dataset.generated = 'true';
+      select.appendChild(option);
+    } else if (option.dataset.generated === 'true') {
+      option.textContent = formatLabel(value, select);
+    }
+    return option;
+  };
+
+  const setSelectValue = (select, value) => {
+    if (!select) return;
+    const sanitized = Math.max(1, Math.min(99, Number(value) || 1));
+    ensureOption(select, sanitized);
+    select.value = String(sanitized);
+  };
+
+  const ensureMeta = (select) => {
+    if (selectMeta.has(select)) return selectMeta.get(select);
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.min = '1';
+    input.max = '99';
+    input.step = '1';
+    input.inputMode = 'numeric';
+    input.pattern = '[0-9]*';
+    input.className = 'occupancy-input';
+    input.value = select.value || select.options[0]?.value || '1';
+    select.insertAdjacentElement('afterend', input);
+
+    input.addEventListener('input', () => {
+      const numeric = input.value ? Number(input.value) : NaN;
+      if (Number.isNaN(numeric)) return;
+      setSelectValue(select, numeric);
+    });
+
+    input.addEventListener('blur', () => {
+      if (!input.value) {
+        input.value = select.value || '1';
+      }
+      setSelectValue(select, input.value);
+    });
+
+    select.addEventListener('change', () => {
+      input.value = select.value || input.value;
+    });
+
+    const meta = { input };
+    selectMeta.set(select, meta);
+    return meta;
+  };
+
+  const applyMode = () => {
+    const selects = getSelects();
+    if (!selects.length) return;
+    selects.forEach((select) => {
+      const { input } = ensureMeta(select);
+      if (mobileQuery.matches) {
+        input.style.display = 'block';
+        input.value = select.value || input.value || '1';
+        select.dataset.prevDisplay = select.dataset.prevDisplay ?? select.style.display;
+        select.style.display = 'none';
+      } else {
+        select.style.display = select.dataset.prevDisplay ?? '';
+        input.style.display = 'none';
+      }
+    });
+  };
+
+  applyMode();
+
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', applyMode);
+  } else if (typeof mobileQuery.addListener === 'function') {
+    mobileQuery.addListener(applyMode);
   }
 }
 
@@ -257,7 +355,7 @@ function setupMembershipLinks() {
       const action = trigger.dataset.action;
       const section = getMembershipSection();
       if (!section) {
-        window.location.href = 'index.html#membership';
+        window.location.href = 'support.html#contact';
         return;
       }
       if (action === 'open-membership') {
@@ -501,6 +599,34 @@ function renderDestinations(destinations) {
   destinations.forEach((destination) => container.appendChild(buildDestinationCard(destination)));
 }
 
+function renderExploreDestinations(states) {
+  const track = document.querySelector('[data-slot="explore-track"]');
+  if (!track) return;
+  clearChildren(track);
+  const cards = [
+    {
+      label: 'Near me',
+      href: 'listings.html?near=true',
+      modifier: 'is-near'
+    }
+  ];
+  states.forEach((state) => {
+    cards.push({
+      label: state,
+      href: `listings.html?state=${encodeURIComponent(state)}`
+    });
+  });
+
+  cards.forEach((card) => {
+    const element = createElement(`
+      <a class="explore-card${card.modifier ? ` ${card.modifier}` : ''}" href="${card.href}" role="listitem">
+        <span>${card.label}</span>
+      </a>
+    `);
+    track.appendChild(element);
+  });
+}
+
 function renderOffers(offers) {
   const track = document.querySelector('[data-slot="offers"]');
   if (!track) return;
@@ -549,12 +675,140 @@ function renderTrust(trust) {
 function renderTestimonials(testimonials) {
   const container = document.querySelector('[data-slot="testimonials"]');
   if (!container) return;
+  clearChildren(container);
   if (!testimonials?.length) {
     container.innerHTML = '<p class="muted">Testimonials coming soon.</p>';
+    initTestimonialSlider(container);
     return;
   }
-  clearChildren(container);
   testimonials.forEach((testimonial) => container.appendChild(buildTestimonialCard(testimonial)));
+  initTestimonialSlider(container);
+}
+
+function initTestimonialSlider(container) {
+  if (!container) return;
+  const section = container.closest('.testimonials');
+  if (!section) return;
+
+  const track = container;
+  const mobileQuery = window.matchMedia(MOBILE_BREAKPOINT);
+  let currentIndex = 0;
+  let scrollFrame = null;
+
+  const getItems = () => Array.from(track.children).filter((child) => child.matches?.('figure'));
+
+  const updateButtonState = () => {
+    const controls = section.querySelector('.testimonial-slider-controls');
+    if (!controls) return;
+    const items = getItems();
+    const prev = controls.querySelector('[data-direction="prev"]');
+    const next = controls.querySelector('[data-direction="next"]');
+    const lastIndex = Math.max(items.length - 1, 0);
+    if (prev) prev.disabled = currentIndex <= 0;
+    if (next) next.disabled = currentIndex >= lastIndex;
+  };
+
+  const scrollToIndex = (index) => {
+    const items = getItems();
+    if (!items.length) return;
+    const boundedIndex = Math.min(Math.max(index, 0), items.length - 1);
+    const target = items[boundedIndex];
+    if (!target) return;
+    currentIndex = boundedIndex;
+    const offset = target.offsetLeft - track.offsetLeft;
+    track.scrollTo({
+      left: offset,
+      behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+    });
+    updateButtonState();
+  };
+
+  const handleNavClick = (event) => {
+    const button = event.target.closest('button[data-direction]');
+    if (!button) return;
+    const direction = button.dataset.direction === 'prev' ? -1 : 1;
+    scrollToIndex(currentIndex + direction);
+  };
+
+  const teardownControls = () => {
+    const controls = section.querySelector('.testimonial-slider-controls');
+    if (controls) {
+      controls.removeEventListener('click', handleNavClick);
+      controls.remove();
+    }
+    section.classList.remove('has-slider');
+    updateButtonState();
+  };
+
+  const ensureControls = () => {
+    const items = getItems();
+    if (!mobileQuery.matches || items.length <= 1) {
+      teardownControls();
+      currentIndex = 0;
+      return;
+    }
+
+    section.classList.add('has-slider');
+    let controls = section.querySelector('.testimonial-slider-controls');
+    if (!controls) {
+      controls = document.createElement('div');
+      controls.className = 'testimonial-slider-controls';
+      controls.innerHTML = `
+        <button type="button" class="pill" data-direction="prev" aria-label="Previous testimonial">←</button>
+        <button type="button" class="pill" data-direction="next" aria-label="Next testimonial">→</button>
+      `;
+      const header = section.querySelector('.section-head');
+      if (header) {
+        header.appendChild(controls);
+      } else {
+        section.insertBefore(controls, track);
+      }
+      controls.addEventListener('click', handleNavClick);
+    }
+    updateButtonState();
+  };
+
+  const updateActiveIndex = () => {
+    const items = getItems();
+    if (!items.length) return;
+    const { scrollLeft, clientWidth } = track;
+    const midpoint = scrollLeft + clientWidth / 2;
+    let closestIndex = currentIndex;
+    let closestDistance = Number.POSITIVE_INFINITY;
+    items.forEach((item, index) => {
+      const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+      const distance = Math.abs(itemCenter - midpoint);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+    if (closestIndex !== currentIndex) {
+      currentIndex = closestIndex;
+      updateButtonState();
+    }
+  };
+
+  const onScroll = () => {
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = null;
+      updateActiveIndex();
+    });
+  };
+
+  if (!section.dataset.testimonialSliderBound) {
+    track.addEventListener('scroll', onScroll, { passive: true });
+    if (typeof mobileQuery.addEventListener === 'function') {
+      mobileQuery.addEventListener('change', ensureControls);
+    } else if (typeof mobileQuery.addListener === 'function') {
+      mobileQuery.addListener(ensureControls);
+    }
+    section.dataset.testimonialSliderBound = 'true';
+  }
+
+  ensureControls();
+  updateButtonState();
 }
 
 function renderDownload(download) {
@@ -1664,7 +1918,7 @@ function initBottomNav() {
     bottomNav.style.zIndex = '2147483647';
   };
 
-  const mobileQuery = window.matchMedia('(max-width: 640px)');
+  const mobileQuery = window.matchMedia(MOBILE_BREAKPOINT);
 
   const mapPageToNav = () => {
     const page = document.body?.dataset.page || 'home';
@@ -1747,6 +2001,7 @@ async function initHomePage() {
   if (!homeData) return;
   renderCollections(homeData.collections);
   renderDestinations(homeData.destinations);
+  renderExploreDestinations(STATE_LIST);
   renderOffers(homeData.offers);
   renderTrust(homeData.trust);
   renderTestimonials(homeData.testimonials);
@@ -1754,7 +2009,6 @@ async function initHomePage() {
   renderDifferentiators(homeData.differentiators);
   // Preload properties for faster search responses
   loadProperties();
-  setupPromoForm();
   handleMembershipDeepLink();
 }
 
@@ -1803,6 +2057,7 @@ function initGlobalInteractions() {
   initNavigation();
   setupMembershipLinks();
   initBottomNav();
+  initMobileOccupancyExtras();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1868,32 +2123,6 @@ function setupMetricShortcuts() {
       const city = link.dataset.city;
       navigateToListings({ city });
     });
-  });
-}
-
-function setupPromoForm() {
-  const form = document.querySelector('[data-form="promo"]');
-  if (!form) return;
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const email = form.querySelector('input[type="email"]')?.value;
-    if (!email) {
-      showToast('Please enter a valid email.', 'warning');
-      return;
-    }
-    fetch('/api/promo-subscriptions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error('promo_failed');
-        showToast('Thanks! We will keep you posted with exclusive deals.', 'success');
-        form.reset();
-      })
-      .catch(() => {
-        showToast('Unable to save subscription. Please try again.', 'warning');
-      });
   });
 }
 
